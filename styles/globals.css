@@ -1,0 +1,245 @@
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --font-size: 14px;
+  
+  /* Logo-based color system */
+  --logo-dark: #0f0f23;
+  --logo-red: #dc2626;
+  --logo-orange: #ea580c;
+  --logo-blue: #2563eb;
+  --logo-cyan: #0891b2;
+  --logo-yellow: #eab308;
+  --logo-white: #ffffff;
+  --logo-gray: #374151;
+  --logo-light-gray: #9ca3af;
+  
+  /* Primary theme colors based on logo */
+  --background: var(--logo-dark);
+  --foreground: var(--logo-white);
+  --card: rgba(15, 15, 35, 0.8);
+  --card-foreground: var(--logo-white);
+  --popover: var(--logo-dark);
+  --popover-foreground: var(--logo-white);
+  --primary: var(--logo-red);
+  --primary-foreground: var(--logo-white);
+  --secondary: var(--logo-blue);
+  --secondary-foreground: var(--logo-white);
+  --muted: var(--logo-gray);
+  --muted-foreground: var(--logo-light-gray);
+  --accent: var(--logo-orange);
+  --accent-foreground: var(--logo-white);
+  --destructive: #dc2626;
+  --destructive-foreground: var(--logo-white);
+  --border: rgba(220, 38, 38, 0.2);
+  --input: transparent;
+  --input-background: rgba(55, 65, 81, 0.5);
+  --switch-background: var(--logo-gray);
+  --font-weight-medium: 500;
+  --font-weight-normal: 400;
+  --ring: var(--logo-red);
+  
+  /* Logo-specific gradients */
+  --gradient-primary: linear-gradient(135deg, var(--logo-red), var(--logo-orange));
+  --gradient-secondary: linear-gradient(135deg, var(--logo-blue), var(--logo-cyan));
+  --gradient-accent: linear-gradient(135deg, var(--logo-orange), var(--logo-yellow));
+  --gradient-dark: linear-gradient(135deg, var(--logo-dark), var(--logo-gray));
+  
+  /* Chart colors based on logo palette */
+  --chart-1: var(--logo-red);
+  --chart-2: var(--logo-orange);
+  --chart-3: var(--logo-blue);
+  --chart-4: var(--logo-cyan);
+  --chart-5: var(--logo-yellow);
+  
+  --radius: 0.625rem;
+  
+  /* Sidebar colors */
+  --sidebar: var(--logo-dark);
+  --sidebar-foreground: var(--logo-white);
+  --sidebar-primary: var(--logo-red);
+  --sidebar-primary-foreground: var(--logo-white);
+  --sidebar-accent: var(--logo-orange);
+  --sidebar-accent-foreground: var(--logo-white);
+  --sidebar-border: rgba(220, 38, 38, 0.3);
+  --sidebar-ring: var(--logo-red);
+}
+
+.dark {
+  --background: var(--logo-dark);
+  --foreground: var(--logo-white);
+  --card: rgba(15, 15, 35, 0.9);
+  --card-foreground: var(--logo-white);
+  --popover: var(--logo-dark);
+  --popover-foreground: var(--logo-white);
+  --primary: var(--logo-red);
+  --primary-foreground: var(--logo-white);
+  --secondary: var(--logo-blue);
+  --secondary-foreground: var(--logo-white);
+  --muted: var(--logo-gray);
+  --muted-foreground: var(--logo-light-gray);
+  --accent: var(--logo-orange);
+  --accent-foreground: var(--logo-white);
+  --destructive: var(--logo-red);
+  --destructive-foreground: var(--logo-white);
+  --border: rgba(220, 38, 38, 0.3);
+  --input: rgba(55, 65, 81, 0.5);
+  --ring: var(--logo-red);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-input-background: var(--input-background);
+  --color-switch-background: var(--switch-background);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  
+  /* Logo-based custom colors */
+  --color-logo-dark: var(--logo-dark);
+  --color-logo-red: var(--logo-red);
+  --color-logo-orange: var(--logo-orange);
+  --color-logo-blue: var(--logo-blue);
+  --color-logo-cyan: var(--logo-cyan);
+  --color-logo-yellow: var(--logo-yellow);
+  --color-logo-white: var(--logo-white);
+  --color-logo-gray: var(--logo-gray);
+  --color-logo-light-gray: var(--logo-light-gray);
+  
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-logo-dark text-logo-white;
+    background: linear-gradient(135deg, var(--logo-dark) 0%, #1a1a2e 50%, var(--logo-dark) 100%);
+    min-height: 100vh;
+  }
+}
+
+/**
+ * Base typography with logo colors
+ */
+@layer base {
+  :where(:not(:has([class*=" text-"]), :not(:has([class^="text-"])))) {
+    h1 {
+      font-size: var(--text-2xl);
+      font-weight: var(--font-weight-medium);
+      line-height: 1.5;
+      color: var(--logo-white);
+    }
+
+    h2 {
+      font-size: var(--text-xl);
+      font-weight: var(--font-weight-medium);
+      line-height: 1.5;
+      color: var(--logo-white);
+    }
+
+    h3 {
+      font-size: var(--text-lg);
+      font-weight: var(--font-weight-medium);
+      line-height: 1.5;
+      color: var(--logo-white);
+    }
+
+    h4 {
+      font-size: var(--text-base);
+      font-weight: var(--font-weight-medium);
+      line-height: 1.5;
+      color: var(--logo-white);
+    }
+
+    p {
+      font-size: var(--text-base);
+      font-weight: var(--font-weight-normal);
+      line-height: 1.5;
+      color: var(--logo-light-gray);
+    }
+
+    label {
+      font-size: var(--text-base);
+      font-weight: var(--font-weight-medium);
+      line-height: 1.5;
+      color: var(--logo-white);
+    }
+
+    button {
+      font-size: var(--text-base);
+      font-weight: var(--font-weight-medium);
+      line-height: 1.5;
+    }
+
+    input {
+      font-size: var(--text-base);
+      font-weight: var(--font-weight-normal);
+      line-height: 1.5;
+      color: var(--logo-white);
+    }
+  }
+}
+
+/* Custom utility classes for logo colors */
+@layer utilities {
+  .bg-logo-gradient-primary {
+    background: var(--gradient-primary);
+  }
+  
+  .bg-logo-gradient-secondary {
+    background: var(--gradient-secondary);
+  }
+  
+  .bg-logo-gradient-accent {
+    background: var(--gradient-accent);
+  }
+  
+  .bg-logo-gradient-dark {
+    background: var(--gradient-dark);
+  }
+  
+  .text-logo-gradient {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
+
+html {
+  font-size: var(--font-size);
+}

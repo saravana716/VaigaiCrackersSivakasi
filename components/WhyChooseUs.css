@@ -1,0 +1,119 @@
+.why-section {
+  padding: 5rem 0;
+  background-color: #000;
+}
+
+.why-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.why-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.why-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  background: linear-gradient(to right, #facc15, #fb923c, #f87171);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.why-subtitle {
+  font-size: 1.25rem;
+  color: #9ca3af;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.benefits-grid {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.benefit-card {
+  transition: transform 0.3s ease;
+}
+
+.benefit-inner-card {
+  background: linear-gradient(to bottom right, #111827, #1f2937);
+  border: 1px solid #374151;
+  height: 100%;
+  transition: border-color 0.3s ease;
+}
+
+.benefit-inner-card:hover {
+  border-color: #4b5563;
+}
+
+.benefit-content {
+  padding: 2rem;
+  text-align: center;
+}
+
+.benefit-icon {
+  display: inline-flex;
+  padding: 1rem;
+  border-radius: 9999px;
+  margin-bottom: 1.5rem;
+}
+
+.icon-svg {
+  width: 2rem;
+  height: 2rem;
+  color: #fff;
+}
+
+/* Color gradients */
+.gradient-green { background: linear-gradient(to right, #34d399, #10b981); }
+.gradient-blue { background: linear-gradient(to right, #60a5fa, #06b6d4); }
+.gradient-yellow { background: linear-gradient(to right, #facc15, #fb923c); }
+.gradient-purple { background: linear-gradient(to right, #a78bfa, #ec4899); }
+.gradient-red { background: linear-gradient(to right, #f87171, #fb7185); }
+.gradient-indigo { background: linear-gradient(to right, #818cf8, #a78bfa); }
+
+.benefit-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #fff;
+  margin-bottom: 1rem;
+  transition: color 0.3s ease;
+}
+
+.benefit-card:hover .benefit-title {
+  color: #facc15;
+}
+
+.benefit-description {
+  color: #9ca3af;
+  line-height: 1.6;
+}
+
+.stats-grid {
+  display: grid;
+  gap: 2rem;
+  margin-top: 5rem;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+}
+
+.stat-card {
+  text-align: center;
+}
+
+.stat-number {
+  font-size: 2rem;
+  font-weight: bold;
+  background: linear-gradient(to right, #facc15, #fb923c);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 0.5rem;
+}
+
+.stat-label {
+  color: #9ca3af;
+  font-size: 1.125rem;
+}

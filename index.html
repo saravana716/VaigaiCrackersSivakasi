@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Twin Elephant Brand - Premium Fireworks Since 1970</title>
+    <meta name="description" content="Twin Elephant Brand - Leading manufacturer of premium fireworks in Sivakasi. Discover our wide range of sparklers, fountains, rockets, and Roman candles. 50+ years of excellence in fireworks manufacturing." />
+    <meta name="keywords" content="fireworks, sparklers, fountains, rockets, roman candles, sivakasi, twin elephant, crackers, celebrations, festivals" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Twin Elephant Brand - Premium Fireworks" />
+    <meta property="og:description" content="Leading manufacturer of premium fireworks in Sivakasi. 50+ years of excellence in fireworks manufacturing." />
+    <meta property="og:site_name" content="Twin Elephant Brand" />
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Twin Elephant Brand - Premium Fireworks" />
+    <meta name="twitter:description" content="Leading manufacturer of premium fireworks in Sivakasi. 50+ years of excellence in fireworks manufacturing." />
+    
+    <!-- Preconnect to external domains for better performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <!-- Import Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    
+    <style>
+      /* Prevent flash of unstyled content */
+      body {
+        font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #0f0f23;
+        color: #ffffff;
+      }
+      
+      /* Loading spinner */
+      .loading-spinner {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 40px;
+        height: 40px;
+        border: 3px solid #374151;
+        border-top: 3px solid #dc2626;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        z-index: 9999;
+      }
+      
+      @keyframes spin {
+        0% { transform: translate(-50%, -50%) rotate(0deg); }
+        100% { transform: translate(-50%, -50%) rotate(360deg); }
+      }
+      
+      /* Hide loading spinner when React loads */
+      #root:not(:empty) + .loading-spinner {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <div class="loading-spinner"></div>
+    <script type="module" src="/main.tsx"></script>
+  </body>
+</html>
