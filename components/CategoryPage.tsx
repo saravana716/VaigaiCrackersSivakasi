@@ -1,11 +1,30 @@
-import { useState} from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, Search, Grid, List, Star, Sparkles, Flame,} from 'lucide-react';
-import { Button } from './ui/button';
-import { Input } from './ui/input';
-import { Card, CardContent } from './ui/card';
-import { Badge } from './ui/badge';
-import { ImageWithFallback } from './figma/ImageWithFallback';
+"use client";
+
+import { useEffect, useMemo, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  ArrowLeft,
+  Search,
+  Grid,
+  List,
+  Star,
+  Sparkles,
+  Flame,
+} from "lucide-react";
+import { Button } from "./ui/button";
+import { Input } from "./ui/input";
+import { Card, CardContent } from "./ui/card";
+import { Badge } from "./ui/badge";
+import { ImageWithFallback } from "./figma/ImageWithFallback";
+import {
+  getDoc,
+  doc,
+  collection,
+  getDocs,
+  query,
+  where,
+} from "firebase/firestore";
+import { db } from "../firebase";
 
 interface Product {
   id: string;
@@ -14,125 +33,134 @@ interface Product {
   rating: number;
   image: string;
   popular?: boolean;
-}
-
-interface SubCategory {
-  id: string;
-  name: string;
-  description: string;
-  products: Product[];
+  order?: number;
 }
 
 interface CategoryData {
+  id: string;
   name: string;
+  slug?: string;
   description: string;
-  icon: any;
+  icon: string;
   color: string;
   image: string;
-  subCategories: SubCategory[];
+  order?: number;
 }
 
-const categoryData: Record<string, CategoryData> = {
-  sparklers: {
-    name: 'Sparklers',
-    description: 'Beautiful handheld sparklers perfect for weddings, celebrations, and intimate gatherings. Our premium quality sparklers provide bright, long-lasting sparkles.',
-    icon: Sparkles,
-    color: 'from-blue-400 to-blue-600',
-    image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&w=1200&q=80',
-    subCategories: [
-      {
-        id: '7-inch',
-        name: '7 Inch Sparklers',
-        description: 'Perfect for intimate celebrations',
-        products: [
-          { id: '1', name: 'Golden Rain 7"', price: '₹125', rating: 4.8, image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&w=300&q=80', popular: true },
-          { id: '2', name: 'Silver Star 7"', price: '₹110', rating: 4.6, image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&w=300&q=80' },
-          { id: '3', name: 'Color Mix 7"', price: '₹140', rating: 4.7, image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&w=300&q=80' },
-          { id: '4', name: 'Premium Gold 7"', price: '₹165', rating: 4.9, image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&w=300&q=80' }
-        ]
-      },
-      {
-        id: '10-inch',
-        name: '10 Inch Sparklers',
-        description: 'Medium size for parties and events',
-        products: [
-          { id: '5', name: 'Twin Elephant Gold 10"', price: '₹185', rating: 4.9, image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&w=300&q=80', popular: true },
-          { id: '6', name: 'Rainbow Sparkler 10"', price: '₹195', rating: 4.8, image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&w=300&q=80' },
-          { id: '7', name: 'Electric Blue 10"', price: '₹175', rating: 4.7, image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&w=300&q=80' },
-          { id: '8', name: 'Royal Silver 10"', price: '₹160', rating: 4.6, image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&w=300&q=80' }
-        ]
-      },
-      {
-        id: '12-inch',
-        name: '12 Inch Sparklers',
-        description: 'Long-lasting sparklers for grand celebrations',
-        products: [
-          { id: '9', name: 'Majestic Gold 12"', price: '₹245', rating: 4.9, image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&w=300&q=80', popular: true },
-          { id: '10', name: 'Platinum Special 12"', price: '₹275', rating: 4.8, image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&w=300&q=80' },
-          { id: '11', name: 'Festival King 12"', price: '₹225', rating: 4.7, image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&w=300&q=80' }
-        ]
-      },
-      {
-        id: '15-inch',
-        name: '15 Inch Sparklers',
-        description: 'Professional grade for weddings and special events',
-        products: [
-          { id: '12', name: 'Wedding Bliss 15"', price: '₹325', rating: 5.0, image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&w=300&q=80', popular: true },
-          { id: '13', name: 'Golden Anniversary 15"', price: '₹295', rating: 4.9, image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&w=300&q=80' },
-          { id: '14', name: 'Celebration Elite 15"', price: '₹340', rating: 4.8, image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&w=300&q=80' }
-        ]
-      }
-    ]
-  },
-  fountains: {
-    name: 'Fountains',
-    description: 'Ground-based fountains that create stunning vertical displays with colorful sparks and effects.',
-    icon: Flame,
-    color: 'from-red-400 to-orange-500',
-    image: 'https://images.unsplash.com/photo-1514820720066-ed8784479467?auto=format&fit=crop&w=1200&q=80',
-    subCategories: [
-      {
-        id: 'small',
-        name: 'Small Fountains',
-        description: 'Perfect for home celebrations',
-        products: [
-          { id: '15', name: 'Garden Fountain', price: '₹85', rating: 4.6, image: 'https://images.unsplash.com/photo-1514820720066-ed8784479467?auto=format&fit=crop&w=300&q=80' },
-          { id: '16', name: 'Mini Volcano', price: '₹95', rating: 4.5, image: 'https://images.unsplash.com/photo-1514820720066-ed8784479467?auto=format&fit=crop&w=300&q=80' },
-          { id: '17', name: 'Color Burst', price: '₹110', rating: 4.7, image: 'https://images.unsplash.com/photo-1514820720066-ed8784479467?auto=format&fit=crop&w=300&q=80' }
-        ]
-      },
-      {
-        id: 'medium',
-        name: 'Medium Fountains',
-        description: 'Great for parties and gatherings',
-        products: [
-          { id: '18', name: 'Twin Elephant Fountain', price: '₹185', rating: 4.8, image: 'https://images.unsplash.com/photo-1514820720066-ed8784479467?auto=format&fit=crop&w=300&q=80', popular: true },
-          { id: '19', name: 'Rainbow Cascade', price: '₹195', rating: 4.7, image: 'https://images.unsplash.com/photo-1514820720066-ed8784479467?auto=format&fit=crop&w=300&q=80' },
-          { id: '20', name: 'Golden Shower', price: '₹175', rating: 4.6, image: 'https://images.unsplash.com/photo-1514820720066-ed8784479467?auto=format&fit=crop&w=300&q=80' }
-        ]
-      }
-    ]
-  }
+const iconMap: Record<string, React.ComponentType<any>> = {
+  sparkles: Sparkles,
+  flame: Flame,
 };
 
 interface CategoryPageProps {
-  category: string;
+  category: string; // Firestore document id OR slug
   onBack: () => void;
-  handleproductClick:(productId: string) => void;
+  handleproductClick: (productId: string) => void;
 }
 
-export function CategoryPage({ category, onBack,handleproductClick }: CategoryPageProps) {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
-  const [selectedSubCategory, setSelectedSubCategory] = useState<string>('all');
-  
-  const data = categoryData[category];
-  
-  if (!data) {
+export function CategoryPage({
+  category,
+  onBack,
+  handleproductClick,
+}: CategoryPageProps) {
+  const [data, setData] = useState<CategoryData | null>(null);
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [err, setErr] = useState<string | null>(null);
+
+  const [searchTerm, setSearchTerm] = useState("");
+  const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
+
+  useEffect(() => {
+    let cancelled = false;
+
+    async function load() {
+      setLoading(true);
+      setErr(null);
+      try {
+        // Load category by ID
+        let catSnap = await getDoc(doc(db, "categories", category));
+        if (!catSnap.exists()) {
+          throw new Error("Category not found");
+        }
+
+        const raw = catSnap.data() as any;
+        const catData: CategoryData = {
+          id: catSnap.id,
+          name: raw?.name ?? "",
+          slug: raw?.slug,
+          description: raw?.description ?? "",
+          icon: (raw?.icon ?? "sparkles").toLowerCase(),
+          color: raw?.color ?? "from-blue-400 to-blue-600",
+          image: raw?.image ?? "",
+          order: raw?.order ?? 0,
+        };
+
+        if (cancelled) return;
+        setData(catData);
+
+        // ✅ Simple product query (no orderBy, no index needed)
+        const prodQuery = query(
+          collection(db, "products"),
+          where("category", "==", catData.name)
+        );
+        const prodSnaps = await getDocs(prodQuery);
+
+        const loadedProducts: Product[] = prodSnaps.docs.map((p) => {
+          const pd = p.data() as any;
+          return {
+            id: p.id,
+            name: pd?.name ?? "",
+            price: pd?.price ?? "",
+            rating: typeof pd?.rating === "number" ? pd.rating : 0,
+            image: Array.isArray(pd?.images) ? pd.images[0] : "",
+            popular: !!pd?.popular,
+            order: pd?.order ?? 0,
+          };
+        });
+
+        if (cancelled) return;
+        setProducts(loadedProducts);
+      } catch (e: any) {
+        if (!cancelled) setErr(e?.message || "Failed to load category");
+      } finally {
+        if (!cancelled) setLoading(false);
+      }
+    }
+
+    load();
+    return () => {
+      cancelled = true;
+    };
+  }, [category]);
+
+  const IconComponent = useMemo(() => {
+    const key = (data?.icon || "sparkles").toLowerCase();
+    return iconMap[key] ?? Sparkles;
+  }, [data?.icon]);
+
+  const filteredProducts = useMemo(() => {
+    if (!searchTerm) return products;
+    const q = searchTerm.toLowerCase();
+    return products.filter((p) => p.name.toLowerCase().includes(q));
+  }, [searchTerm, products]);
+
+  if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100">
+        <p className="text-gray-600">Loading category…</p>
+      </div>
+    );
+  }
+
+  if (err || !data) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100">
         <div className="text-center">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Category not found</h2>
+          <h2 className="text-2xl font-bold text-gray-900 mb-2">
+            Category not found
+          </h2>
+          {err && <p className="text-gray-600 mb-4">{err}</p>}
           <Button onClick={onBack} variant="outline">
             <ArrowLeft className="mr-2 h-4 w-4" />
             Go Back
@@ -141,19 +169,6 @@ export function CategoryPage({ category, onBack,handleproductClick }: CategoryPa
       </div>
     );
   }
-
-  const IconComponent = data.icon;
-  
-  const filteredSubCategories = selectedSubCategory === 'all' 
-    ? data.subCategories 
-    : data.subCategories.filter(sub => sub.id === selectedSubCategory);
-
-  const allProducts = data.subCategories.flatMap(sub => sub.products);
-  const filteredProducts = searchTerm 
-    ? allProducts.filter(product => 
-        product.name.toLowerCase().includes(searchTerm.toLowerCase())
-      )
-    : allProducts;
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50">
@@ -165,37 +180,39 @@ export function CategoryPage({ category, onBack,handleproductClick }: CategoryPa
             alt={data.name}
             className="w-full h-full object-cover opacity-40"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-transparent" />
         </div>
-        
+
         <div className="relative z-10 container mx-auto px-4 py-16">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <Button 
+            <Button
               onClick={onBack}
-              variant="ghost" 
+              variant="ghost"
               className="text-white hover:bg-white/20 mb-6"
             >
               <ArrowLeft className="mr-2 h-4 w-4" />
               Back to Categories
             </Button>
-            
+
             <div className="flex items-center space-x-4 mb-6">
               <div className={`p-4 rounded-2xl bg-gradient-to-r ${data.color}`}>
                 <IconComponent className="h-8 w-8 text-white" />
               </div>
               <div>
                 <h1 className="text-5xl font-bold mb-2">{data.name}</h1>
-                <p className="text-xl text-gray-300 max-w-2xl">{data.description}</p>
+                <p className="text-xl text-gray-300 max-w-2xl">
+                  {data.description}
+                </p>
               </div>
             </div>
-            
+
             <div className="flex flex-wrap gap-4 text-sm">
               <Badge variant="secondary" className="bg-white/20 text-white">
-                {allProducts.length} Products Available
+                {products.length} Products Available
               </Badge>
               <Badge variant="secondary" className="bg-white/20 text-white">
                 Premium Quality
@@ -214,7 +231,7 @@ export function CategoryPage({ category, onBack,handleproductClick }: CategoryPa
           <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
             <div className="flex items-center space-x-4 flex-1">
               <div className="relative flex-1 max-w-md">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 h-4 w-4" />
                 <Input
                   placeholder="Search products..."
                   value={searchTerm}
@@ -222,31 +239,20 @@ export function CategoryPage({ category, onBack,handleproductClick }: CategoryPa
                   className="pl-10"
                 />
               </div>
-              
-              <select
-                value={selectedSubCategory}
-                onChange={(e) => setSelectedSubCategory(e.target.value)}
-                className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              >
-                <option value="all">All Categories</option>
-                {data.subCategories.map(sub => (
-                  <option key={sub.id} value={sub.id}>{sub.name}</option>
-                ))}
-              </select>
             </div>
-            
+
             <div className="flex items-center space-x-2">
               <Button
-                variant={viewMode === 'grid' ? 'default' : 'outline'}
+                variant={viewMode === "grid" ? "default" : "outline"}
                 size="sm"
-                onClick={() => setViewMode('grid')}
+                onClick={() => setViewMode("grid")}
               >
                 <Grid className="h-4 w-4" />
               </Button>
               <Button
-                variant={viewMode === 'list' ? 'default' : 'outline'}
+                variant={viewMode === "list" ? "default" : "outline"}
                 size="sm"
-                onClick={() => setViewMode('list')}
+                onClick={() => setViewMode("list")}
               >
                 <List className="h-4 w-4" />
               </Button>
@@ -258,83 +264,32 @@ export function CategoryPage({ category, onBack,handleproductClick }: CategoryPa
       {/* Products */}
       <section className="container mx-auto px-4 py-12">
         <AnimatePresence mode="wait">
-          {searchTerm ? (
-            // Search Results
-            <motion.div
-              key="search-results"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.5 }}
+          <motion.div
+            key="products-view"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <div
+              className={`grid gap-6 ${
+                viewMode === "grid"
+                  ? "grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+                  : "grid-cols-1"
+              }`}
             >
-              <h2 className="text-3xl font-bold text-gray-900 mb-8">
-                Search Results ({filteredProducts.length})
-              </h2>
-              
-              <div className={`grid gap-6 ${
-                viewMode === 'grid' 
-                  ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4' 
-                  : 'grid-cols-1'
-              }`}>
-                {filteredProducts.map((product, index) => (
-                  <ProductCard 
-                    key={product.id} 
-                    product={product} 
-                    viewMode={viewMode}
-                    index={index}
-                    color={data.color}
-                    handleproductClick={handleproductClick}
-                  />
-                ))}
-              </div>
-            </motion.div>
-          ) : (
-            // Category View
-            <motion.div
-              key="category-view"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              {filteredSubCategories.map((subCategory, categoryIndex) => (
-                <motion.div
-                  key={subCategory.id}
-                  initial={{ opacity: 0, y: 50 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: categoryIndex * 0.2 }}
-                  className="mb-16"
-                >
-                  <div className="flex items-center space-x-4 mb-8">
-                    <div className={`w-12 h-12 rounded-full bg-gradient-to-r ${data.color} flex items-center justify-center text-white font-bold text-lg`}>
-                      {subCategory.products.length}
-                    </div>
-                    <div>
-                      <h3 className="text-3xl font-bold text-gray-900">{subCategory.name}</h3>
-                      <p className="text-gray-600">{subCategory.description}</p>
-                    </div>
-                  </div>
-                  
-                  <div className={`grid gap-6 ${
-                    viewMode === 'grid' 
-                      ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4' 
-                      : 'grid-cols-1'
-                  }`}>
-                    {subCategory.products.map((product, index) => (
-                      <ProductCard 
-                        key={product.id} 
-                        product={product} 
-                        viewMode={viewMode}
-                        index={index}
-                        color={data.color}
-                        handleproductClick={handleproductClick}
-                      />
-                    ))}
-                  </div>
-                </motion.div>
+              {filteredProducts.map((product, index) => (
+                <ProductCard
+                  key={product.id}
+                  product={product}
+                  viewMode={viewMode}
+                  index={index}
+                  color={data.color}
+                  handleproductClick={handleproductClick}
+                />
               ))}
-            </motion.div>
-          )}
+            </div>
+          </motion.div>
         </AnimatePresence>
       </section>
     </div>
@@ -343,16 +298,20 @@ export function CategoryPage({ category, onBack,handleproductClick }: CategoryPa
 
 interface ProductCardProps {
   product: Product;
-  viewMode: 'grid' | 'list';
+  viewMode: "grid" | "list";
   index: number;
   color: string;
-  handleproductClick:(productId: string) => void;
+  handleproductClick: (productId: string) => void;
 }
 
-function ProductCard({ product, viewMode, index, color, handleproductClick}: ProductCardProps) {
-  console.log("Product data:", product);
-
-  if (viewMode === 'list') {
+function ProductCard({
+  product,
+  viewMode,
+  index,
+  color,
+  handleproductClick,
+}: ProductCardProps) {
+  if (viewMode === "list") {
     return (
       <motion.div
         initial={{ opacity: 0, x: -20 }}
@@ -371,34 +330,24 @@ function ProductCard({ product, viewMode, index, color, handleproductClick}: Pro
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                 />
                 {product.popular && (
-                  <Badge className={`absolute top-2 left-2 bg-gradient-to-r ${color} text-white border-none`}>
+                  <Badge
+                    className={`absolute top-2 left-2 bg-gradient-to-r ${color} text-white border-none`}
+                  >
                     Popular
                   </Badge>
                 )}
               </div>
-              
+
               <div className="flex-1">
-                <h4 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
+                <h4
+                  className="text-xl font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors line-clamp-1"
+                  title={product.name}
+                >
                   {product.name}
                 </h4>
-                <div className="flex items-center space-x-2 mb-2">
-                  <div className="flex items-center">
-                    {[...Array(5)].map((_, i) => (
-                      <Star
-                        key={i}
-                        className={`h-4 w-4 ${
-                          i < Math.floor(product.rating) 
-                            ? 'text-yellow-400 fill-current' 
-                            : 'text-gray-300'
-                        }`}
-                      />
-                    ))}
-                  </div>
-                  <span className="text-sm text-gray-600">({product.rating})</span>
-                </div>
+
                 <div className="flex items-center justify-between">
-                  <span className="text-2xl font-bold text-blue-600">{product.price}</span>
-                  <Button 
+                  <Button
                     className={`bg-gradient-to-r ${color} hover:opacity-90 text-white`}
                     onClick={() => handleproductClick(product.id)}
                   >
@@ -430,42 +379,35 @@ function ProductCard({ product, viewMode, index, color, handleproductClick}: Pro
               className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
             />
           </div>
-          
+
           {product.popular && (
-            <Badge className={`absolute top-3 left-3 bg-gradient-to-r ${color} text-white border-none shadow-lg`}>
+            <Badge
+              className={`absolute top-3 left-3 bg-gradient-to-r ${color} text-white border-none shadow-lg`}
+            >
               <Star className="w-3 h-3 mr-1" />
               Popular
             </Badge>
           )}
-          
-          <div className={`absolute inset-0 bg-gradient-to-t ${color} opacity-0 group-hover:opacity-20 transition-opacity duration-300`}></div>
+
+          <div
+            className={`absolute inset-0 bg-gradient-to-t ${color} opacity-0 group-hover:opacity-20 transition-opacity duration-300`}
+          />
         </div>
-        
+
         <CardContent className="p-6">
-          <h4 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors line-clamp-2">
+          <h4
+            className="text-lg font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors line-clamp-2"
+            title={product.name}
+          >
             {product.name}
           </h4>
-          
-          <div className="flex items-center space-x-2 mb-3">
-            <div className="flex items-center">
-              {[...Array(5)].map((_, i) => (
-                <Star
-                  key={i}
-                  className={`h-4 w-4 ${
-                    i < Math.floor(product.rating) 
-                      ? 'text-yellow-400 fill-current' 
-                      : 'text-gray-300'
-                  }`}
-                />
-              ))}
-            </div>
-            <span className="text-sm text-gray-600">({product.rating})</span>
-          </div>
-          
+
           <div className="flex items-center justify-between">
-            <span className="text-xl font-bold text-blue-600">{product.price}</span>
-            <Button 
-              size="sm" 
+            <span className="text-xl font-bold text-blue-600">
+              {product.price}
+            </span>
+            <Button
+              size="sm"
               className={`bg-gradient-to-r ${color} hover:opacity-90 text-white`}
               onClick={() => handleproductClick(product.id)}
             >
