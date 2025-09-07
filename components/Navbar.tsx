@@ -23,7 +23,7 @@ import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Badge } from './ui/badge';
 import { Separator } from './ui/separator';
-
+import logo from "../assets/1000035181.png"
 interface NavbarProps {
   onNavigate?: (page: string) => void;
   currentPage?: string;
@@ -146,7 +146,7 @@ export function Navbar({ onNavigate, currentPage = 'home' }: NavbarProps) {
             <div className="flex items-center space-x-4">
               <Badge className="bg-gradient-to-r from-red-600 to-orange-500 text-white px-3 py-1">
                 <Award className="h-3 w-3 mr-1" />
-                50+ Years Excellence
+                12+ Years Excellence
               </Badge>
               <Badge className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-3 py-1">
                 <Shield className="h-3 w-3 mr-1" />
@@ -190,7 +190,7 @@ export function Navbar({ onNavigate, currentPage = 'home' }: NavbarProps) {
                     ease: "easeInOut"
                   }}
                 />
-                <div className={`relative backdrop-blur-sm p-3 rounded-full border transition-colors ${
+                {/* <div className={`relative backdrop-blur-sm p-3 rounded-full border transition-colors ${
                   isScrolled 
                     ? 'bg-gray-100 border-red-600/30 group-hover:border-orange-500/50' 
                     : 'bg-white/10 border-red-600/30 group-hover:border-orange-500/50'
@@ -198,18 +198,20 @@ export function Navbar({ onNavigate, currentPage = 'home' }: NavbarProps) {
                   <div className="h-10 w-10 bg-gradient-to-r from-red-600 to-orange-500 rounded-full flex items-center justify-center">
                     <span className="text-white text-lg font-bold">TE</span>
                   </div>
-                </div>
+                </div> */}
+            <img src={logo} alt="" style={{ width: '70px', height: '70px' }} />
+
               </div>
               <div className="flex flex-col">
                 <span className={`text-xl font-bold bg-gradient-to-r from-red-600 to-orange-500 bg-clip-text text-transparent`}>
-                  Twin Elephant
+                  Vaigai Sparklers
                 </span>
                 <span className={`text-xs transition-colors ${
                   isScrolled 
                     ? 'text-gray-600 group-hover:text-orange-500' 
                     : 'text-gray-300 group-hover:text-orange-400'
                 }`}>
-                  Premium Fireworks Since 1970
+                  Premium Fireworks Since 2013
                 </span>
               </div>
             </motion.div>

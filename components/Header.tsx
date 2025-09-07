@@ -50,7 +50,7 @@ export function Header() {
               </span>
             </div>
             <div className="text-logo-orange">
-              🏆 50+ Years of Excellence
+              🏆 12+ Years of Excellence
             </div>
           </div>
         </div>
@@ -74,7 +74,7 @@ export function Header() {
                 Twin Elephant
               </span>
               <span className="text-xs text-logo-light-gray hidden sm:block">
-                Premium Fireworks Since 1970
+                Premium Fireworks Since 2013
               </span>
             </div>
           </div>

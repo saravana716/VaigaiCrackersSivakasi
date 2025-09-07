@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { Sparkles, Phone, Mail, MapPin, Facebook, Twitter, Instagram, Youtube } from 'lucide-react';
 import { Separator } from './ui/separator';
-
+import logo from '../assets/1000035181.png';
 export function Footer() {
   const currentYear = new Date().getFullYear();
 
@@ -18,14 +18,15 @@ export function Footer() {
             className="space-y-4"
           >
             <div className="flex items-center space-x-2">
-              <Sparkles className="h-8 w-8 text-logo-yellow" />
-              <span className="text-2xl font-bold bg-gradient-to-r from-logo-orange to-logo-red bg-clip-text text-transparent">
-                Twin Elephant
+              <img src={logo} alt="" style={{ width: '100px', height: '100px' }} />
+              {/* <Sparkles className="h-8 w-8 text-logo-yellow" /> */}
+              <span className="text-2xl font-bold bg-gradient-to-r from-logo-orange to-logo-red bg-clip-text ">
+                Vaigai Sparklers
               </span>
             </div>
             <p className="text-logo-light-gray leading-relaxed">
-              Creating spectacular moments with premium quality fireworks for over 50 years. 
-              Your trusted partner for celebrations that light up the night.
+             Founded in the heart of Sivakasi, Tamil Nadu – the fireworks capital of India – Vaigai Sparklers is a proud manufacturer of high-quality sparklers that light up celebrations across India. Since our humble Beginnings in 2013, we have grown into a trusted name in the fireworks industry, proudly serving over 10000+ customers in the past 12 years. With a legacy rooted in tradition and a vision focused on safety and innovation, we bring joy, brightness, and brilliance to every festival, function, and moment worth celebrating.
+
             </p>
             <div className="flex space-x-4">
               {[

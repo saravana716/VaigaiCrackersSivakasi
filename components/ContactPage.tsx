@@ -27,7 +27,7 @@ import { Label } from './ui/label';
 import { Textarea } from './ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
 import { Badge } from './ui/badge';
-import logoImage from '../assets/download.jpeg';
+import logoImage from '../assets/1000035181.png';
 
 
 interface FormData {
@@ -144,7 +144,7 @@ export function ContactPage() {
   ];
 
   const companyStats = [
-    { icon: Calendar, value: "50+", label: "Years Experience", color: "text-orange-400" },
+    { icon: Calendar, value: "12+", label: "Years Experience", color: "text-orange-400" },
     { icon: Users, value: "10K+", label: "Happy Customers", color: "text-blue-400" },
     { icon: Star, value: "4.9", label: "Customer Rating", color: "text-yellow-400" },
     { icon: Globe, value: "15+", label: "States Served", color: "text-green-400" }
@@ -191,7 +191,7 @@ export function ContactPage() {
                 <img 
                   src={logoImage} 
                   alt="Twin Elephant Brand" 
-                  className="h-20 w-20 object-contain"
+                  className="h-45 w-45 object-contain bg-white p-4 rounded-full"
                 />
               </div>
             </div>

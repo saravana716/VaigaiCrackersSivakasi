@@ -4,7 +4,13 @@ import { ChevronLeft, ChevronRight, Star, Zap, Sparkles, Clock, Gift, ShoppingBa
 import { Button } from './ui/button';
 import { Badge } from './ui/badge';
 import { ImageWithFallback } from './figma/ImageWithFallback';
-
+import ban from "../assets/banner.webp"
+import ban1 from "../assets/banner1.webp"
+import ban3 from "../assets/banner3.webp"
+import ban4 from "../assets/banner4.webp"
+import ban5 from "../assets/banner5.webp"
+import ban6 from "../assets/banner6.webp"
+import ban7 from "../assets/banner7.webp"
 interface Offer {
   id: string;
   title: string;
@@ -27,7 +33,7 @@ const offers: Offer[] = [
     subtitle: 'Premium Sparklers Collection',
     discount: 'UP TO 40% OFF',
     description: 'Light up your Diwali with our premium sparklers collection. Get the best quality crackers at unbeatable prices.',
-    image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&w=1200&q=80',
+    image: ban4,
     color: 'from-logo-red via-logo-orange to-logo-red',
     textColor: 'text-logo-white',
     buttonText: 'Shop Sparklers',
@@ -41,7 +47,7 @@ const offers: Offer[] = [
     subtitle: 'Complete Celebration Bundle',
     discount: 'SAVE ₹500',
     description: 'Get everything you need for your celebration! Sparklers, fountains, rockets and more in one amazing bundle.',
-    image: 'https://images.unsplash.com/photo-1514820720066-ed8784479467?auto=format&fit=crop&w=1200&q=80',
+    image: ban5,
     color: 'from-logo-blue via-logo-cyan to-logo-blue',
     textColor: 'text-logo-white',
     buttonText: 'View Bundle',
@@ -54,7 +60,7 @@ const offers: Offer[] = [
     subtitle: 'Premium Rockets & Roman Candles',
     discount: '25% OFF',
     description: 'Welcome the new year with spectacular fireworks. Premium quality rockets and roman candles at special prices.',
-    image: 'https://images.unsplash.com/photo-1627308595229-7830a5c91f9f?auto=format&fit=crop&w=1200&q=80',
+    image: ban6,
     color: 'from-logo-blue via-logo-cyan to-logo-blue',
     textColor: 'text-logo-white',
     buttonText: 'Explore Rockets',
@@ -66,7 +72,7 @@ const offers: Offer[] = [
     subtitle: 'Elegant Sparklers for Special Moments',
     discount: 'BUY 2 GET 1 FREE',
     description: 'Make your wedding magical with our premium wedding sparklers. Perfect for photos and celebrations.',
-    image: 'https://images.unsplash.com/photo-1481819613568-3701cbc70156?auto=format&fit=crop&w=1200&q=80',
+    image: ban7,
     color: 'from-logo-red via-logo-orange to-logo-yellow',
     textColor: 'text-logo-white',
     buttonText: 'Wedding Collection',
@@ -78,7 +84,7 @@ const offers: Offer[] = [
     subtitle: 'Exclusive Quality Collection',
     discount: 'PREMIUM QUALITY',
     description: 'Experience the finest quality fireworks with our exclusive Twin Elephant premium collection.',
-    image: 'https://images.unsplash.com/photo-1540979388789-6cee28a1cdc9?auto=format&fit=crop&w=1200&q=80',
+    image: ban1,
     color: 'from-logo-orange via-logo-red to-logo-orange',
     textColor: 'text-logo-white',
     buttonText: 'View Premium',

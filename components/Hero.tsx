@@ -1,11 +1,13 @@
-import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { Sparkles, Zap, Star } from 'lucide-react';
-import { Button } from './ui/button';
-import { ImageWithFallback } from './figma/ImageWithFallback';
-
-export function  Hero() {
-  const [sparkles, setSparkles] = useState<Array<{ id: number; x: number; y: number; delay: number }>>([]);
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import { Sparkles, Zap, Star } from "lucide-react";
+import { Button } from "./ui/button";
+import { ImageWithFallback } from "./figma/ImageWithFallback";
+import vaigai from "../assets/1000035181.png";
+export function Hero() {
+  const [sparkles, setSparkles] = useState<
+    Array<{ id: number; x: number; y: number; delay: number }>
+  >([]);
 
   useEffect(() => {
     // Generate random sparkle positions
@@ -13,16 +15,19 @@ export function  Hero() {
       id: i,
       x: Math.random() * 100,
       y: Math.random() * 100,
-      delay: Math.random() * 2
+      delay: Math.random() * 2,
     }));
     setSparkles(newSparkles);
   }, []);
 
   return (
-    <section id="home" className="relative min-h-screen bg-logo-dark overflow-hidden">
+    <section
+      id="home"
+      className="relative min-h-screen bg-logo-dark overflow-hidden"
+    >
       {/* Gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-br from-logo-dark via-logo-dark/95 to-logo-gray/20"></div>
-      
+
       {/* Animated background sparkles */}
       {sparkles.map((sparkle) => (
         <motion.div
@@ -32,13 +37,13 @@ export function  Hero() {
           animate={{
             scale: [0, 1, 0],
             rotate: [0, 180, 360],
-            opacity: [0, 1, 0]
+            opacity: [0, 1, 0],
           }}
           transition={{
             duration: 3,
             delay: sparkle.delay,
             repeat: Infinity,
-            repeatDelay: 1
+            repeatDelay: 1,
           }}
         >
           <Star className="h-4 w-4 text-logo-yellow" />
@@ -61,7 +66,9 @@ export function  Hero() {
               className="flex items-center space-x-2 mb-6"
             >
               <Sparkles className="h-8 w-8 text-logo-blue" />
-              <span className="text-logo-blue text-lg font-medium">Premium Quality Fireworks</span>
+              <span className="text-logo-blue text-lg font-medium">
+                Welcome to Vaigai Sparklers – Where Every Spark Tells a Story.
+              </span>
             </motion.div>
 
             <motion.h1
@@ -70,7 +77,7 @@ export function  Hero() {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="text-5xl lg:text-7xl font-bold mb-6 bg-gradient-to-r from-logo-red via-logo-orange to-logo-yellow bg-clip-text text-red"
             >
-              Light Up Your
+              Vaigai Sparklers
               <br />
               <span className="relative">
                 Celebration
@@ -90,8 +97,15 @@ export function  Hero() {
               transition={{ duration: 0.8, delay: 0.6 }}
               className="text-xl text-logo-light-gray mb-8 max-w-2xl leading-relaxed"
             >
-              Create magical moments with our premium collection of fireworks, crackers, and sparklers. 
-              From intimate gatherings to grand celebrations, we have everything to make your event spectacular.
+              Founded in the heart of Sivakasi, Tamil Nadu – the fireworks
+              capital of India – Vaigai Sparklers is a proud manufacturer of
+              high-quality sparklers that light up celebrations across India.
+              Since our humble Beginnings in 2013, we have grown into a trusted
+              name in the fireworks industry, proudly serving over 10000+
+              customers in the past 12 years. With a legacy rooted in tradition
+              and a vision focused on safety and innovation, we bring joy,
+              brightness, and brilliance to every festival, function, and moment
+              worth celebrating.
             </motion.p>
 
             <motion.div
@@ -100,19 +114,19 @@ export function  Hero() {
               transition={{ duration: 0.8, delay: 0.8 }}
               className="flex flex-col sm:flex-row gap-4"
             >
-              <Button 
-                size="lg" 
+              <Button
+                size="lg"
                 className="bg-logo-gradient-primary hover:opacity-90 text-logo-white font-semibold px-8 py-3 text-lg shadow-xl transition-all duration-300"
-                onClick={() => window.location.hash = 'products'}
+                onClick={() => (window.location.hash = "products")}
               >
                 Explore Products
                 <Sparkles className="ml-2 h-5 w-5" />
               </Button>
-              <Button 
-                variant="outline" 
-                size="lg" 
+              <Button
+                variant="outline"
+                size="lg"
                 className="border-logo-blue text-logo-blue hover:bg-logo-blue hover:text-logo-white px-8 py-3 text-lg transition-all duration-300"
-                onClick={() => window.location.hash = 'gallery'}
+                onClick={() => (window.location.hash = "gallery")}
               >
                 View Gallery
               </Button>
@@ -126,15 +140,17 @@ export function  Hero() {
               className="flex flex-wrap gap-8 mt-12"
             >
               <div className="text-center">
-                <div className="text-3xl font-bold text-logo-red">500+</div>
-                <div className="text-logo-light-gray">Cracker Varieties</div>
+                <div className="text-3xl font-bold text-logo-red">50+</div>
+                <div className="text-logo-light-gray">Sparklers Varieties</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-logo-orange">50k+</div>
-                <div className="text-logo-light-gray">Festival Celebrations</div>
+                <div className="text-3xl font-bold text-logo-orange">10k+</div>
+                <div className="text-logo-light-gray">
+                  Happy Customers
+                </div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-logo-blue">50+</div>
+                <div className="text-3xl font-bold text-logo-blue">12+</div>
                 <div className="text-logo-light-gray">Years in Fireworks</div>
               </div>
             </motion.div>
@@ -149,7 +165,7 @@ export function  Hero() {
           >
             <div className="relative">
               <ImageWithFallback
-                src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&w=800&q=80"
+                src={vaigai}
                 alt="Colorful Fireworks Crackers and Sparklers"
                 className="rounded-2xl shadow-2xl w-full border border-logo-red/20"
               />

@@ -1,44 +1,49 @@
-import { motion } from 'framer-motion';
-import { Shield, Truck, Award, Users, Clock, Sparkles } from 'lucide-react';
-import { Card, CardContent } from './ui/card';
+import { motion } from "framer-motion";
+import { Shield, Truck, Award, Users, Clock, Sparkles } from "lucide-react";
+import { Card, CardContent } from "./ui/card";
 
 const benefits = [
   {
     icon: Shield,
-    title: 'Safety First',
-    description: 'All our products meet strict safety standards and come with detailed safety instructions.',
-    color: 'from-green-400 to-emerald-500'
+    title: "Safe & Certified Products",
+    description:"All Vaigai sparklers are government-certified and made with non-toxic, child-friendly materials — perfect for safe, joyful celebrations.",
+    color: "from-green-400 to-emerald-500",
   },
   {
     icon: Truck,
-    title: 'Fast Delivery',
-    description: 'Quick and secure shipping nationwide with special handling for fireworks safety.',
-    color: 'from-blue-400 to-cyan-500'
+    title: "Timely Delivery & Reliable Service",
+    description:
+      "Order today, celebrate on time. We deliver your sparklers across India with care — right when you need them, every time.",
+    color: "from-blue-400 to-cyan-500",
   },
   {
     icon: Award,
-    title: 'Premium Quality',
-    description: 'Hand-selected fireworks from trusted manufacturers for consistent, spectacular displays.',
-    color: 'from-yellow-400 to-orange-500'
+    title: "High-Quality Raw Materials",
+    description:
+      "We use premium-grade compounds and wires for brighter, longer-lasting sparks — no smoke, no fumes, just clean, dazzling light.",
+    color: "from-yellow-400 to-orange-500",
   },
   {
     icon: Users,
-    title: 'Expert Support',
-    description: 'Our team of pyrotechnic experts is here to help you choose the perfect fireworks.',
-    color: 'from-purple-400 to-pink-500'
+    title: "Premium Packaging Boxes",
+    description:
+      "Elegant, sturdy, and gift-ready — our boxes keep sparklers protected and looking beautiful, whether for sale or gifting.",
+    color: "from-purple-400 to-pink-500",
   },
   {
     icon: Clock,
-    title: '24/7 Service',
-    description: 'Round-the-clock customer support for all your fireworks needs and questions.',
-    color: 'from-red-400 to-rose-500'
+    title: " Rooted in Sivakasi’s Sparkler Tradition",
+    description:
+      "Born in India’s sparkler capital, Vaigai carries forward Sivakasi’s legacy — crafting the finest hand-twisted sparklers for generations.",
+    color: "from-red-400 to-rose-500",
   },
   {
     icon: Sparkles,
-    title: 'Memorable Moments',
-    description: 'Creating unforgettable experiences with spectacular displays that light up the night.',
-    color: 'from-indigo-400 to-purple-500'
-  }
+    title: " Prioritise Customer Satisfaction",
+    description:
+      "Your smile matters most. From quick replies to perfect orders — we’re here to make your sparkler experience simple and happy.",
+    color: "from-indigo-400 to-purple-500",
+  },
 ];
 
 export function WhyChooseUs() {
@@ -53,10 +58,11 @@ export function WhyChooseUs() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-yellow-300 via-orange-400 to-red-400 bg-clip-text text-transparent">
-            Why Choose Twin Elephant Brand?
+        Why Choose Vaigai? 
           </h2>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            With over 50 years of experience, we're your trusted partner for all fireworks needs
+            With over 12 years of experience, we're your trusted partner for all
+            fireworks needs
           </p>
         </motion.div>
 
@@ -82,11 +88,11 @@ export function WhyChooseUs() {
                     >
                       <IconComponent className="h-8 w-8 text-white" />
                     </motion.div>
-                    
+
                     <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-yellow-400 transition-colors">
                       {benefit.title}
                     </h3>
-                    
+
                     <p className="text-gray-400 leading-relaxed">
                       {benefit.description}
                     </p>
@@ -106,10 +112,10 @@ export function WhyChooseUs() {
           className="mt-20 grid grid-cols-2 lg:grid-cols-4 gap-8"
         >
           {[
-            { number: '50,000+', label: 'Festival Celebrations' },
-            { number: '500+', label: 'Cracker Varieties' },
-            { number: '50+', label: 'Years in Fireworks' },
-            { number: '25+', label: 'Safety Awards' }
+            { number: "10,000+", label: "Happy Customers" },
+            { number: "50+", label: "Sparklers Varieties" },
+            { number: "12+", label: "Years in Fireworks" },
+            { number: "25+", label: "Safety Awards" },
           ].map((stat, index) => (
             <div key={index} className="text-center">
               <motion.div
