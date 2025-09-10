@@ -4,9 +4,7 @@ import { ChevronLeft, ChevronRight, Star, Zap, Sparkles, Clock, Gift, ShoppingBa
 import { Button } from './ui/button';
 import { Badge } from './ui/badge';
 import { ImageWithFallback } from './figma/ImageWithFallback';
-import ban from "../assets/banner.webp"
 import ban1 from "../assets/banner1.webp"
-import ban3 from "../assets/banner3.webp"
 import ban4 from "../assets/banner4.webp"
 import ban5 from "../assets/banner5.webp"
 import ban6 from "../assets/banner6.webp"

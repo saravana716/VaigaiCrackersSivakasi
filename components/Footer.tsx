@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Sparkles, Phone, Mail, MapPin, Facebook, Twitter, Instagram, Youtube } from 'lucide-react';
+import {Phone, Mail, MapPin, Facebook, Twitter, Instagram, Youtube } from 'lucide-react';
 import { Separator } from './ui/separator';
 import logo from '../assets/1000035181.png';
 export function Footer() {

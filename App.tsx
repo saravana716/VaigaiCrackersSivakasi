@@ -23,6 +23,7 @@ export default function App() {
   const handleNavigation = (page: string) => {
     setCurrentPage(page);
   };
+console.log(product);
 
   // Category navigation handler
   const handleCategoryClick = (categoryId: string) => {
