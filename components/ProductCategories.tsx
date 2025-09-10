@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { Card, CardContent } from "./ui/card";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { db} from "../firebase"; // adjust path if needed
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, Timestamp } from "firebase/firestore";
 import * as React from "react";
 
 interface Category {
