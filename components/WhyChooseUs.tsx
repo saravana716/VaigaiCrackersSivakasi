@@ -1,6 +1,45 @@
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Shield, Truck, Award, Users, Clock, Sparkles } from "lucide-react";
 import { Card, CardContent } from "./ui/card";
+
+// Custom hook for animated counter (copied from Hero component)
+const useAnimatedCounter = (targetValue, duration = 2000, delay = 0) => {
+  const [count, setCount] = useState(0);
+  const [hasStarted, setHasStarted] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setHasStarted(true);
+      
+      const startTime = Date.now();
+      const startValue = 0;
+      
+      const updateCounter = () => {
+        const elapsed = Date.now() - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        
+        // Easing function for smooth animation
+        const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+        const currentValue = Math.floor(startValue + (targetValue - startValue) * easeOutQuart);
+        
+        setCount(currentValue);
+        
+        if (progress < 1) {
+          requestAnimationFrame(updateCounter);
+        } else {
+          setCount(targetValue);
+        }
+      };
+      
+      updateCounter();
+    }, delay);
+
+    return () => clearTimeout(timer);
+  }, [targetValue, duration, delay]);
+
+  return count;
+};
 
 const benefits = [
   {
@@ -32,21 +71,29 @@ const benefits = [
   },
   {
     icon: Clock,
-    title: " Rooted in Sivakasi’s Sparkler Tradition",
+    title: " Rooted in Sivakasi's Sparkler Tradition",
     description:
-      "Born in India’s sparkler capital, Vaigai carries forward Sivakasi’s legacy — crafting the finest hand-twisted sparklers for generations.",
+      "Born in India's sparkler capital, Vaigai carries forward Sivakasi's legacy — crafting the finest hand-twisted sparklers for generations.",
     color: "from-red-400 to-rose-500",
   },
   {
     icon: Sparkles,
     title: " Prioritise Customer Satisfaction",
     description:
-      "Your smile matters most. From quick replies to perfect orders — we’re here to make your sparkler experience simple and happy.",
+      "Your smile matters most. From quick replies to perfect orders — we're here to make your sparkler experience simple and happy.",
     color: "from-indigo-400 to-purple-500",
   },
 ];
 
 export function WhyChooseUs() {
+  // Animated counters with staggered delays (triggered when stats section comes into view)
+  const [statsInView, setStatsInView] = useState(false);
+  
+  const customersCount = useAnimatedCounter(statsInView ? 10000 : 0, 2500, 0);
+  const varietiesCount = useAnimatedCounter(statsInView ? 50 : 0, 2000, 200);
+  const yearsCount = useAnimatedCounter(statsInView ? 12 : 0, 1500, 400);
+  const awardsCount = useAnimatedCounter(statsInView ? 25 : 0, 2000, 600);
+
   return (
     <section className="py-20 bg-black">
       <div className="container mx-auto px-4">
@@ -103,33 +150,105 @@ export function WhyChooseUs() {
           })}
         </div>
 
-        {/* Stats Section */}
+        {/* Stats Section with Animated Counters */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
+          whileInView={{ opacity: 1, y: 0, transition: { duration: 0.8, delay: 0.4 } }}
+          onViewportEnter={() => setStatsInView(true)}
           viewport={{ once: true }}
           className="mt-20 grid grid-cols-2 lg:grid-cols-4 gap-8"
         >
-          {[
-            { number: "10,000+", label: "Happy Customers" },
-            { number: "50+", label: "Sparklers Varieties" },
-            { number: "12+", label: "Years in Fireworks" },
-            { number: "25+", label: "Safety Awards" },
-          ].map((stat, index) => (
-            <div key={index} className="text-center">
-              <motion.div
-                initial={{ scale: 0 }}
-                whileInView={{ scale: 1 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="text-4xl lg:text-5xl font-bold bg-gradient-to-r from-yellow-300 to-orange-400 bg-clip-text text-transparent mb-2"
+          <div className="text-center">
+            <motion.div
+              initial={{ scale: 0 }}
+              whileInView={{ scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              viewport={{ once: true }}
+              className="text-4xl lg:text-5xl font-bold bg-gradient-to-r from-yellow-300 to-orange-400 bg-clip-text text-transparent mb-2"
+            >
+              <motion.span
+                animate={{ 
+                  scale: customersCount > 0 && customersCount === 10000 ? [1, 1.1, 1] : 1 
+                }}
+                transition={{ 
+                  duration: 0.3,
+                  delay: customersCount === 10000 ? 0.2 : 0
+                }}
               >
-                {stat.number}
-              </motion.div>
-              <div className="text-gray-400 text-lg">{stat.label}</div>
-            </div>
-          ))}
+                {customersCount.toLocaleString()}+
+              </motion.span>
+            </motion.div>
+            <div className="text-gray-400 text-lg">Happy Customers</div>
+          </div>
+
+          <div className="text-center">
+            <motion.div
+              initial={{ scale: 0 }}
+              whileInView={{ scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="text-4xl lg:text-5xl font-bold bg-gradient-to-r from-yellow-300 to-orange-400 bg-clip-text text-transparent mb-2"
+            >
+              <motion.span
+                animate={{ 
+                  scale: varietiesCount > 0 && varietiesCount === 50 ? [1, 1.1, 1] : 1 
+                }}
+                transition={{ 
+                  duration: 0.3,
+                  delay: varietiesCount === 50 ? 0.2 : 0
+                }}
+              >
+                {varietiesCount}+
+              </motion.span>
+            </motion.div>
+            <div className="text-gray-400 text-lg">Sparklers Varieties</div>
+          </div>
+
+          <div className="text-center">
+            <motion.div
+              initial={{ scale: 0 }}
+              whileInView={{ scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              viewport={{ once: true }}
+              className="text-4xl lg:text-5xl font-bold bg-gradient-to-r from-yellow-300 to-orange-400 bg-clip-text text-transparent mb-2"
+            >
+              <motion.span
+                animate={{ 
+                  scale: yearsCount > 0 && yearsCount === 12 ? [1, 1.1, 1] : 1 
+                }}
+                transition={{ 
+                  duration: 0.3,
+                  delay: yearsCount === 12 ? 0.2 : 0
+                }}
+              >
+                {yearsCount}+
+              </motion.span>
+            </motion.div>
+            <div className="text-gray-400 text-lg">Years in Fireworks</div>
+          </div>
+
+          <div className="text-center">
+            <motion.div
+              initial={{ scale: 0 }}
+              whileInView={{ scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              viewport={{ once: true }}
+              className="text-4xl lg:text-5xl font-bold bg-gradient-to-r from-yellow-300 to-orange-400 bg-clip-text text-transparent mb-2"
+            >
+              <motion.span
+                animate={{ 
+                  scale: awardsCount > 0 && awardsCount === 25 ? [1, 1.1, 1] : 1 
+                }}
+                transition={{ 
+                  duration: 0.3,
+                  delay: awardsCount === 25 ? 0.2 : 0
+                }}
+              >
+                {awardsCount}+
+              </motion.span>
+            </motion.div>
+            <div className="text-gray-400 text-lg">Safety Awards</div>
+          </div>
         </motion.div>
       </div>
     </section>

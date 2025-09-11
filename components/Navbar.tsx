@@ -24,6 +24,7 @@ import { Input } from './ui/input';
 import { Badge } from './ui/badge';
 import { Separator } from './ui/separator';
 import logo from "../assets/1000035181.png"
+import logo1 from "../assets/1000035182.png"
 interface NavbarProps {
   onNavigate?: (page: string) => void;
   currentPage?: string;
@@ -168,8 +169,8 @@ export function Navbar({ onNavigate, currentPage = 'home' }: NavbarProps) {
         animate={{ y: 0 }}
         transition={{ duration: 0.6, delay: 0.2 }}
       >
-        <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between h-20">
+        <div className="container h-30 w-full mx-auto px-4 flex items-center justify-between">
+          <div className="flex items-center justify-between h-full w-full">
             {/* Logo Section */}
             <motion.div 
               className="flex items-center space-x-3 cursor-pointer group"
@@ -203,9 +204,10 @@ export function Navbar({ onNavigate, currentPage = 'home' }: NavbarProps) {
 
               </div>
               <div className="flex flex-col">
-                <span className={`text-xl font-bold bg-gradient-to-r from-red-600 to-orange-500 bg-clip-text text-transparent`}>
+                {/* <span className={`text-xl font-bold bg-gradient-to-r from-red-600 to-orange-500 bg-clip-text text-transparent`}>
                   Vaigai Sparklers
-                </span>
+                </span> */}
+                <img src={logo1} alt="" className='logo' />
                 <span className={`text-xs transition-colors ${
                   isScrolled 
                     ? 'text-gray-600 group-hover:text-orange-500' 

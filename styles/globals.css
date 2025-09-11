@@ -151,7 +151,10 @@
     min-height: 100vh;
   }
 }
-
+.logo{
+  width: 150px;
+  height: auto;
+}
 /**
  * Base typography with logo colors
  */

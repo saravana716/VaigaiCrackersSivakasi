@@ -4,10 +4,53 @@ import { Sparkles, Zap, Star } from "lucide-react";
 import { Button } from "./ui/button";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import vaigai from "../assets/1000035181.png";
+
+// Custom hook for animated counter
+const useAnimatedCounter = (targetValue, duration = 2000, delay = 0) => {
+  const [count, setCount] = useState(0);
+  const [hasStarted, setHasStarted] = useState(false);
+console.log(hasStarted);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setHasStarted(true);
+      
+      const startTime = Date.now();
+      const startValue = 0;
+      
+      const updateCounter = () => {
+        const elapsed = Date.now() - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        
+        // Easing function for smooth animation
+        const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+        const currentValue = Math.floor(startValue + (targetValue - startValue) * easeOutQuart);
+        
+        setCount(currentValue);
+        
+        if (progress < 1) {
+          requestAnimationFrame(updateCounter);
+        } else {
+          setCount(targetValue);
+        }
+      };
+      
+      updateCounter();
+    }, delay);
+
+    return () => clearTimeout(timer);
+  }, [targetValue, duration, delay]);
+
+  return count;
+};
+
 export function Hero() {
-  const [sparkles, setSparkles] = useState<
-    Array<{ id: number; x: number; y: number; delay: number }>
-  >([]);
+  const [sparkles, setSparkles] = useState([]);
+
+  // Animated counters with staggered delays
+  const sparklerCount = useAnimatedCounter(50, 2000, 1000); // 50+ sparklers
+  const customerCount = useAnimatedCounter(10, 2000, 1200); // 10k+ customers  
+  const yearCount = useAnimatedCounter(12, 2000, 1400); // 12+ years
 
   useEffect(() => {
     // Generate random sparkle positions
@@ -132,27 +175,75 @@ export function Hero() {
               </Button>
             </motion.div>
 
-            {/* Stats */}
+            {/* Animated Stats */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 1 }}
               className="flex flex-wrap gap-8 mt-12"
             >
-              <div className="text-center">
-                <div className="text-3xl font-bold text-logo-red">50+</div>
+              <motion.div 
+                className="text-center"
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 0.5, delay: 1.2 }}
+              >
+                <motion.div 
+                  className="text-3xl font-bold text-logo-red"
+                  animate={{ 
+                    scale: sparklerCount > 0 ? [1, 1.1, 1] : 1 
+                  }}
+                  transition={{ 
+                    duration: 0.3,
+                    delay: sparklerCount === 50 ? 0 : 0
+                  }}
+                >
+                  {sparklerCount}+
+                </motion.div>
                 <div className="text-logo-light-gray">Sparklers Varieties</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-logo-orange">10k+</div>
-                <div className="text-logo-light-gray">
-                  Happy Customers
-                </div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-logo-blue">12+</div>
+              </motion.div>
+              
+              <motion.div 
+                className="text-center"
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 0.5, delay: 1.4 }}
+              >
+                <motion.div 
+                  className="text-3xl font-bold text-logo-orange"
+                  animate={{ 
+                    scale: customerCount > 0 ? [1, 1.1, 1] : 1 
+                  }}
+                  transition={{ 
+                    duration: 0.3,
+                    delay: customerCount === 10 ? 0 : 0
+                  }}
+                >
+                  {customerCount}k+
+                </motion.div>
+                <div className="text-logo-light-gray">Happy Customers</div>
+              </motion.div>
+              
+              <motion.div 
+                className="text-center"
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 0.5, delay: 1.6 }}
+              >
+                <motion.div 
+                  className="text-3xl font-bold text-logo-blue"
+                  animate={{ 
+                    scale: yearCount > 0 ? [1, 1.1, 1] : 1 
+                  }}
+                  transition={{ 
+                    duration: 0.3,
+                    delay: yearCount === 12 ? 0 : 0
+                  }}
+                >
+                  {yearCount}+
+                </motion.div>
                 <div className="text-logo-light-gray">Years in Fireworks</div>
-              </div>
+              </motion.div>
             </motion.div>
           </motion.div>
 
@@ -167,7 +258,7 @@ export function Hero() {
               <ImageWithFallback
                 src={vaigai}
                 alt="Colorful Fireworks Crackers and Sparklers"
-                className="rounded-2xl shadow-2xl w-full border border-logo-red/20"
+                className="rounded-2xl shadow-2xl w-full border border-logo-red/20 bg-white"
               />
               {/* Glow effect */}
               <div className="absolute inset-0 bg-gradient-to-t from-logo-red/20 to-logo-blue/10 rounded-2xl"></div>

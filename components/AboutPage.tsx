@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { useState, useEffect} from 'react';
+import { motion, useScroll, useTransform} from 'framer-motion';
 import { 
   Rocket, 
   Award, 
@@ -22,14 +22,60 @@ import {
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { Button } from './ui/button';
 import { Badge } from './ui/badge';
-import logoImage from '../assets/1000035181.png';
+import logoImage from '../assets/1000035182.png';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 
 import vaigai from "../assets/1000035181.png";
+
+// Custom hook for animated counter
+const useAnimatedCounter = (targetValue, duration = 2000, delay = 0) => {
+  const [count, setCount] = useState(0);
+  const [hasStarted, setHasStarted] = useState(false);
+console.log(hasStarted);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setHasStarted(true);
+      
+      const startTime = Date.now();
+      const startValue = 0;
+      
+      const updateCounter = () => {
+        const elapsed = Date.now() - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        
+        // Easing function for smooth animation
+        const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+        const currentValue = Math.floor(startValue + (targetValue - startValue) * easeOutQuart);
+        
+        setCount(currentValue);
+        
+        if (progress < 1) {
+          requestAnimationFrame(updateCounter);
+        } else {
+          setCount(targetValue);
+        }
+      };
+      
+      updateCounter();
+    }, delay);
+
+    return () => clearTimeout(timer);
+  }, [targetValue, duration, delay]);
+
+  return count;
+};
+
 export function AboutPage() {
   const [particles, setParticles] = useState<Array<{id: number, x: number, y: number, delay: number}>>([]);
   const { scrollYProgress } = useScroll();
   const y = useTransform(scrollYProgress, [0, 1], ['0%', '-50%']);
+
+  // Animated counters with staggered delays for hero stats
+  const sparklerCount = useAnimatedCounter(50, 2000, 1000); // 50+ sparklers
+  const customerCount = useAnimatedCounter(10, 2000, 1200); // 10k+ customers  
+  const yearCount = useAnimatedCounter(12, 2000, 1400); // 12+ years
+  const safetyCount = useAnimatedCounter(25, 2000, 1600); // 25+ safety awards
 
   useEffect(() => {
     // Create particle animation
@@ -88,10 +134,10 @@ export function AboutPage() {
   ];
 
   const achievements = [
-    { label: "Years of Experience", value: "12+", icon: Calendar },
-    { label: "Sparkler Varieties", value: "50+", icon: Sparkles },
-    { label: "Happy Customers", value: "10K+", icon: Users },
-    { label: "Safety Awards", value: "25+", icon: Shield }
+    { label: "Years of Experience", value: yearCount, suffix: "+", icon: Calendar },
+    { label: "Sparkler Varieties", value: sparklerCount, suffix: "+", icon: Sparkles },
+    { label: "Happy Customers", value: customerCount, suffix: "K+", icon: Users },
+    { label: "Safety Awards", value: safetyCount, suffix: "+", icon: Shield }
   ];
 
   const teamMembers = [
@@ -233,7 +279,7 @@ export function AboutPage() {
                   <img 
                     src={logoImage} 
                     alt="Twin Elephant Brand" 
-                    className="h-45 w-45 object-contain"
+                    className="h-50 w-50 object-contain"
                   />
                 </motion.div>
               </div>
@@ -279,12 +325,24 @@ export function AboutPage() {
                     key={index}
                     whileHover={{ scale: 1.05 }}
                     className="text-center"
+                    initial={{ scale: 0.8, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ duration: 0.5, delay: 1.2 + index * 0.2 }}
                   >
                     <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20">
                       <Icon className="h-8 w-8 mx-auto mb-2 text-orange-400" />
-                      <div className="text-3xl font-bold text-white mb-1">
-                        {achievement.value}
-                      </div>
+                      <motion.div 
+                        className="text-3xl font-bold text-white mb-1"
+                        animate={{ 
+                          scale: achievement.value > 0 ? [1, 1.1, 1] : 1 
+                        }}
+                        transition={{ 
+                          duration: 0.3,
+                          delay: achievement.value === (index === 0 ? yearCount : index === 1 ? sparklerCount : index === 2 ? customerCount : safetyCount) ? 0 : 0
+                        }}
+                      >
+                        {achievement.value}{achievement.suffix}
+                      </motion.div>
                       <div className="text-sm text-gray-300">
                         {achievement.label}
                       </div>
@@ -296,50 +354,11 @@ export function AboutPage() {
           </div>
         </div>
       </motion.section>
- <div className="container mx-auto px-4 py-20 relative z-20">
+
+      {/* Who We Are Section */}
+      <div className="container mx-auto px-4 py-20 relative z-20">
         <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[80vh]">
-          {/* Hero Content */}
-           <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="relative"
-          >
-            <div className="relative">
-              <ImageWithFallback
-                src={vaigai}
-                alt="Colorful Fireworks Crackers and Sparklers"
-                className="rounded-2xl shadow-2xl w-full border border-logo-red/20 bg-"
-              />
-              {/* Glow effect */}
-              <div className="absolute inset-0 bg-gradient-to-t from-logo-red/20 to-logo-blue/10 rounded-2xl"></div>
-            </div>
-
-            {/* Floating elements */}
-            <motion.div
-              className="absolute -top-4 -right-4 bg-logo-gradient-secondary text-logo-white p-3 rounded-full shadow-lg"
-              animate={{ y: [-10, 10, -10] }}
-              transition={{ duration: 3, repeat: Infinity }}
-            >
-              <Sparkles className="h-6 w-6" />
-            </motion.div>
-
-            <motion.div
-              className="absolute -bottom-4 -left-4 bg-logo-gradient-primary text-logo-white p-3 rounded-full shadow-lg"
-              animate={{ y: [10, -10, 10] }}
-              transition={{ duration: 3, repeat: Infinity, delay: 1 }}
-            >
-              <Zap className="h-6 w-6" />
-            </motion.div>
-
-            <motion.div
-              className="absolute top-1/2 -left-8 bg-logo-yellow text-logo-dark p-2 rounded-full shadow-lg"
-              animate={{ x: [-5, 5, -5] }}
-              transition={{ duration: 4, repeat: Infinity, delay: 0.5 }}
-            >
-              <Star className="h-4 w-4" />
-            </motion.div>
-          </motion.div>
+          {/* Content */}
           <motion.div
             initial={{ opacity: 0, x: -50}}
             animate={{ opacity: 1, x: 0 }}
@@ -352,8 +371,8 @@ export function AboutPage() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="flex items-center space-x-2 mb-6"
             >
-              <Sparkles className="h-8 w-8 text-logo-blue" />
-              <span className="text-logo-blue text-lg font-medium text-blue-950">
+              <Sparkles className="h-8 w-8 text-blue-950" />
+              <span className="text-blue-950 text-lg font-medium">
                 Welcome to Vaigai Sparklers – Where Every Spark Tells a Story.
               </span>
             </motion.div>
@@ -362,19 +381,17 @@ export function AboutPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="text-5xl lg:text-7xl font-bold mb-8 bg-gradient-to-r from-logo-red via-logo-orange to-logo-yellow bg-clip-text text-red bg-gradient-to-r from-red-600 to-orange-600 bg-clip-text text-transparent"
+              className="text-5xl lg:text-7xl font-bold mb-8 bg-gradient-to-r from-red-600 to-orange-600 bg-clip-text text-transparent"
             >
               Who We Are
-
               <br />
               <span className="relative">
-         
                 <motion.div
-                  className="absolute -top-2 -right-8 "
+                  className="absolute -top-2 -right-8"
                   animate={{ rotate: [0, 15, -15, 0] }}
                   transition={{ duration: 2, repeat: Infinity }}
                 >
-                  <Zap className="h-12 w-12 text-logo-blue text-blue-950" />
+                  <Zap className="h-12 w-12 text-blue-950" />
                 </motion.div>
               </span>
             </motion.h1>
@@ -383,50 +400,66 @@ export function AboutPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
-              className="text-xl text-logo-light-gray mb-8 mt-12  max-w-2xl leading-relaxed text-blue-950"
+              className="text-xl mb-8 mt-12 max-w-2xl leading-relaxed text-blue-950"
             >
-             At Vaigai Sparklers, we are more than just a sparklers factory - we are creators of memories. Our factory is set amidst lush green surroundings, echoing our deep commitment to sustainability and eco-friendliness. We are an ISO-Certified Company, and every product we manufacture strictly adheres to Go Green principles. Our sparklers are carefully crafted using premium materials and time-tested techniques, ensuring each piece delivers the safest and most spectacular sparkle possible. 
-
-            </motion.p>
- <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-              className="text-xl text-logo-light-gray mb-8 max-w-2xl leading-relaxed text-blue-950"
-            >
-                     We currently offer more than 50 varieties of Sparklers, each designed with a perfect balance of safety, colour, and quality. As part of a green initiative, we plant 50 new trees every year, reinforcing our promise to give back to nature
+              At Vaigai Sparklers, we are more than just a sparklers factory - we are creators of memories. Our factory is set amidst lush green surroundings, echoing our deep commitment to sustainability and eco-friendliness. We are an ISO-Certified Company, and every product we manufacture strictly adheres to Go Green principles. Our sparklers are carefully crafted using premium materials and time-tested techniques, ensuring each piece delivers the safest and most spectacular sparkle possible.
             </motion.p>
 
-
-
-            {/* Stats */}
-            {/* <motion.div
+            <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 1 }}
-              className="flex flex-wrap gap-8 mt-12"
+              transition={{ duration: 0.8, delay: 0.8 }}
+              className="text-xl mb-8 max-w-2xl leading-relaxed text-blue-950"
             >
-              <div className="text-center">
-                <div className="text-3xl font-bold text-logo-red">50+</div>
-                <div className="text-logo-light-gray">Sparklers Varieties</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-logo-orange">10k+</div>
-                <div className="text-logo-light-gray">
-                  Happy Customers
-                </div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-logo-blue">12+</div>
-                <div className="text-logo-light-gray">Years in Fireworks</div>
-              </div>
-            </motion.div> */}
+              We currently offer more than 50 varieties of Sparklers, each designed with a perfect balance of safety, colour, and quality. As part of a green initiative, we plant 50 new trees every year, reinforcing our promise to give back to nature.
+            </motion.p>
           </motion.div>
 
           {/* Hero Image */}
-         
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="relative"
+          >
+            <div className="relative">
+              <ImageWithFallback
+                src={vaigai}
+                alt="Colorful Fireworks Crackers and Sparklers"
+                className="rounded-2xl shadow-2xl w-full border border-red-200 bg-white"
+              />
+              {/* Glow effect */}
+              <div className="absolute inset-0 bg-gradient-to-t from-red-500/20 to-blue-500/10 rounded-2xl"></div>
+            </div>
+
+            {/* Floating elements */}
+            <motion.div
+              className="absolute -top-4 -right-4 bg-gradient-to-r from-blue-500 to-purple-500 text-white p-3 rounded-full shadow-lg"
+              animate={{ y: [-10, 10, -10] }}
+              transition={{ duration: 3, repeat: Infinity }}
+            >
+              <Sparkles className="h-6 w-6" />
+            </motion.div>
+
+            <motion.div
+              className="absolute -bottom-4 -left-4 bg-gradient-to-r from-red-500 to-orange-500 text-white p-3 rounded-full shadow-lg"
+              animate={{ y: [10, -10, 10] }}
+              transition={{ duration: 3, repeat: Infinity, delay: 1 }}
+            >
+              <Zap className="h-6 w-6" />
+            </motion.div>
+
+            <motion.div
+              className="absolute top-1/2 -left-8 bg-yellow-400 text-slate-900 p-2 rounded-full shadow-lg"
+              animate={{ x: [-5, 5, -5] }}
+              transition={{ duration: 4, repeat: Infinity, delay: 0.5 }}
+            >
+              <Star className="h-4 w-4" />
+            </motion.div>
+          </motion.div>
         </div>
       </div>
+
       {/* Mission & Vision Section */}
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
@@ -463,8 +496,7 @@ export function AboutPage() {
                 </CardHeader>
                 <CardContent className="text-center">
                   <p className="text-gray-700 text-lg leading-relaxed">
-                   To spark happiness in every home by delivering safe, vibrant, and eco-conscious sparklers made with care and excellence. Our Vision is to deliver the vibrance of celebration without compromising the health of our planet. 
-
+                   To spark happiness in every home by delivering safe, vibrant, and eco-conscious sparklers made with care and excellence. Our Vision is to deliver the vibrance of celebration without compromising the health of our planet.
                   </p>
                 </CardContent>
               </Card>
@@ -491,9 +523,7 @@ export function AboutPage() {
                 </CardHeader>
                 <CardContent className="text-center">
                   <p className="text-gray-700 text-lg leading-relaxed">
-                   We aim to become one of India’s most trusted names in sparklers by consistently delivering value, safety, and innovation – while staying true to our cultural roots. 
-
-
+                   We aim to become one of India's most trusted names in sparklers by consistently delivering value, safety, and innovation – while staying true to our cultural roots.
                   </p>
                 </CardContent>
               </Card>
