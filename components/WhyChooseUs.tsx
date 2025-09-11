@@ -3,35 +3,35 @@ import { motion } from "framer-motion";
 import { Shield, Truck, Award, Users, Clock, Sparkles } from "lucide-react";
 import { Card, CardContent } from "./ui/card";
 
-// Custom hook for animated counter (copied from Hero component)
-const useAnimatedCounter = (targetValue, duration = 2000, delay = 0) => {
+// ✅ TYPE THE HOOK CORRECTLY — THIS FIXES ALL TS7006 & TS6133 ERRORS
+const useAnimatedCounter = (
+  targetValue: number,
+  duration: number = 2000,
+  delay: number = 0
+): number => {
   const [count, setCount] = useState(0);
-  const [hasStarted, setHasStarted] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setHasStarted(true);
-      
       const startTime = Date.now();
       const startValue = 0;
-      
+
       const updateCounter = () => {
         const elapsed = Date.now() - startTime;
         const progress = Math.min(elapsed / duration, 1);
-        
-        // Easing function for smooth animation
+
         const easeOutQuart = 1 - Math.pow(1 - progress, 4);
         const currentValue = Math.floor(startValue + (targetValue - startValue) * easeOutQuart);
-        
+
         setCount(currentValue);
-        
+
         if (progress < 1) {
           requestAnimationFrame(updateCounter);
         } else {
           setCount(targetValue);
         }
       };
-      
+
       updateCounter();
     }, delay);
 
@@ -45,42 +45,37 @@ const benefits = [
   {
     icon: Shield,
     title: "Safe & Certified Products",
-    description:"All Vaigai sparklers are government-certified and made with non-toxic, child-friendly materials — perfect for safe, joyful celebrations.",
+    description: "All Vaigai sparklers are government-certified and made with non-toxic, child-friendly materials — perfect for safe, joyful celebrations.",
     color: "from-green-400 to-emerald-500",
   },
   {
     icon: Truck,
     title: "Timely Delivery & Reliable Service",
-    description:
-      "Order today, celebrate on time. We deliver your sparklers across India with care — right when you need them, every time.",
+    description: "Order today, celebrate on time. We deliver your sparklers across India with care — right when you need them, every time.",
     color: "from-blue-400 to-cyan-500",
   },
   {
     icon: Award,
     title: "High-Quality Raw Materials",
-    description:
-      "We use premium-grade compounds and wires for brighter, longer-lasting sparks — no smoke, no fumes, just clean, dazzling light.",
+    description: "We use premium-grade compounds and wires for brighter, longer-lasting sparks — no smoke, no fumes, just clean, dazzling light.",
     color: "from-yellow-400 to-orange-500",
   },
   {
     icon: Users,
     title: "Premium Packaging Boxes",
-    description:
-      "Elegant, sturdy, and gift-ready — our boxes keep sparklers protected and looking beautiful, whether for sale or gifting.",
+    description: "Elegant, sturdy, and gift-ready — our boxes keep sparklers protected and looking beautiful, whether for sale or gifting.",
     color: "from-purple-400 to-pink-500",
   },
   {
     icon: Clock,
-    title: " Rooted in Sivakasi's Sparkler Tradition",
-    description:
-      "Born in India's sparkler capital, Vaigai carries forward Sivakasi's legacy — crafting the finest hand-twisted sparklers for generations.",
+    title: "Rooted in Sivakasi's Sparkler Tradition",
+    description: "Born in India's sparkler capital, Vaigai carries forward Sivakasi's legacy — crafting the finest hand-twisted sparklers for generations.",
     color: "from-red-400 to-rose-500",
   },
   {
     icon: Sparkles,
-    title: " Prioritise Customer Satisfaction",
-    description:
-      "Your smile matters most. From quick replies to perfect orders — we're here to make your sparkler experience simple and happy.",
+    title: "Prioritise Customer Satisfaction",
+    description: "Your smile matters most. From quick replies to perfect orders — we're here to make your sparkler experience simple and happy.",
     color: "from-indigo-400 to-purple-500",
   },
 ];
@@ -88,7 +83,7 @@ const benefits = [
 export function WhyChooseUs() {
   // Animated counters with staggered delays (triggered when stats section comes into view)
   const [statsInView, setStatsInView] = useState(false);
-  
+
   const customersCount = useAnimatedCounter(statsInView ? 10000 : 0, 2500, 0);
   const varietiesCount = useAnimatedCounter(statsInView ? 50 : 0, 2000, 200);
   const yearsCount = useAnimatedCounter(statsInView ? 12 : 0, 1500, 400);
@@ -105,7 +100,7 @@ export function WhyChooseUs() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-yellow-300 via-orange-400 to-red-400 bg-clip-text text-transparent">
-        Why Choose Vaigai? 
+            Why Choose Vaigai?
           </h2>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto">
             With over 12 years of experience, we're your trusted partner for all
@@ -167,12 +162,12 @@ export function WhyChooseUs() {
               className="text-4xl lg:text-5xl font-bold bg-gradient-to-r from-yellow-300 to-orange-400 bg-clip-text text-transparent mb-2"
             >
               <motion.span
-                animate={{ 
-                  scale: customersCount > 0 && customersCount === 10000 ? [1, 1.1, 1] : 1 
+                animate={{
+                  scale: customersCount > 0 && customersCount === 10000 ? [1, 1.1, 1] : 1,
                 }}
-                transition={{ 
+                transition={{
                   duration: 0.3,
-                  delay: customersCount === 10000 ? 0.2 : 0
+                  delay: customersCount === 10000 ? 0.2 : 0,
                 }}
               >
                 {customersCount.toLocaleString()}+
@@ -190,12 +185,12 @@ export function WhyChooseUs() {
               className="text-4xl lg:text-5xl font-bold bg-gradient-to-r from-yellow-300 to-orange-400 bg-clip-text text-transparent mb-2"
             >
               <motion.span
-                animate={{ 
-                  scale: varietiesCount > 0 && varietiesCount === 50 ? [1, 1.1, 1] : 1 
+                animate={{
+                  scale: varietiesCount > 0 && varietiesCount === 50 ? [1, 1.1, 1] : 1,
                 }}
-                transition={{ 
+                transition={{
                   duration: 0.3,
-                  delay: varietiesCount === 50 ? 0.2 : 0
+                  delay: varietiesCount === 50 ? 0.2 : 0,
                 }}
               >
                 {varietiesCount}+
@@ -213,12 +208,12 @@ export function WhyChooseUs() {
               className="text-4xl lg:text-5xl font-bold bg-gradient-to-r from-yellow-300 to-orange-400 bg-clip-text text-transparent mb-2"
             >
               <motion.span
-                animate={{ 
-                  scale: yearsCount > 0 && yearsCount === 12 ? [1, 1.1, 1] : 1 
+                animate={{
+                  scale: yearsCount > 0 && yearsCount === 12 ? [1, 1.1, 1] : 1,
                 }}
-                transition={{ 
+                transition={{
                   duration: 0.3,
-                  delay: yearsCount === 12 ? 0.2 : 0
+                  delay: yearsCount === 12 ? 0.2 : 0,
                 }}
               >
                 {yearsCount}+
@@ -236,12 +231,12 @@ export function WhyChooseUs() {
               className="text-4xl lg:text-5xl font-bold bg-gradient-to-r from-yellow-300 to-orange-400 bg-clip-text text-transparent mb-2"
             >
               <motion.span
-                animate={{ 
-                  scale: awardsCount > 0 && awardsCount === 25 ? [1, 1.1, 1] : 1 
+                animate={{
+                  scale: awardsCount > 0 && awardsCount === 25 ? [1, 1.1, 1] : 1,
                 }}
-                transition={{ 
+                transition={{
                   duration: 0.3,
-                  delay: awardsCount === 25 ? 0.2 : 0
+                  delay: awardsCount === 25 ? 0.2 : 0,
                 }}
               >
                 {awardsCount}+

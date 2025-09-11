@@ -1,12 +1,12 @@
-import { useState, useEffect} from 'react';
-import { motion, useScroll, useTransform} from 'framer-motion';
-import { 
-  Rocket, 
-  Award, 
-  Users, 
-  Factory, 
-  Sparkles, 
-  Star, 
+import { useState, useEffect } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import {
+  Rocket,
+  Award,
+  Users,
+  Factory,
+  Sparkles,
+  Star,
   Calendar,
   CheckCircle,
   Target,
@@ -15,48 +15,53 @@ import {
   Zap,
   Trophy,
   Shield,
- 
   ArrowRight,
-  Flame
+  Flame,
 } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { Button } from './ui/button';
 import { Badge } from './ui/badge';
 import logoImage from '../assets/1000035182.png';
 import { ImageWithFallback } from './figma/ImageWithFallback';
+import vaigai from '../assets/1000035181.png';
 
-import vaigai from "../assets/1000035181.png";
+// ✅ TYPE DEFINITIONS
+interface Particle {
+  id: number;
+  x: number;
+  y: number;
+  delay: number;
+}
 
-// Custom hook for animated counter
-const useAnimatedCounter = (targetValue, duration = 2000, delay = 0) => {
+// ✅ FIXED HOOK WITH TYPES + REMOVED UNUSED hasStarted
+const useAnimatedCounter = (
+  targetValue: number,
+  duration: number = 2000,
+  delay: number = 0
+): number => {
   const [count, setCount] = useState(0);
-  const [hasStarted, setHasStarted] = useState(false);
-console.log(hasStarted);
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setHasStarted(true);
-      
       const startTime = Date.now();
       const startValue = 0;
-      
+
       const updateCounter = () => {
         const elapsed = Date.now() - startTime;
         const progress = Math.min(elapsed / duration, 1);
-        
-        // Easing function for smooth animation
+
         const easeOutQuart = 1 - Math.pow(1 - progress, 4);
         const currentValue = Math.floor(startValue + (targetValue - startValue) * easeOutQuart);
-        
+
         setCount(currentValue);
-        
+
         if (progress < 1) {
           requestAnimationFrame(updateCounter);
         } else {
           setCount(targetValue);
         }
       };
-      
+
       updateCounter();
     }, delay);
 
@@ -67,23 +72,23 @@ console.log(hasStarted);
 };
 
 export function AboutPage() {
-  const [particles, setParticles] = useState<Array<{id: number, x: number, y: number, delay: number}>>([]);
+  const [particles, setParticles] = useState<Particle[]>([]);
   const { scrollYProgress } = useScroll();
   const y = useTransform(scrollYProgress, [0, 1], ['0%', '-50%']);
 
   // Animated counters with staggered delays for hero stats
   const sparklerCount = useAnimatedCounter(50, 2000, 1000); // 50+ sparklers
-  const customerCount = useAnimatedCounter(10, 2000, 1200); // 10k+ customers  
+  const customerCount = useAnimatedCounter(10, 2000, 1200); // 10k+ customers
   const yearCount = useAnimatedCounter(12, 2000, 1400); // 12+ years
   const safetyCount = useAnimatedCounter(25, 2000, 1600); // 25+ safety awards
 
   useEffect(() => {
     // Create particle animation
-    const newParticles = Array.from({ length: 50 }, (_, i) => ({
+    const newParticles: Particle[] = Array.from({ length: 50 }, (_, i) => ({
       id: i,
       x: Math.random() * 100,
       y: Math.random() * 100,
-      delay: Math.random() * 2
+      delay: Math.random() * 2,
     }));
     setParticles(newParticles);
   }, []);
@@ -94,50 +99,50 @@ export function AboutPage() {
       title: "Company Founded",
       description: "Twin Elephant Brand was established in Sivakasi, Tamil Nadu, beginning our journey in the fireworks industry.",
       icon: Factory,
-      color: "from-red-500 to-orange-500"
+      color: "from-red-500 to-orange-500",
     },
     {
       year: "1985",
       title: "First Major Expansion",
       description: "Expanded our manufacturing facilities and introduced new product lines including sparklers and fountains.",
       icon: Rocket,
-      color: "from-blue-500 to-purple-500"
+      color: "from-blue-500 to-purple-500",
     },
     {
       year: "1995",
       title: "ISO Certification",
       description: "Achieved ISO 9001 certification for quality management systems, setting industry standards.",
       icon: Award,
-      color: "from-green-500 to-teal-500"
+      color: "from-green-500 to-teal-500",
     },
     {
       year: "2005",
       title: "National Recognition",
       description: "Received national awards for excellence in fireworks manufacturing and safety protocols.",
       icon: Trophy,
-      color: "from-yellow-500 to-orange-500"
+      color: "from-yellow-500 to-orange-500",
     },
     {
       year: "2015",
       title: "Digital Innovation",
       description: "Embraced digital technologies and modern manufacturing processes for enhanced efficiency.",
       icon: Zap,
-      color: "from-indigo-500 to-blue-500"
+      color: "from-indigo-500 to-blue-500",
     },
     {
       year: "2024",
       title: "50+ Years Legacy",
       description: "Celebrating over 5 decades of bringing joy and sparkle to celebrations across India.",
       icon: Star,
-      color: "from-pink-500 to-red-500"
-    }
+      color: "from-pink-500 to-red-500",
+    },
   ];
 
   const achievements = [
     { label: "Years of Experience", value: yearCount, suffix: "+", icon: Calendar },
     { label: "Sparkler Varieties", value: sparklerCount, suffix: "+", icon: Sparkles },
     { label: "Happy Customers", value: customerCount, suffix: "K+", icon: Users },
-    { label: "Safety Awards", value: safetyCount, suffix: "+", icon: Shield }
+    { label: "Safety Awards", value: safetyCount, suffix: "+", icon: Shield },
   ];
 
   const teamMembers = [
@@ -146,29 +151,29 @@ export function AboutPage() {
       role: "Founder & CEO",
       experience: "50+ Years",
       image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=face",
-      specialization: "Fireworks Innovation"
+      specialization: "Fireworks Innovation",
     },
     {
       name: "Priya Sharma",
       role: "Head of Manufacturing",
       experience: "25+ Years",
       image: "https://images.unsplash.com/photo-1494790108755-2616b9e0ce1e?w=400&h=400&fit=crop&crop=face",
-      specialization: "Quality Control"
+      specialization: "Quality Control",
     },
     {
       name: "Arun Patel",
       role: "Safety Director",
       experience: "30+ Years",
       image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face",
-      specialization: "Safety Protocols"
+      specialization: "Safety Protocols",
     },
     {
       name: "Meera Reddy",
       role: "R&D Head",
       experience: "20+ Years",
       image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop&crop=face",
-      specialization: "Product Development"
-    }
+      specialization: "Product Development",
+    },
   ];
 
   const processSteps = [
@@ -177,29 +182,29 @@ export function AboutPage() {
       title: "Raw Material Selection",
       description: "Carefully sourced premium materials for optimal performance",
       icon: CheckCircle,
-      color: "from-red-500 to-orange-500"
+      color: "from-red-500 to-orange-500",
     },
     {
       step: "02",
       title: "Precision Manufacturing",
       description: "State-of-the-art machinery with strict quality controls",
       icon: Factory,
-      color: "from-blue-500 to-indigo-500"
+      color: "from-blue-500 to-indigo-500",
     },
     {
       step: "03",
       title: "Safety Testing",
       description: "Rigorous testing protocols ensuring complete safety",
       icon: Shield,
-      color: "from-green-500 to-teal-500"
+      color: "from-green-500 to-teal-500",
     },
     {
       step: "04",
       title: "Quality Assurance",
       description: "Final inspection and packaging for delivery",
       icon: Award,
-      color: "from-purple-500 to-pink-500"
-    }
+      color: "from-purple-500 to-pink-500",
+    },
   ];
 
   return (
@@ -229,7 +234,7 @@ export function AboutPage() {
       </div>
 
       {/* Hero Section */}
-      <motion.section 
+      <motion.section
         className="relative py-20 bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 text-white overflow-hidden"
         style={{ y }}
       >
@@ -276,10 +281,10 @@ export function AboutPage() {
                   whileHover={{ scale: 1.1 }}
                   transition={{ type: "spring", stiffness: 300 }}
                 >
-                  <img 
-                    src={logoImage} 
-                    alt="Twin Elephant Brand" 
-                    className="h-50 w-50 object-contain"
+                  <img
+                    src={logoImage}
+                    alt="Twin Elephant Brand"
+                    className="h-20 w-20 object-contain" // 👈 Fixed size: was 50 -> 20
                   />
                 </motion.div>
               </div>
@@ -331,14 +336,14 @@ export function AboutPage() {
                   >
                     <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20">
                       <Icon className="h-8 w-8 mx-auto mb-2 text-orange-400" />
-                      <motion.div 
+                      <motion.div
                         className="text-3xl font-bold text-white mb-1"
-                        animate={{ 
-                          scale: achievement.value > 0 ? [1, 1.1, 1] : 1 
+                        animate={{
+                          scale: achievement.value > 0 ? [1, 1.1, 1] : 1,
                         }}
-                        transition={{ 
+                        transition={{
                           duration: 0.3,
-                          delay: achievement.value === (index === 0 ? yearCount : index === 1 ? sparklerCount : index === 2 ? customerCount : safetyCount) ? 0 : 0
+                          delay: achievement.value === (index === 0 ? yearCount : index === 1 ? sparklerCount : index === 2 ? customerCount : safetyCount) ? 0 : 0,
                         }}
                       >
                         {achievement.value}{achievement.suffix}
@@ -360,7 +365,7 @@ export function AboutPage() {
         <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[80vh]">
           {/* Content */}
           <motion.div
-            initial={{ opacity: 0, x: -50}}
+            initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
             className="text-blue-950"
@@ -496,7 +501,7 @@ export function AboutPage() {
                 </CardHeader>
                 <CardContent className="text-center">
                   <p className="text-gray-700 text-lg leading-relaxed">
-                   To spark happiness in every home by delivering safe, vibrant, and eco-conscious sparklers made with care and excellence. Our Vision is to deliver the vibrance of celebration without compromising the health of our planet.
+                    To spark happiness in every home by delivering safe, vibrant, and eco-conscious sparklers made with care and excellence. Our Vision is to deliver the vibrance of celebration without compromising the health of our planet.
                   </p>
                 </CardContent>
               </Card>
@@ -523,7 +528,7 @@ export function AboutPage() {
                 </CardHeader>
                 <CardContent className="text-center">
                   <p className="text-gray-700 text-lg leading-relaxed">
-                   We aim to become one of India's most trusted names in sparklers by consistently delivering value, safety, and innovation – while staying true to our cultural roots.
+                    We aim to become one of India's most trusted names in sparklers by consistently delivering value, safety, and innovation – while staying true to our cultural roots.
                   </p>
                 </CardContent>
               </Card>
@@ -552,7 +557,7 @@ export function AboutPage() {
           <div className="relative">
             {/* Timeline Line */}
             <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-red-500 to-blue-500 opacity-30" />
-            
+
             {timelineData.map((item, index) => {
               const Icon = item.icon;
               return (
@@ -578,10 +583,12 @@ export function AboutPage() {
                       <p className="text-white/90">{item.description}</p>
                     </motion.div>
                   </div>
-                  
+
                   {/* Timeline Dot */}
-                  <div className="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-white border-4 border-current rounded-full z-10" 
-                       style={{ color: `hsl(${index * 60}, 70%, 50%)` }} />
+                  <div
+                    className="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-white border-4 border-current rounded-full z-10"
+                    style={{ color: `hsl(${index * 60}, 70%, 50%)` }}
+                  />
                 </motion.div>
               );
             })}
@@ -633,9 +640,7 @@ export function AboutPage() {
                       </CardTitle>
                     </CardHeader>
                     <CardContent className="text-center">
-                      <p className="text-gray-600">
-                        {step.description}
-                      </p>
+                      <p className="text-gray-600">{step.description}</p>
                     </CardContent>
                   </Card>
                 </motion.div>
@@ -674,8 +679,8 @@ export function AboutPage() {
               >
                 <Card className="h-full bg-white shadow-lg hover:shadow-xl transition-shadow overflow-hidden">
                   <div className="relative">
-                    <img 
-                      src={member.image} 
+                    <img
+                      src={member.image}
                       alt={member.name}
                       className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300"
                     />

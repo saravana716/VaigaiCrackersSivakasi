@@ -5,36 +5,43 @@ import { Button } from "./ui/button";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import vaigai from "../assets/1000035181.png";
 
+// Define type for sparkle object
+interface Sparkle {
+  id: number;
+  x: number;
+  y: number;
+  delay: number;
+}
+
 // Custom hook for animated counter
-const useAnimatedCounter = (targetValue, duration = 2000, delay = 0) => {
+const useAnimatedCounter = (
+  targetValue: number,
+  duration: number = 2000,
+  delay: number = 0
+): number => {
   const [count, setCount] = useState(0);
-  const [hasStarted, setHasStarted] = useState(false);
-console.log(hasStarted);
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setHasStarted(true);
-      
       const startTime = Date.now();
       const startValue = 0;
-      
+
       const updateCounter = () => {
         const elapsed = Date.now() - startTime;
         const progress = Math.min(elapsed / duration, 1);
-        
-        // Easing function for smooth animation
+
         const easeOutQuart = 1 - Math.pow(1 - progress, 4);
         const currentValue = Math.floor(startValue + (targetValue - startValue) * easeOutQuart);
-        
+
         setCount(currentValue);
-        
+
         if (progress < 1) {
           requestAnimationFrame(updateCounter);
         } else {
           setCount(targetValue);
         }
       };
-      
+
       updateCounter();
     }, delay);
 
@@ -45,16 +52,15 @@ console.log(hasStarted);
 };
 
 export function Hero() {
-  const [sparkles, setSparkles] = useState([]);
+  const [sparkles, setSparkles] = useState<Sparkle[]>([]);
 
   // Animated counters with staggered delays
   const sparklerCount = useAnimatedCounter(50, 2000, 1000); // 50+ sparklers
-  const customerCount = useAnimatedCounter(10, 2000, 1200); // 10k+ customers  
+  const customerCount = useAnimatedCounter(10, 2000, 1200); // 10k+ customers
   const yearCount = useAnimatedCounter(12, 2000, 1400); // 12+ years
 
   useEffect(() => {
-    // Generate random sparkle positions
-    const newSparkles = Array.from({ length: 15 }, (_, i) => ({
+    const newSparkles: Sparkle[] = Array.from({ length: 15 }, (_, i) => ({
       id: i,
       x: Math.random() * 100,
       y: Math.random() * 100,
@@ -182,62 +188,62 @@ export function Hero() {
               transition={{ duration: 0.8, delay: 1 }}
               className="flex flex-wrap gap-8 mt-12"
             >
-              <motion.div 
+              <motion.div
                 className="text-center"
                 initial={{ scale: 0.8, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ duration: 0.5, delay: 1.2 }}
               >
-                <motion.div 
+                <motion.div
                   className="text-3xl font-bold text-logo-red"
-                  animate={{ 
-                    scale: sparklerCount > 0 ? [1, 1.1, 1] : 1 
+                  animate={{
+                    scale: sparklerCount > 0 ? [1, 1.1, 1] : 1,
                   }}
-                  transition={{ 
+                  transition={{
                     duration: 0.3,
-                    delay: sparklerCount === 50 ? 0 : 0
+                    delay: sparklerCount === 50 ? 0 : 0,
                   }}
                 >
                   {sparklerCount}+
                 </motion.div>
                 <div className="text-logo-light-gray">Sparklers Varieties</div>
               </motion.div>
-              
-              <motion.div 
+
+              <motion.div
                 className="text-center"
                 initial={{ scale: 0.8, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ duration: 0.5, delay: 1.4 }}
               >
-                <motion.div 
+                <motion.div
                   className="text-3xl font-bold text-logo-orange"
-                  animate={{ 
-                    scale: customerCount > 0 ? [1, 1.1, 1] : 1 
+                  animate={{
+                    scale: customerCount > 0 ? [1, 1.1, 1] : 1,
                   }}
-                  transition={{ 
+                  transition={{
                     duration: 0.3,
-                    delay: customerCount === 10 ? 0 : 0
+                    delay: customerCount === 10 ? 0 : 0,
                   }}
                 >
                   {customerCount}k+
                 </motion.div>
                 <div className="text-logo-light-gray">Happy Customers</div>
               </motion.div>
-              
-              <motion.div 
+
+              <motion.div
                 className="text-center"
                 initial={{ scale: 0.8, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ duration: 0.5, delay: 1.6 }}
               >
-                <motion.div 
+                <motion.div
                   className="text-3xl font-bold text-logo-blue"
-                  animate={{ 
-                    scale: yearCount > 0 ? [1, 1.1, 1] : 1 
+                  animate={{
+                    scale: yearCount > 0 ? [1, 1.1, 1] : 1,
                   }}
-                  transition={{ 
+                  transition={{
                     duration: 0.3,
-                    delay: yearCount === 12 ? 0 : 0
+                    delay: yearCount === 12 ? 0 : 0,
                   }}
                 >
                   {yearCount}+
