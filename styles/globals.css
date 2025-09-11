@@ -145,7 +145,7 @@
     @apply border-border outline-ring/50;
   }
 
-  body {
+  html,body {
     @apply bg-logo-dark text-logo-white;
     background: linear-gradient(135deg, var(--logo-dark) 0%, #1a1a2e 50%, var(--logo-dark) 100%);
     min-height: 100vh;
