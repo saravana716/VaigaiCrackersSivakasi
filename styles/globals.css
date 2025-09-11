@@ -143,9 +143,10 @@
 @layer base {
   * {
     @apply border-border outline-ring/50;
-    overflow-x: hidden;
-    width: 100vw;
-    height: 100vh
+
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
   }
 
   body {
