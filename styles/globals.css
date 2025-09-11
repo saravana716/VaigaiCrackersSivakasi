@@ -143,9 +143,13 @@
 @layer base {
   * {
     @apply border-border outline-ring/50;
+    overflow-x: hidden;
+    width: 100vw;
+    height: 100vh
   }
 
   body {
+    width: 100vw;
     @apply bg-logo-dark text-logo-white;
     background: linear-gradient(135deg, var(--logo-dark) 0%, #1a1a2e 50%, var(--logo-dark) 100%);
     min-height: 100vh;
