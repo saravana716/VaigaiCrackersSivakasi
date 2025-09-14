@@ -127,7 +127,9 @@ export function Navbar({ onNavigate, currentPage = 'home' }: NavbarProps) {
                 whileHover={{ scale: 1.05 }}
               >
                 <Phone className="h-4 w-4 mr-2 text-blue-400" />
-                <span>+91-9876543210</span>
+                <span>+91-9442167677, +91-75986 69677
+
+</span>
               </motion.div>
               <motion.div 
                 className="flex items-center text-gray-300 hover:text-white transition-colors"

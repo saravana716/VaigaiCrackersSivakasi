@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useEffect, useRef } from 'react';
+import { motion, AnimatePresence, useInView } from 'framer-motion';
 import { 
   Phone, 
   Mail, 
@@ -28,7 +28,6 @@ import { Textarea } from './ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
 import { Badge } from './ui/badge';
 import logoImage from '../assets/1000035182.png';
-
 
 interface FormData {
   name: string;
@@ -62,6 +61,68 @@ const FloatingParticle = ({ delay = 0, size = 4, color = "bg-yellow-400" }) => (
     }}
   />
 );
+
+// ✅ FIXED & WORKING Animated Counter Component
+const AnimatedCounter = ({ value, label, color }: { value: string; label: string; color: string }) => {
+  const [count, setCount] = useState(0);
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px 0px 0px 0px" });
+
+  // Parse number safely: "12+" → 12, "10K+" → 10000, "4.9" → 4.9
+  const parseNumber = (str: string): number => {
+    if (str.includes('K')) return parseFloat(str.replace('K+', '')) * 1000;
+    if (str.includes('M')) return parseFloat(str.replace('M+', '')) * 1000000;
+    return parseFloat(str.replace('+', ''));
+  };
+
+  const target = parseNumber(value); // e.g., "12+" → 12, "10K+" → 10000
+  const isDecimal = value.includes('.'); // e.g., "4.9"
+  const duration = 2; // seconds for full animation
+
+  useEffect(() => {
+    if (!isInView) return;
+
+    let startTime: number | null = null;
+    let animationFrameId: number;
+
+    const animate = (timestamp: number) => {
+      if (!startTime) startTime = timestamp;
+      const elapsed = timestamp - startTime;
+      const progress = Math.min(elapsed / (duration * 1000), 1);
+
+      let current = 0;
+
+      if (isDecimal) {
+        // For decimal values like "4.9"
+        const fullTarget = parseFloat(value);
+        current = fullTarget * progress;
+      } else {
+        // For integer or K/M values
+        current = Math.floor(progress * target);
+      }
+
+      setCount(current);
+
+      if (progress < 1) {
+        animationFrameId = requestAnimationFrame(animate);
+      }
+    };
+
+    animationFrameId = requestAnimationFrame(animate);
+
+    return () => cancelAnimationFrame(animationFrameId);
+  }, [isInView, target, isDecimal, value, duration]);
+
+  return (
+    <div ref={ref} className="text-center">
+      <div className={`text-4xl lg:text-5xl font-bold ${color} mb-1`}>
+        {isDecimal ? count.toFixed(1) : count.toLocaleString()}
+        {value.includes('+') && '+'}
+      </div>
+      <div className="text-gray-300 text-sm">{label}</div>
+    </div>
+  );
+};
 
 export function ContactPage() {
   const [formData, setFormData] = useState<FormData>({
@@ -113,7 +174,7 @@ export function ContactPage() {
       icon: Phone,
       title: "Call Us",
       subtitle: "Speak directly with our experts",
-      details: ["+91-9876543210", "+91-9876543211"],
+      details: ["+91-9442167677", "+91-75986 69677"],
       color: "from-blue-500 to-cyan-500",
       iconBg: "bg-blue-500"
     },
@@ -129,7 +190,7 @@ export function ContactPage() {
       icon: MapPin,
       title: "Visit Us",
       subtitle: "Come see our manufacturing facility",
-      details: ["123 Fireworks Street", "Sivakasi, Tamil Nadu 626123"],
+      details: ["Address - 10 K/2, Velayutham road, RKR Complex, first floor, opposite to HDFC bank, Sivakasi, 626 123"],
       color: "from-orange-500 to-red-500",
       iconBg: "bg-orange-500"
     },
@@ -137,7 +198,7 @@ export function ContactPage() {
       icon: Clock,
       title: "Business Hours",
       subtitle: "We're here when you need us",
-      details: ["Mon - Sat: 9:00 AM - 6:00 PM", "Sun: 10:00 AM - 4:00 PM"],
+      details: ["Hours - 10 : 00 - 6 : 00 from Mon to Sat"],
       color: "from-purple-500 to-blue-500",
       iconBg: "bg-purple-500"
     }
@@ -145,7 +206,7 @@ export function ContactPage() {
 
   const companyStats = [
     { icon: Calendar, value: "12+", label: "Years Experience", color: "text-orange-400" },
-    { icon: Users, value: "10K+", label: "Happy Customers", color: "text-blue-400" },
+    { icon: Users, value: "10K", label: "Happy Customers", color: "text-blue-400" },
     { icon: Star, value: "4.9", label: "Customer Rating", color: "text-yellow-400" },
     { icon: Globe, value: "15+", label: "States Served", color: "text-green-400" }
   ];
@@ -238,7 +299,7 @@ export function ContactPage() {
             ))}
           </motion.div>
 
-          {/* Company Stats */}
+          {/* Company Stats with Animated Counters */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -254,10 +315,11 @@ export function ContactPage() {
                 <Card className="bg-white/10 backdrop-blur-md border-white/20 shadow-xl hover:shadow-2xl transition-all">
                   <CardContent className="p-6">
                     <stat.icon className={`h-8 w-8 ${stat.color} mx-auto mb-3`} />
-                    <div className={`text-3xl font-bold ${stat.color} mb-1`}>
-                      {stat.value}
-                    </div>
-                    <div className="text-gray-300 text-sm">{stat.label}</div>
+                    <AnimatedCounter 
+                      value={stat.value} 
+                      label={stat.label} 
+                      color={stat.color} 
+                    />
                   </CardContent>
                 </Card>
               </motion.div>
@@ -600,12 +662,12 @@ export function ContactPage() {
                 <Card className="bg-gradient-to-r from-red-600 to-orange-600 text-white shadow-2xl border-none overflow-hidden">
                   <CardContent className="p-6">
                     <div className="flex items-center space-x-4">
-                    <motion.div
-  animate={{ scale: [1, 1.2, 1] }}
-  transition={{ duration: 2, repeat: Infinity }}
->
-  <AlertCircle className="h-10 w-10 text-white" />
-</motion.div>
+                      <motion.div
+                        animate={{ scale: [1, 1.2, 1] }}
+                        transition={{ duration: 2, repeat: Infinity }}
+                      >
+                        <AlertCircle className="h-10 w-10 text-white" />
+                      </motion.div>
                       <div>
                         <h3 className="text-xl font-bold mb-1">
                           Emergency Support
@@ -632,7 +694,7 @@ export function ContactPage() {
                   <CardContent className="p-6">
                     <h3 className="text-xl font-bold mb-3 flex items-center">
                       <Star className="h-6 w-6 mr-2 text-yellow-400" />
-                      Twin Elephant Brand - Vijai Sparklers
+                      Twin Elephant Brand - Vaigai Sparklers
                     </h3>
                     <p className="text-blue-100 mb-3 leading-relaxed">
                       Established in 1970, we are one of India's leading fireworks manufacturers based in Sivakasi, Tamil Nadu. 

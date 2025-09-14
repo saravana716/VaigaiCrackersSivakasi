@@ -24,6 +24,7 @@ import { Badge } from './ui/badge';
 import logoImage from '../assets/1000035182.png';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 import vaigai from '../assets/1000035181.png';
+import TitleCard from './TitleCard';
 
 // ✅ TYPE DEFINITIONS
 interface Particle {
@@ -208,6 +209,8 @@ export function AboutPage() {
   ];
 
   return (
+    <>
+    <TitleCard/>
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 overflow-hidden">
       {/* Animated Background Particles */}
       <div className="fixed inset-0 pointer-events-none">
@@ -768,5 +771,6 @@ export function AboutPage() {
         </div>
       </motion.section>
     </div>
+    </>
   );
 }

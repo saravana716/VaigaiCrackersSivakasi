@@ -112,8 +112,10 @@ export function Footer() {
               <div className="flex items-center space-x-3">
                 <Phone className="h-5 w-5 text-logo-yellow" />
                 <div>
-                  <p className="text-logo-white">+91-9876543210</p>
-                  <p className="text-logo-light-gray text-sm">+91-9876543211</p>
+                  <p className="text-logo-white">+91-9442167677
+</p>
+                  <p className="text-logo-light-gray text-sm">+91-75986 69677
+</p>
                 </div>
               </div>
               <div className="flex items-center space-x-3">
@@ -126,8 +128,9 @@ export function Footer() {
               <div className="flex items-start space-x-3">
                 <MapPin className="h-5 w-5 text-logo-yellow mt-1" />
                 <div>
-                  <p className="text-logo-white">123 Fireworks Street</p>
-                  <p className="text-logo-light-gray text-sm">Sivakasi, Tamil Nadu 626123</p>
+                  <p className="text-logo-white">Address - 10 K/2, Velayutham road, RKR Complex, first floor, opposite to HDFC bank, Sivakasi, 626 123
+</p>
+                  {/* <p className="text-logo-light-gray text-sm">Hours - 10 : 00 - 6 : 00 from Mon to Sat</p> */}
                 </div>
               </div>
             </div>
@@ -136,8 +139,7 @@ export function Footer() {
             <div className="mt-6 p-4 bg-logo-gray/20 rounded-lg border border-logo-red/20">
               <h4 className="font-semibold text-logo-orange mb-2">Business Hours</h4>
               <div className="text-sm text-logo-light-gray space-y-1">
-                <p>Mon - Sat: 9:00 AM - 6:00 PM</p>
-                <p>Sunday: 10:00 AM - 4:00 PM</p>
+            <p>Hours - 10 : 00 - 6 : 00 from Mon to Sat</p>
                 <p>Festivals: Extended Hours</p>
               </div>
             </div>
@@ -155,7 +157,7 @@ export function Footer() {
           className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0"
         >
           <div className="text-logo-light-gray text-sm">
-            © {currentYear} Twin Elephant Brand - Vijai Sparklers. All rights reserved.
+            © {currentYear} Twin Elephant Brand - Vaigai Sparklers. All rights reserved.
           </div>
           
           <div className="flex flex-wrap gap-6 text-sm">
