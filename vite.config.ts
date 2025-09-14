@@ -24,5 +24,7 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     sourcemap: true
-  }
+  },
+  // 👇 ADD THIS LINE TO SUPPORT .gif FILES
+  assetsInclude: ['**/*.gif']
 })
