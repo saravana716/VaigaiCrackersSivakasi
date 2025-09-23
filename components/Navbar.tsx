@@ -23,7 +23,7 @@ import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Badge } from './ui/badge';
 import { Separator } from './ui/separator';
-import logo from "../assets/1000035181.png"
+import logo from "../assets/preview.png"
 import logo1 from "../assets/1000035182.png"
 interface NavbarProps {
   onNavigate?: (page: string) => void;
@@ -180,31 +180,18 @@ export function Navbar({ onNavigate, currentPage = 'home' }: NavbarProps) {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <div className="relative">
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-red-600 to-orange-500 rounded-full opacity-20 blur-xl group-hover:opacity-40 transition-opacity"
-                  animate={{ 
-                    scale: [1, 1.2, 1],
-                    rotate: [0, 180, 360]
-                  }}
-                  transition={{ 
-                    duration: 4, 
-                    repeat: Infinity,
-                    ease: "easeInOut"
-                  }}
-                />
-                {/* <div className={`relative backdrop-blur-sm p-3 rounded-full border transition-colors ${
-                  isScrolled 
-                    ? 'bg-gray-100 border-red-600/30 group-hover:border-orange-500/50' 
-                    : 'bg-white/10 border-red-600/30 group-hover:border-orange-500/50'
-                }`}>
-                  <div className="h-10 w-10 bg-gradient-to-r from-red-600 to-orange-500 rounded-full flex items-center justify-center">
-                    <span className="text-white text-lg font-bold">TE</span>
-                  </div>
-                </div> */}
-            <img src={logo} alt="" style={{ width: '70px', height: '70px' }} />
-
-              </div>
+              <motion.div 
+                             className="w-20 h-20 rounded-full shadow-lg border-2 border-white bg-white flex items-center justify-center"
+                             whileHover={{ 
+                               scale: 1.1,
+                               rotate: [0, -5, 5, 0],
+                               boxShadow: '0 0 25px rgba(59, 130, 246, 0.8)'
+                             }}
+                             transition={{ duration: 0.3 }}
+                           >
+                             {/* <span className="text-white font-bold text-lg">V</span> */}
+                             <img src={logo} alt="Vaigai Sparklers Logo" style={{borderRadius:"100%"}}/>
+                           </motion.div>
               <div className="flex flex-col">
                 {/* <span className={`text-xl font-bold bg-gradient-to-r from-red-600 to-orange-500 bg-clip-text text-transparent`}>
                   Vaigai Sparklers

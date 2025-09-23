@@ -38,7 +38,7 @@ export function Header() {
       }`}
     >
       {/* Top contact bar */}
-      <div className="bg-logo-dark text-logo-white py-2 border-b border-logo-red/30">
+      {/* <div className="bg-logo-dark text-logo-white py-2 border-b border-logo-red/30">
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-center text-sm">
             <div className="flex items-center space-x-6">
@@ -54,7 +54,7 @@ export function Header() {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* Main navigation */}
       <div className="container mx-auto px-4">

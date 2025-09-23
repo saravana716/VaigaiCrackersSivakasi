@@ -266,7 +266,7 @@ export function AboutPage() {
               transition={{ duration: 1, ease: "easeOut" }}
               className="flex justify-center mb-8"
             >
-              <div className="relative">
+              {/* <div className="relative">
                 <motion.div
                   className="absolute inset-0 bg-gradient-to-r from-red-500 to-orange-500 rounded-full blur-xl opacity-60"
                   animate={{
@@ -290,7 +290,7 @@ export function AboutPage() {
                     className="h-20 w-20 object-contain" // 👈 Fixed size: was 50 -> 20
                   />
                 </motion.div>
-              </div>
+              </div> */}
             </motion.div>
 
             {/* Main Title */}
@@ -300,12 +300,12 @@ export function AboutPage() {
               transition={{ delay: 0.5, duration: 0.8 }}
               className="text-5xl lg:text-7xl font-bold mb-6"
             >
-              <span className="bg-gradient-to-r from-red-400 via-orange-400 to-yellow-400 bg-clip-text text-transparent">
+              {/* <span className="bg-gradient-to-r from-red-400 via-orange-400 to-yellow-400 bg-clip-text text-transparent">
                 Twin Elephant
-              </span>
+              </span> */}
               <br />
               <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-                Brand Story
+                Vaigai Story
               </span>
             </motion.h1>
 
@@ -379,7 +379,7 @@ export function AboutPage() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="flex items-center space-x-2 mb-6"
             >
-              <Sparkles className="h-8 w-8 text-blue-950" />
+              {/* <Sparkles className="h-8 w-8 text-blue-950" /> */}
               <span className="text-blue-950 text-lg font-medium">
                 Welcome to Vaigai Sparklers – Where Every Spark Tells a Story.
               </span>
@@ -399,7 +399,7 @@ export function AboutPage() {
                   animate={{ rotate: [0, 15, -15, 0] }}
                   transition={{ duration: 2, repeat: Infinity }}
                 >
-                  <Zap className="h-12 w-12 text-blue-950" />
+                  {/* <Zap className="h-12 w-12 text-blue-950" /> */}
                 </motion.div>
               </span>
             </motion.h1>
@@ -408,7 +408,7 @@ export function AboutPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
-              className="text-xl mb-8 mt-12 max-w-2xl leading-relaxed text-blue-950"
+              className="text-xl mb-8 mt-0 max-w-2xl leading-relaxed text-blue-950"
             >
               At Vaigai Sparklers, we are more than just a sparklers factory - we are creators of memories. Our factory is set amidst lush green surroundings, echoing our deep commitment to sustainability and eco-friendliness. We are an ISO-Certified Company, and every product we manufacture strictly adheres to Go Green principles. Our sparklers are carefully crafted using premium materials and time-tested techniques, ensuring each piece delivers the safest and most spectacular sparkle possible.
             </motion.p>
@@ -434,36 +434,36 @@ export function AboutPage() {
               <ImageWithFallback
                 src={vaigai}
                 alt="Colorful Fireworks Crackers and Sparklers"
-                className="rounded-2xl shadow-2xl w-full border border-red-200 bg-white"
+                className="rounded-2xl shadow-2xl w-full border border-white bg-white"
               />
               {/* Glow effect */}
               <div className="absolute inset-0 bg-gradient-to-t from-red-500/20 to-blue-500/10 rounded-2xl"></div>
             </div>
 
             {/* Floating elements */}
-            <motion.div
+            {/* <motion.div
               className="absolute -top-4 -right-4 bg-gradient-to-r from-blue-500 to-purple-500 text-white p-3 rounded-full shadow-lg"
               animate={{ y: [-10, 10, -10] }}
               transition={{ duration: 3, repeat: Infinity }}
             >
               <Sparkles className="h-6 w-6" />
-            </motion.div>
-
+            </motion.div> */}
+{/* 
             <motion.div
               className="absolute -bottom-4 -left-4 bg-gradient-to-r from-red-500 to-orange-500 text-white p-3 rounded-full shadow-lg"
               animate={{ y: [10, -10, 10] }}
               transition={{ duration: 3, repeat: Infinity, delay: 1 }}
             >
               <Zap className="h-6 w-6" />
-            </motion.div>
+            </motion.div> */}
 
-            <motion.div
+            {/* <motion.div
               className="absolute top-1/2 -left-8 bg-yellow-400 text-slate-900 p-2 rounded-full shadow-lg"
               animate={{ x: [-5, 5, -5] }}
               transition={{ duration: 4, repeat: Infinity, delay: 0.5 }}
             >
               <Star className="h-4 w-4" />
-            </motion.div>
+            </motion.div> */}
           </motion.div>
         </div>
       </div>
@@ -635,9 +635,9 @@ export function AboutPage() {
                           <Icon className="h-8 w-8 text-white" />
                         </div>
                       </div>
-                      <div className="text-3xl font-bold text-gray-400 mb-2">
+                      {/* <div className="text-3xl font-bold text-gray-400 mb-2">
                         {step.step}
-                      </div>
+                      </div> */}
                       <CardTitle className="text-xl font-bold text-gray-900">
                         {step.title}
                       </CardTitle>
@@ -654,7 +654,7 @@ export function AboutPage() {
       </section>
 
       {/* Team Section */}
-      <section className="py-20 bg-gradient-to-br from-blue-50 to-indigo-50">
+      {/* <section className="py-20 bg-gradient-to-br from-blue-50 to-indigo-50">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -709,7 +709,7 @@ export function AboutPage() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Call to Action */}
       <motion.section

@@ -91,30 +91,59 @@ const products: Product[] = [
     category: "Multi-Shot",
     badge: "Professional",
     badgeColor: "bg-red-600"
+  },
+  {
+    id: 7,
+    name: "Crystal Fountain Deluxe",
+    price: 399,
+    originalPrice: 549,
+    image: "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?auto=format&fit=crop&w=400&q=80",
+    rating: 4.7,
+    reviews: 142,
+    category: "Fountains",
+    badge: "Popular",
+    badgeColor: "bg-indigo-500"
+  },
+  {
+    id: 8,
+    name: "Sky Thunder Rocket",
+    price: 699,
+    originalPrice: 899,
+    image: "https://images.unsplash.com/photo-1467810563316-b5476525c0f9?auto=format&fit=crop&w=400&q=80",
+    rating: 4.8,
+    reviews: 178,
+    category: "Rockets",
+    badge: "Top Rated",
+    badgeColor: "bg-teal-500"
   }
 ];
+
+const SLIDES_PER_PAGE = 4;
 
 export function ProductSwiper() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlay, setIsAutoPlay] = useState(true);
   const swiperRef = useRef<HTMLDivElement>(null);
 
+  // Calculate total number of slides (groups of 4)
+  const totalSlides = Math.ceil(products.length / SLIDES_PER_PAGE);
+
   useEffect(() => {
     if (!isAutoPlay) return;
 
     const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % (products.length - 2));
+      setCurrentIndex((prev) => (prev + 1) % totalSlides);
     }, 4000);
 
     return () => clearInterval(interval);
-  }, [isAutoPlay]);
+  }, [isAutoPlay, totalSlides]);
 
   const nextSlide = () => {
-    setCurrentIndex((prev) => (prev + 1) % (products.length - 2));
+    setCurrentIndex((prev) => (prev + 1) % totalSlides);
   };
 
   const prevSlide = () => {
-    setCurrentIndex((prev) => (prev - 1 + (products.length - 2)) % (products.length - 2));
+    setCurrentIndex((prev) => (prev - 1 + totalSlides) % totalSlides);
   };
 
   const goToSlide = (index: number) => {
@@ -131,7 +160,7 @@ export function ProductSwiper() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-red-600 via-orange-600 to-blue-600 bg-clip-text text-transparent">
-            Trending Products
+            New Arrivals
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             Discover our most popular fireworks that light up celebrations across the nation
@@ -167,113 +196,130 @@ export function ProductSwiper() {
           <div className="overflow-hidden rounded-2xl" ref={swiperRef}>
             <motion.div
               className="flex"
-              animate={{ x: `-${currentIndex * (100 / 3)}%` }}
+              animate={{ x: `-${currentIndex * 100}%` }}
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
             >
-              {products.map((product) => (
-                <motion.div
-                  key={product.id}
-                  className="w-1/3 flex-shrink-0 px-3"
-                  whileHover={{ y: -10 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <Card className="bg-white border-gray-200 shadow-xl overflow-hidden hover:shadow-2xl transition-all group">
-                    <div className="relative overflow-hidden">
-                      <ImageWithFallback
-                        src={product.image}
-                        alt={product.name}
-                        className="w-full h-72 object-cover group-hover:scale-110 transition-transform duration-500"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
-                      
-                      {/* Badge */}
-                      <Badge className={`absolute top-4 left-4 ${product.badgeColor} text-white border-0`}>
-                        {product.badge}
-                      </Badge>
+              {/* Group products into slides of 4 */}
+              {Array.from({ length: totalSlides }, (_, slideIndex) => (
+                <div key={slideIndex} className="w-full flex-shrink-0 flex">
+                  {products
+                    .slice(slideIndex * SLIDES_PER_PAGE, (slideIndex + 1) * SLIDES_PER_PAGE)
+                    .map((product, productIndex) => (
+                    <motion.div
+                      key={product.id}
+                      className="w-1/4 flex-shrink-0 px-3"
+                      whileHover={{ y: -10 }}
+                      transition={{ duration: 0.3 }}
+                      initial={{ opacity: 0, y: 50 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: productIndex * 0.1 }}
+                    >
+                      <Card className="bg-white border-gray-200 shadow-xl overflow-hidden hover:shadow-2xl transition-all group h-full">
+                        <div className="relative overflow-hidden">
+                          <ImageWithFallback
+                            src={product.image}
+                            alt={product.name}
+                            className="w-full h-48 sm:h-56 lg:h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+                          
+                          {/* Badge */}
+                          <Badge className={`absolute top-4 left-4 ${product.badgeColor} text-white border-0`}>
+                            {product.badge}
+                          </Badge>
 
-                      {/* Quick View Button */}
-                      <motion.div
-                        initial={{ opacity: 0 }}
-                        whileHover={{ opacity: 1 }}
-                        className="absolute inset-0 bg-black/20 flex items-center justify-center"
-                      >
-                        <Button
-                          size="lg"
-                          className="bg-white/90 text-gray-800 hover:bg-white"
-                          onClick={() => window.location.hash = 'product-page'}
-                        >
-                          <Eye className="mr-2 h-5 w-5" />
-                          Quick View
-                        </Button>
-                      </motion.div>
+                          {/* Quick View Button */}
+                          <motion.div
+                            initial={{ opacity: 0 }}
+                            whileHover={{ opacity: 1 }}
+                            className="absolute inset-0 bg-black/20 flex items-center justify-center"
+                          >
+                            <Button
+                              size="sm"
+                              className="bg-white/90 text-gray-800 hover:bg-white"
+                              onClick={() => window.location.hash = 'product-page'}
+                            >
+                              <Eye className="mr-2 h-4 w-4" />
+                              Quick View
+                            </Button>
+                          </motion.div>
 
-                      {/* Discount Badge */}
-                      {product.originalPrice > product.price && (
-                        <div className="absolute bottom-4 left-4 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-medium">
-                          {Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)}% OFF
+                          {/* Discount Badge */}
+                          {product.originalPrice > product.price && (
+                            <div className="absolute bottom-4 left-4 bg-red-500 text-white px-2 py-1 rounded-full text-xs font-medium">
+                              {Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)}% OFF
+                            </div>
+                          )}
                         </div>
-                      )}
-                    </div>
 
-                    <CardContent className="p-6">
-                      <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
-                        {product.name}
-                      </h3>
+                        <CardContent className="p-4">
+                          <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors line-clamp-2">
+                            {product.name}
+                          </h3>
 
-                      {/* Rating */}
-                      <div className="flex items-center gap-2 mb-3">
-                        <div className="flex items-center">
-                          {[...Array(5)].map((_, i) => (
-                            <Star
-                              key={i}
-                              className={`h-4 w-4 ${
-                                i < Math.floor(product.rating)
-                                  ? 'text-yellow-500 fill-current'
-                                  : 'text-gray-300'
-                              }`}
-                            />
-                          ))}
-                        </div>
-                        <span className="text-sm text-gray-600">
-                          {product.rating} ({product.reviews} reviews)
-                        </span>
-                      </div>
+                          {/* Rating */}
+                          <div className="flex items-center gap-1 mb-3">
+                            <div className="flex items-center">
+                              {[...Array(5)].map((_, i) => (
+                                <Star
+                                  key={i}
+                                  className={`h-3 w-3 ${
+                                    i < Math.floor(product.rating)
+                                      ? 'text-yellow-500 fill-current'
+                                      : 'text-gray-300'
+                                  }`}
+                                />
+                              ))}
+                            </div>
+                            <span className="text-xs text-gray-600">
+                              {product.rating} ({product.reviews})
+                            </span>
+                          </div>
 
-                      {/* Price */}
-                      <div className="flex items-center gap-2 mb-4">
-                        <span className="text-2xl font-bold text-red-600">
-                          ₹{product.price}
-                        </span>
-                        {product.originalPrice > product.price && (
-                          <span className="text-lg text-gray-500 line-through">
-                            ₹{product.originalPrice}
-                          </span>
-                        )}
-                      </div>
+                          {/* Price */}
+                          <div className="flex items-center gap-2 mb-3">
+                            <span className="text-lg font-bold text-red-600">
+                              ₹{product.price}
+                            </span>
+                            {product.originalPrice > product.price && (
+                              <span className="text-sm text-gray-500 line-through">
+                                ₹{product.originalPrice}
+                              </span>
+                            )}
+                          </div>
 
-                      {/* Category */}
-                      <Badge variant="secondary" className="mb-4">
-                        {product.category}
-                      </Badge>
+                          {/* Category */}
+                          <Badge variant="secondary" className="mb-3 text-xs">
+                            {product.category}
+                          </Badge>
 
-                      {/* Action Button */}
-                      <Button 
-                        className="w-full bg-gradient-to-r from-red-600 to-orange-600 hover:from-red-700 hover:to-orange-700 text-white font-semibold"
-                        onClick={() => window.location.hash = 'product-page'}
-                      >
-                        <Sparkles className="mr-2 h-4 w-4" />
-                        View Details
-                      </Button>
-                    </CardContent>
-                  </Card>
-                </motion.div>
+                          {/* Action Button */}
+                          <Button 
+                            size="sm"
+                            className="w-full bg-gradient-to-r from-red-600 to-orange-600 hover:from-red-700 hover:to-orange-700 text-white font-semibold text-xs"
+                            onClick={() => window.location.hash = 'product-page'}
+                          >
+                            <Sparkles className="mr-1 h-3 w-3" />
+                            View Details
+                          </Button>
+                        </CardContent>
+                      </Card>
+                    </motion.div>
+                  ))}
+                  {/* Fill empty slots if needed */}
+                  {Array.from({ 
+                    length: SLIDES_PER_PAGE - products.slice(slideIndex * SLIDES_PER_PAGE, (slideIndex + 1) * SLIDES_PER_PAGE).length 
+                  }, (_, emptyIndex) => (
+                    <div key={`empty-${emptyIndex}`} className="w-1/4 flex-shrink-0 px-3" />
+                  ))}
+                </div>
               ))}
             </motion.div>
           </div>
 
           {/* Dots Indicator */}
           <div className="flex justify-center mt-8 space-x-2">
-            {Array.from({ length: products.length - 2 }, (_, index) => (
+            {Array.from({ length: totalSlides }, (_, index) => (
               <motion.button
                 key={index}
                 whileHover={{ scale: 1.2 }}

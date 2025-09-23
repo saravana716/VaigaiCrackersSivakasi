@@ -14,6 +14,7 @@ import { ProductPage } from "./components/ProductPage";
 import { CategoryPage } from "./components/CategoryPage";
 import { GalleryPage } from "./components/GalleryPage";
 import "./index.css";
+import { VaigaiCertificationDisplay } from "./components/VaigaiCertificationDisplay";
 export default function App() {
   const [currentPage, setCurrentPage] = useState("home");
   const [selectedCategory, setSelectedCategory] = useState<string>("");
@@ -84,8 +85,9 @@ console.log(product);
             <Hero />
             <ProductCategories onCategoryClick={handleCategoryClick} />
             <ProductSwiper />
-            <FeaturedProducts />
+            {/* <FeaturedProducts /> */}
             <WhyChooseUs />
+            <VaigaiCertificationDisplay/>
             <SafetySection />
           </>
         )}

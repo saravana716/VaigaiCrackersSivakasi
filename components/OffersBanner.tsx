@@ -223,69 +223,7 @@ export function OffersBanner() {
                     </motion.div>
 
                     {/* Decorative Elements */}
-                    <motion.div
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ duration: 0.8, delay: 0.6 }}
-                      className="hidden lg:flex items-center justify-center relative"
-                    >
-                      {/* Floating Icons */}
-                      <motion.div
-                        animate={{ 
-                          y: [-20, 20, -20],
-                          rotate: [0, 5, -5, 0]
-                        }}
-                        transition={{ 
-                          duration: 4, 
-                          repeat: Infinity,
-                          ease: "easeInOut"
-                        }}
-                        className="absolute -top-10 -left-10"
-                      >
-                        <div className="bg-logo-yellow p-4 rounded-full shadow-lg">
-                          <Sparkles className="h-8 w-8 text-logo-dark" />
-                        </div>
-                      </motion.div>
-
-                      <motion.div
-                        animate={{ 
-                          y: [20, -20, 20],
-                          rotate: [0, -5, 5, 0]
-                        }}
-                        transition={{ 
-                          duration: 3, 
-                          repeat: Infinity,
-                          ease: "easeInOut",
-                          delay: 1
-                        }}
-                        className="absolute -bottom-10 -right-10"
-                      >
-                        <div className="bg-logo-red p-4 rounded-full shadow-lg">
-                          <Zap className="h-8 w-8 text-logo-white" />
-                        </div>
-                      </motion.div>
-
-                      <motion.div
-                        animate={{ 
-                          x: [-10, 10, -10],
-                          rotate: [0, 10, -10, 0]
-                        }}
-                        transition={{ 
-                          duration: 5, 
-                          repeat: Infinity,
-                          ease: "easeInOut",
-                          delay: 0.5
-                        }}
-                        className="absolute top-1/2 left-0"
-                      >
-                        <div className="bg-logo-blue p-3 rounded-full shadow-lg">
-                          <Star className="h-6 w-6 text-logo-white" />
-                        </div>
-                      </motion.div>
-
-                      {/* Central Glow Effect */}
-                      <div className="w-64 h-64 bg-gradient-to-r from-logo-orange/20 to-logo-red/20 rounded-full blur-3xl"></div>
-                    </motion.div>
+                   
                   </div>
                 </div>
               </motion.div>
@@ -331,7 +269,7 @@ export function OffersBanner() {
       </div>
 
       {/* Progress Bar */}
-      <div className="absolute bottom-0 left-0 w-full h-1 bg-logo-dark/50">
+      {/* <div className="absolute bottom-0 left-0 w-full h-10 bg-logo-dark/50">
         <motion.div
           className="h-full bg-logo-gradient-primary"
           initial={{ width: "0%" }}
@@ -339,7 +277,7 @@ export function OffersBanner() {
           transition={{ duration: 5, ease: "linear" }}
           key={currentSlide}
         />
-      </div>
+      </div> */}
     </section>
   );
 }

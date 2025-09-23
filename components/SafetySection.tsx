@@ -129,7 +129,7 @@ export function SafetySection() {
                       className="flex items-start space-x-3"
                     >
                       <CheckCircle className="h-5 w-5 text-green-400 mt-0.5 flex-shrink-0" />
-                      <span className="text-gray-300">{guideline}</span>
+                      <span className="text-gray-700">{guideline}</span>
                     </motion.div>
                   ))}
                 </div>
