@@ -230,15 +230,15 @@ export function CategoryPage({
         <div className="container mx-auto px-4 py-4">
           <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
             <div className="flex items-center space-x-4 flex-1">
-              <div className="relative flex-1 max-w-md">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 h-4 w-4" />
-                <Input
-                  placeholder="Search products..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-10"
-                />
-              </div>
+             <div className="relative flex-1 max-w-md">
+  <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 h-4 w-4" />
+  <Input
+    placeholder="Search products..."
+    value={searchTerm}
+    onChange={(e) => setSearchTerm(e.target.value)}
+    className="pl-10 text-black placeholder:text-gray-400"
+  />
+</div>
             </div>
 
             <div className="flex items-center space-x-2">
@@ -271,10 +271,10 @@ export function CategoryPage({
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <div
+           <div
               className={`grid gap-6 ${
                 viewMode === "grid"
-                  ? "grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+                  ? "grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
                   : "grid-cols-1"
               }`}
             >

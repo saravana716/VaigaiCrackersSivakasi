@@ -527,7 +527,7 @@ export function Navbar({ onNavigate, currentPage = 'home' }: NavbarProps) {
                     Get Quote Now
                   </Button>
                   
-                  <div className="grid grid-cols-2 gap-3">
+                  {/* <div className="grid grid-cols-2 gap-3">
                     <Button 
                       variant="outline" 
                       className="border-orange-500 text-orange-400 hover:bg-orange-500 hover:text-white"
@@ -544,7 +544,7 @@ export function Navbar({ onNavigate, currentPage = 'home' }: NavbarProps) {
                       <ShoppingBag className="h-4 w-4 mr-2" />
                       Cart (3)
                     </Button>
-                  </div>
+                  </div> */}
                 </div>
 
                 <Separator className="my-6 bg-red-600/20" />
