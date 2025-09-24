@@ -40,6 +40,10 @@ console.log(product);
     setCurrentPage("home");
     setSelectedCategory("");
   };
+  const handleBackToCategory = () => {
+    setCurrentPage("category");
+    // setSelectedCategory("");
+  };
 
   // Listen for hash changes to enable navigation
   if (typeof window !== "undefined") {
@@ -72,7 +76,7 @@ console.log(product);
         ) : currentPage === "gallery" ? (
           <GalleryPage onBack={handleBackToHome} />
         ) : currentPage === "product-page" ? (
-          <ProductPage />
+          <ProductPage onBack={handleBackToCategory} />
         ) : currentPage === "contact" ? (
           <ContactPage />
         ) : currentPage === "about" ? (

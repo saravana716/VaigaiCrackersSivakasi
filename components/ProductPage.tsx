@@ -61,7 +61,7 @@ const FloatingParticle = ({
   );
 };
 
-export function ProductPage() {
+export function ProductPage({ onBack }: { onBack: () => void }) {
   const [product, setProduct] = useState<any | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -220,7 +220,7 @@ export function ProductPage() {
             variant="ghost"
             size="sm"
             className="text-white hover:bg-white/20 mb-4 backdrop-blur-sm"
-            onClick={() => window.history.back()}
+            onClick={onBack}
           >
             <ArrowLeft className="h-5 w-5 mr-2" />
             Back to Home
