@@ -109,8 +109,15 @@ const SparkleParticle = ({ delay = 0 }: { delay?: number }) => (
 );
 
 // Enhanced firecracker animation with more sparkles
-const FirecrackerAnimation = ({ className }: { className?: string }) => (
-  <div className={`relative ${className}`}>
+// Enhanced firecracker animation with more sparkles
+const FirecrackerAnimation = ({ 
+  className, 
+  style 
+}: { 
+  className?: string; 
+  style?: React.CSSProperties; 
+}) => (
+  <div className={`relative ${className}`} style={style}>
     {[...Array(20)].map((_, i) => (
       <SparkleParticle key={i} delay={i * 0.15} />
     ))}

@@ -4,7 +4,6 @@ import { Hero } from "./components/Hero";
 import { OffersBanner } from "./components/OffersBanner";
 import { ProductCategories } from "./components/ProductCategories";
 import { ProductSwiper } from "./components/ProductSwiper";
-import { FeaturedProducts } from "./components/FeaturedProducts";
 import { WhyChooseUs } from "./components/WhyChooseUs";
 import { SafetySection } from "./components/SafetySection";
 import { ContactPage } from "./components/ContactPage";

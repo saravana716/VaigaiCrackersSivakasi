@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronLeft, ChevronRight, Star, Zap, Sparkles, Clock, Gift, ShoppingBag } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Star,Clock, Gift, ShoppingBag } from 'lucide-react';
 import { Button } from './ui/button';
 import { Badge } from './ui/badge';
 import { ImageWithFallback } from './figma/ImageWithFallback';

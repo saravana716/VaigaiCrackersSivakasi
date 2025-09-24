@@ -177,30 +177,7 @@ export function ProductCategories({ onCategoryClick }: ProductCategoriesProps) {
         )}
 
         {/* Custom Styles */}
-        <style jsx global>{`
-          .swiper-pagination {
-            bottom: 0 !important;
-          }
-          .swiper-pagination-bullet {
-            background: #fbbf24 !important;
-            opacity: 0.5;
-          }
-          .swiper-pagination-bullet-active {
-            background: #f59e0b !important;
-            opacity: 1;
-          }
-          .swiper-button-next,
-          .swiper-button-prev {
-            background: rgba(0, 0, 0, 0.5);
-            border-radius: 50%;
-            width: 40px !important;
-            height: 40px !important;
-          }
-          .swiper-button-next:hover,
-          .swiper-button-prev:hover {
-            background: rgba(0, 0, 0, 0.8);
-          }
-        `}</style>
+      
       </div>
     </section>
   );

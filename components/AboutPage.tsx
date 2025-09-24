@@ -11,7 +11,6 @@ import {
   CheckCircle,
   Target,
   Eye,
-  Heart,
   Zap,
   Trophy,
   Shield,
@@ -20,8 +19,7 @@ import {
 } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { Button } from './ui/button';
-import { Badge } from './ui/badge';
-import logoImage from '../assets/1000035182.png';
+
 import { ImageWithFallback } from './figma/ImageWithFallback';
 import vaigai from '../assets/1000035181.png';
 import TitleCard from './TitleCard';
@@ -146,36 +144,36 @@ export function AboutPage() {
     { label: "Safety Awards", value: safetyCount, suffix: "+", icon: Shield },
   ];
 
-  const teamMembers = [
-    {
-      name: "Rajesh Kumar",
-      role: "Founder & CEO",
-      experience: "50+ Years",
-      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=face",
-      specialization: "Fireworks Innovation",
-    },
-    {
-      name: "Priya Sharma",
-      role: "Head of Manufacturing",
-      experience: "25+ Years",
-      image: "https://images.unsplash.com/photo-1494790108755-2616b9e0ce1e?w=400&h=400&fit=crop&crop=face",
-      specialization: "Quality Control",
-    },
-    {
-      name: "Arun Patel",
-      role: "Safety Director",
-      experience: "30+ Years",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face",
-      specialization: "Safety Protocols",
-    },
-    {
-      name: "Meera Reddy",
-      role: "R&D Head",
-      experience: "20+ Years",
-      image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop&crop=face",
-      specialization: "Product Development",
-    },
-  ];
+  // const teamMembers = [
+  //   {
+  //     name: "Rajesh Kumar",
+  //     role: "Founder & CEO",
+  //     experience: "50+ Years",
+  //     image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=face",
+  //     specialization: "Fireworks Innovation",
+  //   },
+  //   {
+  //     name: "Priya Sharma",
+  //     role: "Head of Manufacturing",
+  //     experience: "25+ Years",
+  //     image: "https://images.unsplash.com/photo-1494790108755-2616b9e0ce1e?w=400&h=400&fit=crop&crop=face",
+  //     specialization: "Quality Control",
+  //   },
+  //   {
+  //     name: "Arun Patel",
+  //     role: "Safety Director",
+  //     experience: "30+ Years",
+  //     image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face",
+  //     specialization: "Safety Protocols",
+  //   },
+  //   {
+  //     name: "Meera Reddy",
+  //     role: "R&D Head",
+  //     experience: "20+ Years",
+  //     image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop&crop=face",
+  //     specialization: "Product Development",
+  //   },
+  // ];
 
   const processSteps = [
     {

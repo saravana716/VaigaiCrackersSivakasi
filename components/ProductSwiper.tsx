@@ -209,7 +209,7 @@ export function ProductSwiper() {
                       key={product.id}
                       className="w-1/4 flex-shrink-0 px-3"
                       whileHover={{ y: -10 }}
-                      transition={{ duration: 0.3 }}
+                      // transition={{ duration: 0.3 }}
                       initial={{ opacity: 0, y: 50 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: productIndex * 0.1 }}
