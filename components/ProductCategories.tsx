@@ -1,18 +1,17 @@
-"use client";
+"use client"; // 👈 Add this at the very top
 
 import { motion } from "framer-motion";
 import { Card, CardContent } from "./ui/card";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
-import { db} from "../firebase"; // adjust path if needed
+import { db } from "../firebase";
 import { collection, getDocs, Timestamp } from "firebase/firestore";
 import * as React from "react";
-// Import Swiper React components
+
+// Import Swiper
 import { Swiper, SwiperSlide } from 'swiper/react';
-// Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
-// Import required modules
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 
 interface Category {
@@ -46,8 +45,7 @@ export function ProductCategories({ onCategoryClick }: ProductCategoriesProps) {
       });
       setCategories(
         categoriesData.sort(
-          (a, b) =>
-            (b.createdAt as Date).getTime() - (a.createdAt as Date).getTime()
+          (a, b) => (b.createdAt as Date).getTime() - (a.createdAt as Date).getTime()
         )
       );
     } catch (error) {
@@ -86,11 +84,11 @@ export function ProductCategories({ onCategoryClick }: ProductCategoriesProps) {
         ) : categories.length === 0 ? (
           <p className="text-center text-gray-400">No categories found.</p>
         ) : (
-          <div className="relative" style={{paddingTop: '20px'}}>
+          <div className="relative pt-5">
             <Swiper
               modules={[Autoplay, Pagination, Navigation]}
-              spaceBetween={24}
-              slidesPerView={1}
+              spaceBetween={16}
+              slidesPerView={2} // 👈 Default for mobile: 2 cards
               autoplay={{
                 delay: 3000,
                 disableOnInteraction: false,
@@ -105,10 +103,17 @@ export function ProductCategories({ onCategoryClick }: ProductCategoriesProps) {
                 prevEl: '.swiper-button-prev',
               }}
               breakpoints={{
+                // Mobile (default): 2 per view
+                320: {
+                  slidesPerView: 2,
+                  spaceBetween: 16,
+                },
+                // Tablet
                 640: {
                   slidesPerView: 2,
                   spaceBetween: 20,
                 },
+                // Desktop
                 768: {
                   slidesPerView: 3,
                   spaceBetween: 24,
@@ -118,47 +123,40 @@ export function ProductCategories({ onCategoryClick }: ProductCategoriesProps) {
                   spaceBetween: 32,
                 },
               }}
-              loop={categories.length > 4}
+              loop={categories.length > 2} // Only loop if more than 2 items
               className="!pb-12"
             >
               {categories.map((category, index) => (
-                <SwiperSlide key={category.id}>
+                <SwiperSlide key={category.id} style={{ height: 'auto' }}>
                   <motion.div
                     initial={{ opacity: 0, y: 50 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: index * 0.1 }}
                     viewport={{ once: true }}
-                    whileHover={{ scale:1.01 }}
+                    whileHover={{ scale: 1.01 }}
                     className="group cursor-pointer h-full"
-                    onClick={() => {
-                      if (onCategoryClick) {
-                        onCategoryClick(category.id);
-                      }
-                    }}
+                    onClick={() => onCategoryClick?.(category.id)}
                   >
-                    <Card className="bg-gradient-to-br from-gray-900 to-black border-gray-800 overflow-hidden hover:border-gray-600 transition-colors w-full rounded-lg shadow-lg h-full">
-                      <div className="relative h-48 overflow-hidden">
+                    <Card className="bg-gradient-to-br from-gray-900 to-black border-gray-800 overflow-hidden hover:border-gray-600 transition-colors w-full rounded-lg shadow-lg h-full flex flex-col">
+                      <div className="relative h-40 overflow-hidden">
                         <ImageWithFallback
                           src={category.imageUrl}
                           alt={category.name}
-                          className="w-full h-full object-cover group-hover:scale-100 transition-transform duration-500"
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                         />
                         <div
                           className={`absolute inset-0 bg-gradient-to-t ${category.color} opacity-30 group-hover:opacity-40 transition-opacity`}
-                        ></div>
+                        />
                       </div>
-                      <CardContent className="p-5">
-                        <h3 className="text-xl font-bold text-white mb-3 group-hover:text-yellow-400 transition-colors">
+                      <CardContent className="p-4 flex-grow">
+                        <h3 className="text-lg font-bold text-white mb-2 group-hover:text-yellow-400 transition-colors line-clamp-1">
                           {category.name}
                         </h3>
-                        <p
-                          className="text-gray-400 leading-relaxed text-sm truncate"
-                          title={category.description}
-                        >
+                        <p className="text-gray-400 text-sm leading-relaxed line-clamp-2">
                           {category.description}
                         </p>
                         <motion.div
-                          className="mt-4 text-yellow-400 font-medium text-sm"
+                          className="mt-3 text-yellow-400 font-medium text-sm"
                           whileHover={{ x: 5 }}
                         >
                           Explore Collection →
@@ -170,14 +168,11 @@ export function ProductCategories({ onCategoryClick }: ProductCategoriesProps) {
               ))}
             </Swiper>
 
-            {/* Custom Navigation Buttons */}
-            <div className="swiper-button-prev !text-yellow-400 !w-10 !h-10 !mt-0 !top-1/2 !-left-5 after:!text-xl after:!font-bold"></div>
-            <div className="swiper-button-next !text-yellow-400 !w-10 !h-10 !mt-0 !top-1/2 !-right-5 after:!text-xl after:!font-bold"></div>
+            {/* Navigation Buttons */}
+            <div className="swiper-button-prev !text-yellow-400 !w-8 !h-8 !top-1/2 !-left-2 after:!text-lg" />
+            <div className="swiper-button-next !text-yellow-400 !w-8 !h-8 !top-1/2 !-right-2 after:!text-lg" />
           </div>
         )}
-
-        {/* Custom Styles */}
-      
       </div>
     </section>
   );
