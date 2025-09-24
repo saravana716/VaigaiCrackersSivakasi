@@ -33,7 +33,16 @@ const SparkleParticle = ({ delay = 0, size = 'small' }: { delay?: number; size?:
 };
 
 // Enhanced firecracker animation
-const FirecrackerAnimation = ({ className, intensity = 'normal' }: { className?: string; intensity?: 'low' | 'normal' | 'high' }) => {
+// Enhanced firecracker animation
+const FirecrackerAnimation = ({ 
+  className, 
+  intensity = 'normal',
+  style 
+}: { 
+  className?: string; 
+  intensity?: 'low' | 'normal' | 'high';
+  style?: React.CSSProperties;
+}) => {
   const particleCounts = {
     low: 15,
     normal: 25,
@@ -41,7 +50,7 @@ const FirecrackerAnimation = ({ className, intensity = 'normal' }: { className?:
   };
 
   return (
-    <div className={`relative ${className}`}>
+    <div className={`relative ${className}`} style={style}>
       {[...Array(particleCounts[intensity])].map((_, i) => (
         <SparkleParticle 
           key={i} 
