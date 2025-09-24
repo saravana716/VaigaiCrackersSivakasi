@@ -394,13 +394,13 @@ function ProductCard({
           />
         </div>
 
-        <CardContent className="p-6">
-          <h4
-            className="text-lg font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors line-clamp-2"
-            title={product.name}
-          >
-            {product.name}
-          </h4>
+        <CardContent className="p-0">
+         <h4
+  className="text-base font-bold text-gray-900 mb-2 sm:text-lg md:text-xl lg:text-1xl group-hover:text-blue-600 transition-colors line-clamp-2"
+  title={product.name}
+>
+  {product.name}
+</h4>
 
           <div className="flex items-center justify-between">
             <span className="text-xl font-bold text-blue-600">
