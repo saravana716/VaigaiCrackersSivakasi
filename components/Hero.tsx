@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Sparkles, Zap, Star } from "lucide-react";
+import { Sparkles, Zap} from "lucide-react";
 import { Button } from "./ui/button";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import vaigai from "../assets/1000035181.png";
@@ -53,6 +53,7 @@ const useAnimatedCounter = (
 
 export function Hero() {
   const [sparkles, setSparkles] = useState<Sparkle[]>([]);
+console.log(sparkles);
 
   // Animated counters with staggered delays
   const sparklerCount = useAnimatedCounter(50, 2000, 1000); // 50+ sparklers
@@ -78,7 +79,7 @@ export function Hero() {
       <div className="absolute inset-0 bg-gradient-to-br from-logo-dark via-logo-dark/95 to-logo-gray/20"></div>
 
       {/* Animated background sparkles */}
-      {sparkles.map((sparkle) => (
+      {/* {sparkles.map((sparkle) => (
         <motion.div
           key={sparkle.id}
           className="absolute z-10"
@@ -97,7 +98,7 @@ export function Hero() {
         >
           <Star className="h-4 w-4 text-logo-yellow" />
         </motion.div>
-      ))}
+      ))} */}
 
       <div className="container mx-auto px-4 py-20 relative z-20">
         <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[80vh]">
@@ -271,29 +272,29 @@ export function Hero() {
             </div>
 
             {/* Floating elements */}
-            <motion.div
+            {/* <motion.div
               className="absolute -top-4 -right-4 bg-logo-gradient-secondary text-logo-white p-3 rounded-full shadow-lg"
               animate={{ y: [-10, 10, -10] }}
               transition={{ duration: 3, repeat: Infinity }}
             >
               <Sparkles className="h-6 w-6" />
-            </motion.div>
+            </motion.div> */}
 
-            <motion.div
+            {/* <motion.div
               className="absolute -bottom-4 -left-4 bg-logo-gradient-primary text-logo-white p-3 rounded-full shadow-lg"
               animate={{ y: [10, -10, 10] }}
               transition={{ duration: 3, repeat: Infinity, delay: 1 }}
             >
               <Zap className="h-6 w-6" />
-            </motion.div>
+            </motion.div> */}
 
-            <motion.div
+            {/* <motion.div
               className="absolute top-1/2 -left-8 bg-logo-yellow text-logo-dark p-2 rounded-full shadow-lg"
               animate={{ x: [-5, 5, -5] }}
               transition={{ duration: 4, repeat: Infinity, delay: 0.5 }}
             >
               <Star className="h-4 w-4" />
-            </motion.div>
+            </motion.div> */}
           </motion.div>
         </div>
       </div>

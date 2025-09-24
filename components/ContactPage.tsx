@@ -27,7 +27,7 @@ import { Label } from './ui/label';
 import { Textarea } from './ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
 import { Badge } from './ui/badge';
-import logoImage from '../assets/1000035182.png';
+import logo from '../assets/1000035181.png';
 
 interface FormData {
   name: string;
@@ -41,26 +41,26 @@ interface FormData {
 }
 
 // Floating particles animation
-const FloatingParticle = ({ delay = 0, size = 4, color = "bg-yellow-400" }) => (
-  <motion.div
-    className={`absolute ${color} rounded-full ${size === 4 ? 'w-1 h-1' : 'w-2 h-2'} opacity-60`}
-    animate={{
-      y: [-20, -80],
-      x: [0, Math.random() * 30 - 15],
-      opacity: [0.6, 0]
-    }}
-    transition={{
-      duration: 3,
-      delay,
-      repeat: Infinity,
-      ease: "easeOut"
-    }}
-    style={{
-      left: `${Math.random() * 100}%`,
-      bottom: 0
-    }}
-  />
-);
+// const FloatingParticle = ({ delay = 0, size = 4, color = "bg-yellow-400" }) => (
+//   <motion.div
+//     className={`absolute ${color} rounded-full ${size === 4 ? 'w-1 h-1' : 'w-2 h-2'} opacity-60`}
+//     animate={{
+//       y: [-20, -80],
+//       x: [0, Math.random() * 30 - 15],
+//       opacity: [0.6, 0]
+//     }}
+//     transition={{
+//       duration: 3,
+//       delay,
+//       repeat: Infinity,
+//       ease: "easeOut"
+//     }}
+//     style={{
+//       left: `${Math.random() * 100}%`,
+//       bottom: 0
+//     }}
+//   />
+// );
 
 // ✅ FIXED & WORKING Animated Counter Component
 const AnimatedCounter = ({ value, label, color }: { value: string; label: string; color: string }) => {
@@ -214,7 +214,7 @@ export function ContactPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 relative overflow-hidden">
       {/* Floating Background Particles */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none">
+      {/* <div className="fixed inset-0 overflow-hidden pointer-events-none">
         {[...Array(25)].map((_, i) => (
           <FloatingParticle 
             key={i} 
@@ -223,7 +223,7 @@ export function ContactPage() {
             color={`bg-${['yellow', 'orange', 'red', 'blue', 'purple', 'pink'][Math.floor(Math.random() * 6)]}-400`}
           />
         ))}
-      </div>
+      </div> */}
 
       {/* Hero Section */}
       <section className="relative py-20 px-4 text-center">
@@ -236,7 +236,7 @@ export function ContactPage() {
             className="flex justify-center mb-8"
           >
             <div className="relative">
-              <motion.div
+              {/* <motion.div
                 className="absolute inset-0 bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 rounded-full opacity-30 blur-2xl"
                 animate={{ 
                   scale: [1, 1.3, 1], 
@@ -247,14 +247,19 @@ export function ContactPage() {
                   repeat: Infinity,
                   ease: "easeInOut"
                 }}
-              />
-              <div className="relative bg-white/10 backdrop-blur-md p-8 rounded-full shadow-2xl border border-white/20">
-                <img 
-                  src={logoImage} 
-                  alt="Twin Elephant Brand" 
-                  className="h-45 w-45 object-contain bg-white p-4 rounded-full"
-                />
-              </div>
+              /> */}
+               <motion.div 
+                             className="w-60 h-60 rounded-full shadow-lg border-2 border-white bg-white flex items-center justify-center"
+                             whileHover={{ 
+                               scale: 1.1,
+                               rotate: [0, -5, 5, 0],
+                               boxShadow: '0 0 25px rgba(59, 130, 246, 0.8)'
+                             }}
+                             transition={{ duration: 0.3 }}
+                           >
+                             {/* <span className="text-white font-bold text-lg">V</span> */}
+                             <img src={logo} alt="Vaigai Sparklers Logo" style={{borderRadius:"100%"}}/>
+                           </motion.div>
             </div>
           </motion.div>
 

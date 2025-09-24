@@ -89,56 +89,56 @@ const certificationData = [
 ];
 
 // Animated sparkle particles for firecracker effect
-const SparkleParticle = ({ delay = 0 }: { delay?: number }) => (
-  <motion.div
-    className="absolute w-1.5 h-1.5 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full"
-    initial={{ opacity: 0, scale: 0 }}
-    animate={{
-      opacity: [0, 1, 1, 0],
-      scale: [0, 1.5, 1, 0],
-      y: [0, -30, -60, -90],
-      x: [0, Math.random() * 60 - 30, Math.random() * 120 - 60]
-    }}
-    transition={{
-      duration: 4,
-      delay,
-      repeat: Infinity,
-      repeatDelay: Math.random() * 3 + 2
-    }}
-  />
-);
+// const SparkleParticle = ({ delay = 0 }: { delay?: number }) => (
+//   <motion.div
+//     className="absolute w-1.5 h-1.5 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full"
+//     initial={{ opacity: 0, scale: 0 }}
+//     animate={{
+//       opacity: [0, 1, 1, 0],
+//       scale: [0, 1.5, 1, 0],
+//       y: [0, -30, -60, -90],
+//       x: [0, Math.random() * 60 - 30, Math.random() * 120 - 60]
+//     }}
+//     transition={{
+//       duration: 4,
+//       delay,
+//       repeat: Infinity,
+//       repeatDelay: Math.random() * 3 + 2
+//     }}
+//   />
+// );
 
 // Enhanced firecracker animation with more sparkles
 // Enhanced firecracker animation with more sparkles
-const FirecrackerAnimation = ({ 
-  className, 
-  style 
-}: { 
-  className?: string; 
-  style?: React.CSSProperties; 
-}) => (
-  <div className={`relative ${className}`} style={style}>
-    {[...Array(20)].map((_, i) => (
-      <SparkleParticle key={i} delay={i * 0.15} />
-    ))}
-    <motion.div
-      className="w-4 h-4 bg-gradient-to-r from-red-500 via-orange-400 to-yellow-500 rounded-full shadow-lg"
-      animate={{
-        scale: [1, 1.3, 1],
-        opacity: [0.7, 1, 0.7],
-        boxShadow: [
-          '0 0 10px rgba(255, 165, 0, 0.5)',
-          '0 0 20px rgba(255, 165, 0, 0.8)',
-          '0 0 10px rgba(255, 165, 0, 0.5)'
-        ]
-      }}
-      transition={{
-        duration: 2.5,
-        repeat: Infinity
-      }}
-    />
-  </div>
-);
+// const FirecrackerAnimation = ({ 
+//   className, 
+//   style 
+// }: { 
+//   className?: string; 
+//   style?: React.CSSProperties; 
+// }) => (
+//   <div className={`relative ${className}`} style={style}>
+//     {[...Array(20)].map((_, i) => (
+//       <SparkleParticle key={i} delay={i * 0.15} />
+//     ))}
+//     <motion.div
+//       className="w-4 h-4 bg-gradient-to-r from-red-500 via-orange-400 to-yellow-500 rounded-full shadow-lg"
+//       animate={{
+//         scale: [1, 1.3, 1],
+//         opacity: [0.7, 1, 0.7],
+//         boxShadow: [
+//           '0 0 10px rgba(255, 165, 0, 0.5)',
+//           '0 0 20px rgba(255, 165, 0, 0.8)',
+//           '0 0 10px rgba(255, 165, 0, 0.5)'
+//         ]
+//       }}
+//       transition={{
+//         duration: 2.5,
+//         repeat: Infinity
+//       }}
+//     />
+//   </div>
+// );
 
 interface CertificationCardProps {
   certification: typeof certificationData[0];
@@ -211,10 +211,10 @@ const CertificationCard: React.FC<CertificationCardProps> = ({ certification }) 
             </div>
             
             {/* Animated sparkles on hover */}
-            <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            {/* <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
               <FirecrackerAnimation />
             </div>
-            
+             */}
             {/* Corner decoration */}
             <div className="absolute bottom-4 left-4 opacity-30 group-hover:opacity-60 transition-opacity duration-300">
               <div className="w-3 h-3 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full animate-pulse" />
@@ -277,7 +277,7 @@ export const VaigaiCertificationDisplay: React.FC = () => {
   return (
     <section className="relative py-20 bg-black overflow-hidden">
       {/* Enhanced animated background elements */}
-      <div className="absolute inset-0 opacity-30">
+      {/* <div className="absolute inset-0 opacity-30">
         {[...Array(25)].map((_, i) => (
           <FirecrackerAnimation 
             key={i}
@@ -289,10 +289,10 @@ export const VaigaiCertificationDisplay: React.FC = () => {
             }}
           />
         ))}
-      </div>
+      </div> */}
       
       {/* Additional floating particles */}
-      <div className="absolute inset-0 opacity-15">
+      {/* <div className="absolute inset-0 opacity-15">
         {[...Array(50)].map((_, i) => (
           <motion.div
             key={`particle-${i}`}
@@ -313,7 +313,7 @@ export const VaigaiCertificationDisplay: React.FC = () => {
             }}
           />
         ))}
-      </div>
+      </div> */}
       
       <div className="relative container mx-auto px-4">
         {/* Header with enhanced styling */}

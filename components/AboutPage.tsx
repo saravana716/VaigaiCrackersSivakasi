@@ -22,7 +22,9 @@ import { Button } from './ui/button';
 
 import { ImageWithFallback } from './figma/ImageWithFallback';
 import vaigai from '../assets/1000035181.png';
-import TitleCard from './TitleCard';
+// import TitleCard from './TitleCard';
+import { VaigaiLogoAnimation } from './VaigaiLogoAnimations';
+import { Footer } from './Footer';
 
 // ✅ TYPE DEFINITIONS
 interface Particle {
@@ -72,6 +74,8 @@ const useAnimatedCounter = (
 
 export function AboutPage() {
   const [particles, setParticles] = useState<Particle[]>([]);
+  console.log(particles);
+  
   const { scrollYProgress } = useScroll();
   const y = useTransform(scrollYProgress, [0, 1], ['0%', '-50%']);
 
@@ -208,10 +212,11 @@ export function AboutPage() {
 
   return (
     <>
-    <TitleCard/>
+    <VaigaiLogoAnimation/>
+    {/* <TitleCard/> */}
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 overflow-hidden">
       {/* Animated Background Particles */}
-      <div className="fixed inset-0 pointer-events-none">
+      {/* <div className="fixed inset-0 pointer-events-none">
         {particles.map((particle) => (
           <motion.div
             key={particle.id}
@@ -232,7 +237,7 @@ export function AboutPage() {
             }}
           />
         ))}
-      </div>
+      </div> */}
 
       {/* Hero Section */}
       <motion.section
@@ -769,6 +774,7 @@ export function AboutPage() {
         </div>
       </motion.section>
     </div>
+    <Footer/>
     </>
   );
 }

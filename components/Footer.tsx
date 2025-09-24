@@ -4,102 +4,102 @@ import { Separator } from './ui/separator';
 import logo from "../assets/logo1.jpg"
 import logo1 from "../assets/1000035182.png"
 // Enhanced sparkle particles for firecracker effect
-const SparkleParticle = ({ delay = 0, size = 'small' }: { delay?: number; size?: 'small' | 'medium' | 'large' }) => {
-  const sizeClasses = {
-    small: 'w-1 h-1',
-    medium: 'w-1.5 h-1.5', 
-    large: 'w-2 h-2'
-  };
+// const SparkleParticle = ({ delay = 0, size = 'small' }: { delay?: number; size?: 'small' | 'medium' | 'large' }) => {
+//   const sizeClasses = {
+//     small: 'w-1 h-1',
+//     medium: 'w-1.5 h-1.5', 
+//     large: 'w-2 h-2'
+//   };
 
-  return (
-    <motion.div
-      className={`absolute ${sizeClasses[size]} bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-600 rounded-full`}
-      initial={{ opacity: 0, scale: 0 }}
-      animate={{
-        opacity: [0, 1, 1, 0],
-        scale: [0, 1.5, 1, 0],
-        y: [0, -40, -80, -120],
-        x: [0, Math.random() * 80 - 40, Math.random() * 160 - 80],
-        rotate: [0, 180, 360]
-      }}
-      transition={{
-        duration: 5,
-        delay,
-        repeat: Infinity,
-        repeatDelay: Math.random() * 4 + 3
-      }}
-    />
-  );
-};
+//   return (
+//     <motion.div
+//       className={`absolute ${sizeClasses[size]} bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-600 rounded-full`}
+//       initial={{ opacity: 0, scale: 0 }}
+//       animate={{
+//         opacity: [0, 1, 1, 0],
+//         scale: [0, 1.5, 1, 0],
+//         y: [0, -40, -80, -120],
+//         x: [0, Math.random() * 80 - 40, Math.random() * 160 - 80],
+//         rotate: [0, 180, 360]
+//       }}
+//       transition={{
+//         duration: 5,
+//         delay,
+//         repeat: Infinity,
+//         repeatDelay: Math.random() * 4 + 3
+//       }}
+//     />
+//   );
+// };
 
 // Enhanced firecracker animation
 // Enhanced firecracker animation
-const FirecrackerAnimation = ({ 
-  className, 
-  intensity = 'normal',
-  style 
-}: { 
-  className?: string; 
-  intensity?: 'low' | 'normal' | 'high';
-  style?: React.CSSProperties;
-}) => {
-  const particleCounts = {
-    low: 15,
-    normal: 25,
-    high: 40
-  };
+// const FirecrackerAnimation = ({ 
+//   className, 
+//   intensity = 'normal',
+//   style 
+// }: { 
+//   className?: string; 
+//   intensity?: 'low' | 'normal' | 'high';
+//   style?: React.CSSProperties;
+// }) => {
+  // const particleCounts = {
+  //   low: 15,
+  //   normal: 25,
+  //   high: 40
+  // };
 
-  return (
-    <div className={`relative ${className}`} style={style}>
-      {[...Array(particleCounts[intensity])].map((_, i) => (
-        <SparkleParticle 
-          key={i} 
-          delay={i * 0.1} 
-          size={Math.random() > 0.7 ? 'large' : Math.random() > 0.4 ? 'medium' : 'small'}
-        />
-      ))}
-      <motion.div
-        className="w-4 h-4 bg-gradient-to-r from-blue-500 via-cyan-400 to-indigo-500 rounded-full shadow-lg"
-        animate={{
-          scale: [1, 1.4, 1],
-          opacity: [0.6, 1, 0.6],
-          boxShadow: [
-            '0 0 15px rgba(59, 130, 246, 0.6)',
-            '0 0 30px rgba(59, 130, 246, 0.9)',
-            '0 0 15px rgba(59, 130, 246, 0.6)'
-          ]
-        }}
-        transition={{
-          duration: 3,
-          repeat: Infinity
-        }}
-      />
-    </div>
-  );
-};
+  // return (
+  //   // <div className={`relative ${className}`} style={style}>
+  //   //   {[...Array(particleCounts[intensity])].map((_, i) => (
+  //   //     <SparkleParticle 
+  //   //       key={i} 
+  //   //       delay={i * 0.1} 
+  //   //       size={Math.random() > 0.7 ? 'large' : Math.random() > 0.4 ? 'medium' : 'small'}
+  //   //     />
+  //   //   ))}
+  //   //   <motion.div
+  //   //     className="w-4 h-4 bg-gradient-to-r from-blue-500 via-cyan-400 to-indigo-500 rounded-full shadow-lg"
+  //   //     animate={{
+  //   //       scale: [1, 1.4, 1],
+  //   //       opacity: [0.6, 1, 0.6],
+  //   //       boxShadow: [
+  //   //         '0 0 15px rgba(59, 130, 246, 0.6)',
+  //   //         '0 0 30px rgba(59, 130, 246, 0.9)',
+  //   //         '0 0 15px rgba(59, 130, 246, 0.6)'
+  //   //       ]
+  //   //     }}
+  //   //     transition={{
+  //   //       duration: 3,
+  //   //       repeat: Infinity
+  //   //     }}
+  //   //   />
+  //   // </div>
+  // );
+// };
 
 // Floating ember particles
-const FloatingEmber = ({ delay = 0 }: { delay?: number }) => (
-  <motion.div
-    className="absolute w-1 h-1 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full opacity-70"
-    animate={{
-      y: [100, -100],
-      x: [0, Math.random() * 100 - 50],
-      opacity: [0, 0.7, 0.4, 0],
-      scale: [0.5, 1, 0.8, 0]
-    }}
-    transition={{
-      duration: Math.random() * 6 + 4,
-      delay,
-      repeat: Infinity,
-      ease: "easeOut"
-    }}
-    style={{
-      left: `${Math.random() * 100}%`,
-      bottom: '0%'
-    }}
-  />
-);
+// const FloatingEmber = ({ delay = 0 }: { delay?: number }) => (
+//   <motion.div
+//     className="absolute w-1 h-1 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full opacity-70"
+//     animate={{
+//       y: [100, -100],
+//       x: [0, Math.random() * 100 - 50],
+//       opacity: [0, 0.7, 0.4, 0],
+//       scale: [0.5, 1, 0.8, 0]
+//     }}
+//     transition={{
+//       duration: Math.random() * 6 + 4,
+//       delay,
+//       repeat: Infinity,
+//       ease: "easeOut"
+//     }}
+//     style={{
+//       left: `${Math.random() * 100}%`,
+//       bottom: '0%'
+//     }}
+//   />
+// );
 
 // Enhanced gradient text animation
 const AnimatedGradientText = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => (
@@ -127,7 +127,7 @@ export function Footer() {
   return (
     <footer className="relative bg-gradient-to-b from-slate-900 via-slate-800 to-black text-white border-t-2 border-blue-500/30 overflow-hidden">
       {/* Animated background elements */}
-      <div className="absolute inset-0 opacity-20">
+      {/* <div className="absolute inset-0 opacity-20">
         {[...Array(30)].map((_, i) => (
           <FirecrackerAnimation 
             key={`firecracker-${i}`}
@@ -140,17 +140,17 @@ export function Footer() {
             }}
           />
         ))}
-      </div>
+      </div> */}
 
       {/* Floating embers */}
-      <div className="absolute inset-0 opacity-30">
+      {/* <div className="absolute inset-0 opacity-30">
         {[...Array(60)].map((_, i) => (
           <FloatingEmber 
             key={`ember-${i}`}
             delay={Math.random() * 10}
           />
         ))}
-      </div>
+      </div> */}
 
       {/* Animated top border */}
       <motion.div 
