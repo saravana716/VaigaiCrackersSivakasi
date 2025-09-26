@@ -134,7 +134,7 @@ export function Navbar({ onNavigate, currentPage = 'home' }: NavbarProps) {
                 whileHover={{ scale: 1.05 }}
               >
                 <Mail className="h-4 w-4 mr-2 text-orange-400" />
-                <span>info@twinelephant.com</span>
+                <span>Vaigaisparklersfactory@gmail.com</span>
               </motion.div>
               <motion.div 
                 className="flex items-center text-gray-300 hover:text-white transition-colors"
@@ -361,14 +361,17 @@ export function Navbar({ onNavigate, currentPage = 'home' }: NavbarProps) {
                 View Gallery
               </Button>
                */}
-              <Button 
+             <a href="https://firebasestorage.googleapis.com/v0/b/project1-71847.appspot.com/o/vaigai%202025%20price%20list.cdr.pdf?alt=media&token=9c8bcd2b-e769-4f2a-a731-3b5f26e9c576" target='_blank' rel="noreferrer">
+               <Button 
                 size="sm"
                 className="bg-gradient-to-r from-red-600 to-orange-500 hover:opacity-90 text-white shadow-lg transition-all duration-300"
-                onClick={() => handleNavClick('contact', '#contact')}
+                // onClick={() => handleNavClick('contact', '#contact')}
+                
               >
                 <Sparkles className="h-4 w-4 mr-2" />
                 Get Quote
               </Button>
+             </a>
             </div>
 
             {/* Mobile Menu Button */}

@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { ChevronLeft, ChevronRight, Star, Sparkles, Eye } from "lucide-react";
+import { ChevronLeft, ChevronRight,Eye } from "lucide-react";
 import { db } from "../firebase"; // Ensure firebase.ts is configured
 import { collection, getDocs } from "firebase/firestore";
 
@@ -138,6 +138,7 @@ export function ProductSwiper({
               style={{ transform: `translateX(-${currentIndex * 100}%)` }}
             >
               {Array.from({ length: totalSlides }, (_, slideIndex) => (
+                
                 <div key={slideIndex} className="w-full flex-shrink-0 flex">
                   {products
                     .slice(
