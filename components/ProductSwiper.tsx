@@ -16,7 +16,11 @@ interface Product {
   badgeColor: string;
 }
 
-export function ProductSwiper() {
+export function ProductSwiper({
+  handleproductClick,
+}: {
+  handleproductClick: (productId: string) => void;
+}) {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -171,7 +175,8 @@ export function ProductSwiper() {
                                     "productId",
                                     product.id
                                   );
-                                  window.location.hash = "product-page";
+                                  // window.location.hash = "product-page"; // REMOVE THIS LINE
+                                  handleproductClick(product.id); // Use the prop instead
                                 }}
                               >
                                 <Eye className="mr-1 h-3 w-3 inline" />

@@ -18,6 +18,7 @@ export default function App() {
   const [currentPage, setCurrentPage] = useState("home");
   const [selectedCategory, setSelectedCategory] = useState<string>("");
   const [product, setproduct] = useState<string>("");
+  const [previousPage, setPreviousPage] = useState<string>("home"); // New state to track previous page
 
   // Simple navigation handler
   const handleNavigation = (page: string) => {
@@ -31,8 +32,9 @@ console.log(product);
     setCurrentPage("category");
   };
   const handleproductClick = (productId: string) => {
-    sessionStorage.setItem("productId",productId)
+    sessionStorage.setItem("productId", productId);
     setproduct(productId);
+    setPreviousPage(currentPage); // Set previous page before navigating
     setCurrentPage("product-page");
   };
   // Back to home handler
@@ -50,6 +52,7 @@ console.log(product);
     window.addEventListener("hashchange", () => {
       const hash = window.location.hash.substring(1);
       if (hash === "product-page" || hash === "products") {
+        setPreviousPage(currentPage); // Set previous page before navigating via hash
         setCurrentPage("product-page");
       } else if (hash === "gallery") {
         setCurrentPage("gallery");
@@ -76,7 +79,9 @@ console.log(product);
         ) : currentPage === "gallery" ? (
           <GalleryPage onBack={handleBackToHome} />
         ) : currentPage === "product-page" ? (
-          <ProductPage onBack={handleBackToCategory} />
+          <ProductPage
+            onBack={previousPage === "category" ? handleBackToCategory : handleBackToHome}
+          />
         ) : currentPage === "contact" ? (
           <ContactPage />
         ) : currentPage === "about" ? (
@@ -87,7 +92,7 @@ console.log(product);
 
             <Hero />
             <ProductCategories onCategoryClick={handleCategoryClick} />
-            <ProductSwiper />
+            <ProductSwiper handleproductClick={handleproductClick} />
             {/* <FeaturedProducts /> */}
             <WhyChooseUs />
             <VaigaiCertificationDisplay/>

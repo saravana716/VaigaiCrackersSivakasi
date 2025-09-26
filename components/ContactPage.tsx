@@ -28,6 +28,8 @@ import { Textarea } from './ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
 import { Badge } from './ui/badge';
 import logo from '../assets/1000035181.png';
+import { db } from "../firebase"; // Import Firebase db
+import { collection, addDoc } from "firebase/firestore"; // Import Firestore functions
 
 interface FormData {
   name: string;
@@ -137,6 +139,7 @@ export function ContactPage() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null); // New state for error messages
   const [focusedField, setFocusedField] = useState<string | null>(null);
 
   const handleInputChange = (field: keyof FormData, value: string) => {
@@ -146,16 +149,14 @@ export function ContactPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-    
-    // Reset form after 5 seconds
-    setTimeout(() => {
-      setIsSubmitted(false);
+    setSubmitError(null); // Clear previous errors
+
+    try {
+      await addDoc(collection(db, "contactFormSubmissions"), {
+        ...formData,
+        timestamp: new Date(), // Add a timestamp
+      });
+      setIsSubmitted(true);
       setFormData({
         name: '',
         email: '',
@@ -166,6 +167,23 @@ export function ContactPage() {
         inquiryType: '',
         eventDate: ''
       });
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      setSubmitError("Failed to send message. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
+
+    // Simulate form submission
+    // await new Promise(resolve => setTimeout(resolve, 2000));
+
+    // setIsSubmitting(false);
+    // setIsSubmitted(true);
+
+    // Reset form after 5 seconds
+    setTimeout(() => {
+      setIsSubmitted(false);
+      setSubmitError(null); // Clear error message after some time
     }, 5000);
   };
 
@@ -389,6 +407,17 @@ export function ContactPage() {
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                       >
+                        {submitError && (
+                          <motion.div
+                            initial={{ opacity: 0, y: -20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0 }}
+                            className="bg-red-500/20 border border-red-500/30 rounded-lg p-4 text-center text-red-300 flex items-center justify-center"
+                          >
+                            <AlertCircle className="h-5 w-5 mr-2" />
+                            {submitError}
+                          </motion.div>
+                        )}
                         {/* Personal Information Row */}
                         <div className="grid md:grid-cols-2 gap-6">
                           <motion.div
