@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { ChevronLeft, ChevronRight,Eye } from "lucide-react";
+import { ChevronLeft, ChevronRight, Eye } from "lucide-react";
 import { db } from "../firebase"; // Ensure firebase.ts is configured
 import { collection, getDocs } from "firebase/firestore";
 
@@ -8,7 +8,7 @@ interface Product {
   name: string;
   price: number;
   originalPrice: number;
-  image: string;
+  images: string[]; // ✅ Changed from 'image: string' to 'images: string[]'
   rating: number;
   reviews: number;
   category: string;
@@ -95,7 +95,9 @@ export function ProductSwiper({
       <div className="py-20 text-center text-gray-600">No products found.</div>
     );
   }
+  
   console.log(products, "products");
+  
   return (
     <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
       <div className="container mx-auto px-4">
@@ -138,7 +140,6 @@ export function ProductSwiper({
               style={{ transform: `translateX(-${currentIndex * 100}%)` }}
             >
               {Array.from({ length: totalSlides }, (_, slideIndex) => (
-                
                 <div key={slideIndex} className="w-full flex-shrink-0 flex">
                   {products
                     .slice(
@@ -156,7 +157,7 @@ export function ProductSwiper({
                         <div className="bg-white border border-gray-200 shadow-xl rounded-lg overflow-hidden hover:shadow-2xl transition-all group h-full">
                           <div className="relative overflow-hidden">
                             <img
-                              src={product.images[0]}
+                              src={product.images?.[0] || "https://via.placeholder.com/400x400?text=No+Image"}
                               alt={product.name}
                               className="w-full h-40 sm:h-48 md:h-56 lg:h-64 object-cover group-hover:scale-110 transition-transform duration-500"
                               onError={(e) => {
@@ -176,8 +177,7 @@ export function ProductSwiper({
                                     "productId",
                                     product.id
                                   );
-                                  // window.location.hash = "product-page"; // REMOVE THIS LINE
-                                  handleproductClick(product.id); // Use the prop instead
+                                  handleproductClick(product.id);
                                 }}
                               >
                                 <Eye className="mr-1 h-3 w-3 inline" />
