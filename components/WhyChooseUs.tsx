@@ -99,7 +99,7 @@ export function WhyChooseUs() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-yellow-300 via-orange-400 to-red-400 bg-clip-text text-transparent">
+          <h2 className="text-4xl lg:text-6xl pb-3 font-bold mb-6 bg-gradient-to-r from-yellow-300 via-orange-400 to-red-400 bg-clip-text text-transparent">
             Why Choose Vaigai?
           </h2>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto">

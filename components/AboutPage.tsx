@@ -611,7 +611,7 @@ export function AboutPage() {
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl lg:text-5xl font-bold mb-6 bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">
+            <h2 className="text-4xl lg:text-5xl pb-3 font-bold mb-6 bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">
               Manufacturing Excellence
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">

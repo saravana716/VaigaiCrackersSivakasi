@@ -52,7 +52,7 @@ export function SafetySection() {
         >
           <div className="flex items-center justify-center mb-6">
             <Shield className="h-12 w-12 text-green-400 mr-4" />
-            <h2 className="text-4xl lg:text-6xl font-bold bg-gradient-to-r from-green-300 via-blue-400 to-purple-400 bg-clip-text text-transparent">
+            <h2 className="text-4xl lg:text-6xl pb-3 font-bold bg-gradient-to-r from-green-300 via-blue-400 to-purple-400 bg-clip-text text-transparent">
               Safety First
             </h2>
           </div>

@@ -7,7 +7,7 @@ import { useCallback } from 'react';
 import { Button } from './ui/button';
 import { Sparkles } from 'lucide-react';
 import logo from "../assets/logo1.jpg"
-import logo1 from "../assets/1000035182.png"
+import logo1 from "../assets/q__1_-removebg-preview.png"
 import { db } from "../firebase";
 
 import { useEffect, useState } from 'react';
@@ -108,7 +108,7 @@ export function Footer({ onCategoryClick }: ProductCategoriesProps) {
               className="space-y-6"
             >
               <div className="flex items-center space-x-3">
-                <motion.div 
+                {/* <motion.div 
                   className="w-20 h-20 rounded-full shadow-lg border-2 border-white bg-white flex items-center justify-center"
                   whileHover={{ 
                     scale: 1.1,
@@ -118,14 +118,14 @@ export function Footer({ onCategoryClick }: ProductCategoriesProps) {
                   transition={{ duration: 0.3 }}
                 >
                   <img src={logo} alt="Vaigai Sparklers Logo" style={{borderRadius:"100%"}}/>
-                </motion.div>
+                </motion.div> */}
                 <div>
-                  <img src={logo1} alt="" style={{width:"120px", height:"80px", borderRadius:"100%"}} />
+                  <img src={logo1} alt="" style={{width:"190px", borderRadius:"100%"}} />
                 </div>
               </div>
               
               <motion.p 
-                className="text-gray-300 leading-relaxed text-sm"
+                className="hidden md:block text-gray-300 leading-relaxed text-sm"
                 whileHover={{ color: '#e5e7eb' }}
                 transition={{ duration: 0.3 }}
               >
@@ -265,46 +265,57 @@ export function Footer({ onCategoryClick }: ProductCategoriesProps) {
                 <AnimatedGradientText>Contact Us</AnimatedGradientText>
               </h3>
               <div className="space-y-4">
-                <motion.div 
-                  className="flex items-center space-x-3 p-3 rounded-lg bg-slate-800/30 backdrop-blur-sm border border-gray-700/30"
+                <motion.a
+                  href="tel:+919442167677"
+                  className="flex items-center space-x-3 p-3 rounded-lg bg-slate-800/30 backdrop-blur-sm border border-gray-700/30 cursor-pointer"
                   whileHover={{ 
                     backgroundColor: 'rgba(15, 23, 42, 0.5)',
-                    borderColor: 'rgba(59, 130, 246, 0.5)'
+                    borderColor: 'rgba(59, 130, 246, 0.5)',
+                    scale: 1.02
                   }}
+                  whileTap={{ scale: 0.98 }}
                 >
                   <Phone className="h-5 w-5 text-blue-400" />
                   <div>
                     <p className="text-white font-medium">+91-9442167677</p>
                     <p className="text-gray-400 text-sm">+91-75986 69677</p>
                   </div>
-                </motion.div>
+                </motion.a>
                 
-                <motion.div 
-                  className="flex items-center space-x-3 p-3 rounded-lg bg-slate-800/30 backdrop-blur-sm border border-gray-700/30"
+                <motion.a
+                  href="mailto:Vaigaisparklersfactory@gmail.com"
+                  className="flex items-center space-x-3 p-3 rounded-lg bg-slate-800/30 backdrop-blur-sm border border-gray-700/30 cursor-pointer"
                   whileHover={{ 
                     backgroundColor: 'rgba(15, 23, 42, 0.5)',
-                    borderColor: 'rgba(59, 130, 246, 0.5)'
+                    borderColor: 'rgba(59, 130, 246, 0.5)',
+                    scale: 1.02
                   }}
+                  whileTap={{ scale: 0.98 }}
                 >
                   <Mail className="h-5 w-5 text-cyan-400" />
                   <div>
                     <p className="text-white font-medium">Vaigaisparklersfactory@gmail.com</p>
                     <p className="text-gray-400 text-sm">24/7 Customer Support</p>
                   </div>
-                </motion.div>
+                </motion.a>
                 
-                <motion.div 
-                  className="flex items-start space-x-3 p-3 rounded-lg bg-slate-800/30 backdrop-blur-sm border border-gray-700/30"
+                <motion.a
+                  href="https://www.google.com/maps/search/?api=1&query=10+K%2F2%2C+Velayutham+road%2C+RKR+Complex%2C+first+floor%2C+opposite+to+HDFC+bank%2C+Sivakasi%2C+626+123"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-start space-x-3 p-3 rounded-lg bg-slate-800/30 backdrop-blur-sm border border-gray-700/30 cursor-pointer"
                   whileHover={{ 
                     backgroundColor: 'rgba(15, 23, 42, 0.5)',
-                    borderColor: 'rgba(59, 130, 246, 0.5)'
+                    borderColor: 'rgba(59, 130, 246, 0.5)',
+                    scale: 1.02
                   }}
+                  whileTap={{ scale: 0.98 }}
                 >
                   <MapPin className="h-5 w-5 text-indigo-400 mt-1" />
                   <div>
                     <p className="text-white font-medium">Address - 10 K/2, Velayutham road, RKR Complex, first floor, opposite to HDFC bank, Sivakasi, 626 123</p>
                   </div>
-                </motion.div>
+                </motion.a>
               </div>
 
               {/* Enhanced Business Hours */}

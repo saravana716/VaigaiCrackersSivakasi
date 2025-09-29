@@ -103,7 +103,7 @@ export function ProductSwiper({
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-16 opacity-0 animate-fade-in">
-          <h2 className="text-4xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-red-600 via-orange-600 to-blue-600 bg-clip-text text-transparent">
+          <h2 className="text-4xl lg:text-6xl pb-3 font-bold mb-6 bg-gradient-to-r from-red-600 via-orange-600 to-blue-600 bg-clip-text text-transparent">
             Trending Products
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">

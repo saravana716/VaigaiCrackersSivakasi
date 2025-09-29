@@ -70,7 +70,7 @@ export function ProductCategories({ onCategoryClick }: ProductCategoriesProps) {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-yellow-300 via-orange-400 to-red-400 bg-clip-text text-transparent">
+          <h2 className="text-3xl md:text-4xl lg:text-6xl pb-3 font-bold mb-6 bg-gradient-to-r from-yellow-300 via-orange-400 to-red-400 bg-clip-text text-transparent">
             Our Categories
           </h2>
           <p className="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto">

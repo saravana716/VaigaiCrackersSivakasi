@@ -21,8 +21,7 @@ import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Badge } from './ui/badge';
 import { Separator } from './ui/separator';
-import logo from "../assets/preview.png"
-import logo1 from "../assets/1000035182.png"
+import logo from "../assets/q__1_-removebg-preview.png"
 interface NavbarProps {
   onNavigate?: (page: string) => void;
   currentPage?: string;
@@ -119,31 +118,35 @@ export function Navbar({ onNavigate, currentPage = 'home' }: NavbarProps) {
       >
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-center text-sm">
-            <div className="flex items-center space-x-6">
-              <motion.div 
-                className="flex items-center text-gray-300 hover:text-white transition-colors"
+           <div className="flex items-center space-x-6">
+              <motion.a 
+                href="tel:+919442167677"
+                className="flex items-center text-gray-300 hover:text-white transition-colors cursor-pointer"
                 whileHover={{ scale: 1.05 }}
               >
                 <Phone className="h-4 w-4 mr-2 text-blue-400" />
-                <span>+91-9442167677, +91-75986 69677
-
-</span>
-              </motion.div>
-              <motion.div 
-                className="flex items-center text-gray-300 hover:text-white transition-colors"
+                <span>+91-9442167677, +91-75986 69677</span>
+              </motion.a>
+              <motion.a 
+                href="mailto:Vaigaisparklersfactory@gmail.com"
+                className="flex items-center text-gray-300 hover:text-white transition-colors cursor-pointer"
                 whileHover={{ scale: 1.05 }}
               >
                 <Mail className="h-4 w-4 mr-2 text-orange-400" />
                 <span>Vaigaisparklersfactory@gmail.com</span>
-              </motion.div>
-              <motion.div 
-                className="flex items-center text-gray-300 hover:text-white transition-colors"
+              </motion.a>
+              <motion.a 
+                href="https://www.google.com/maps/search/?api=1&query=Sivakasi%2C+Tamil+Nadu"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center text-gray-300 hover:text-white transition-colors cursor-pointer"
                 whileHover={{ scale: 1.05 }}
               >
                 <MapPin className="h-4 w-4 mr-2 text-red-400" />
                 <span>Sivakasi, Tamil Nadu</span>
-              </motion.div>
+              </motion.a>
             </div>
+
             <div className="flex items-center space-x-4">
               <Badge className="bg-gradient-to-r from-red-600 to-orange-500 text-white px-3 py-1">
                 <Award className="h-3 w-3 mr-1" />
@@ -178,23 +181,12 @@ export function Navbar({ onNavigate, currentPage = 'home' }: NavbarProps) {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <motion.div 
-                             className="w-20 h-20 rounded-full shadow-lg border-2 border-white bg-white flex items-center justify-center"
-                             whileHover={{ 
-                               scale: 1.1,
-                               rotate: [0, -5, 5, 0],
-                               boxShadow: '0 0 25px rgba(59, 130, 246, 0.8)'
-                             }}
-                             transition={{ duration: 0.3 }}
-                           >
-                             {/* <span className="text-white font-bold text-lg">V</span> */}
-                             <img src={logo} alt="Vaigai Sparklers Logo" style={{borderRadius:"100%"}}/>
-                           </motion.div>
+              
               <div className="flex flex-col">
                 {/* <span className={`text-xl font-bold bg-gradient-to-r from-red-600 to-orange-500 bg-clip-text text-transparent`}>
                   Vaigai Sparklers
                 </span> */}
-                <img src={logo1} alt="" className='logo' />
+                <img src={logo} alt="" className='logo w-2xl'  />
                 <span className={`text-xs transition-colors ${
                   isScrolled 
                     ? 'text-gray-600 group-hover:text-orange-500' 
@@ -369,7 +361,7 @@ export function Navbar({ onNavigate, currentPage = 'home' }: NavbarProps) {
                 
               >
                 <Sparkles className="h-4 w-4 mr-2" />
-                Get Quote
+                Browsing
               </Button>
              </a>
             </div>
