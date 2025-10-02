@@ -59,6 +59,7 @@ console.log(sparkles);
   const sparklerCount = useAnimatedCounter(50, 2000, 1000); // 50+ sparklers
   const customerCount = useAnimatedCounter(10, 2000, 1200); // 10k+ customers
   const yearCount = useAnimatedCounter(12, 2000, 1400); // 12+ years
+  const employeeCount = useAnimatedCounter(100, 2000, 1400); // 12+ years
 
   useEffect(() => {
     const newSparkles: Sparkle[] = Array.from({ length: 15 }, (_, i) => ({
@@ -172,14 +173,14 @@ console.log(sparkles);
                 Explore Products
                 <Sparkles className="ml-2 h-5 w-5" />
               </Button>
-              <Button
+              {/* <Button
                 variant="outline"
                 size="lg"
                 className="border-logo-blue text-logo-blue hover:bg-logo-blue hover:text-logo-white px-8 py-3 text-lg transition-all duration-300"
                 onClick={() => (window.location.hash = "gallery")}
               >
                 View Gallery
-              </Button>
+              </Button> */}
             </motion.div>
 
             {/* Animated Stats */}
@@ -187,10 +188,10 @@ console.log(sparkles);
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 1 }}
-              className="flex flex-wrap gap-8 mt-12"
+              className="flex gap-8 mt-12 justify-center align-center lg:justify-start"
             >
               <motion.div
-                className="text-center"
+                className="text-center w-full"
                 initial={{ scale: 0.8, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ duration: 0.5, delay: 1.2 }}
@@ -211,7 +212,7 @@ console.log(sparkles);
               </motion.div>
 
               <motion.div
-                className="text-center"
+                className="text-center w-full"
                 initial={{ scale: 0.8, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ duration: 0.5, delay: 1.4 }}
@@ -232,7 +233,7 @@ console.log(sparkles);
               </motion.div>
 
               <motion.div
-                className="text-center"
+                className="text-center w-full"
                 initial={{ scale: 0.8, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ duration: 0.5, delay: 1.6 }}
@@ -250,6 +251,26 @@ console.log(sparkles);
                   {yearCount}+
                 </motion.div>
                 <div className="text-logo-light-gray">Years in Fireworks</div>
+              </motion.div>
+                <motion.div
+                className="text-center w-full"
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 0.5, delay: 1.6 }}
+              >
+                <motion.div
+                  className="text-3xl font-bold text-logo-blue"
+                  animate={{
+                    scale: employeeCount > 0 ? [1, 1.1, 1] : 1,
+                  }}
+                  transition={{
+                    duration: 0.3,
+                    delay: employeeCount === 12 ? 0 : 0,
+                  }}
+                >
+                  {employeeCount}+
+                </motion.div>
+                <div className="text-logo-light-gray">Employees</div>
               </motion.div>
             </motion.div>
           </motion.div>
