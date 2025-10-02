@@ -168,7 +168,7 @@ console.log(sparkles);
               <Button
                 size="lg"
                 className="bg-logo-gradient-primary hover:opacity-90 text-logo-white font-semibold px-8 py-3 text-lg shadow-xl transition-all duration-300"
-                onClick={() => (window.location.hash = "products")}
+                onClick={() => (window.location.hash = "about")}
               >
                 Explore Products
                 <Sparkles className="ml-2 h-5 w-5" />
