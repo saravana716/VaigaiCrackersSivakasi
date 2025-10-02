@@ -83,7 +83,7 @@ export function AboutPage() {
   const sparklerCount = useAnimatedCounter(50, 2000, 1000); // 50+ sparklers
   const customerCount = useAnimatedCounter(10, 2000, 1200); // 10k+ customers
   const yearCount = useAnimatedCounter(12, 2000, 1400); // 12+ years
-  const safetyCount = useAnimatedCounter(25, 2000, 1600); // 25+ safety awards
+  const safetyCount = useAnimatedCounter(100, 2000, 1600); // 25+ safety awards
 
   useEffect(() => {
     // Create particle animation
@@ -145,7 +145,7 @@ export function AboutPage() {
     { label: "Years of Experience", value: yearCount, suffix: "+", icon: Calendar },
     { label: "Sparkler Varieties", value: sparklerCount, suffix: "+", icon: Sparkles },
     { label: "Happy Customers", value: customerCount, suffix: "K+", icon: Users },
-    { label: "Safety Awards", value: safetyCount, suffix: "+", icon: Shield },
+    { label: "Employees", value: safetyCount, suffix: "+", icon: Shield },
   ];
 
   // const teamMembers = [
