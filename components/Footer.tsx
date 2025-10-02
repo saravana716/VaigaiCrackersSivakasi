@@ -6,7 +6,6 @@ import { collection, getDocs, Timestamp } from "firebase/firestore";
 import { useCallback } from 'react';
 import { Button } from './ui/button';
 import { Sparkles } from 'lucide-react';
-import logo from "../assets/logo1.jpg"
 import logo1 from "../assets/q__1_-removebg-preview.png"
 import { db } from "../firebase";
 
