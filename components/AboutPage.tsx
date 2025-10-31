@@ -638,7 +638,7 @@ export function AboutPage() {
                         <div className="flex items-center mb-4">
                           <Icon className="h-8 w-8 mr-4" />
                           <span className="text-2xl font-bold">
-                            {item.year}
+                            {/* {item.year} */}
                           </span>
                         </div>
                         <h3 className="text-xl font-bold mb-3">{item.title}</h3>
