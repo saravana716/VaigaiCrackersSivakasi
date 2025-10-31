@@ -731,7 +731,7 @@ export function ContactPage() {
                       Twin Elephant Brand - Vaigai Sparklers
                     </h3>
                     <p className="text-blue-100 mb-3 leading-relaxed">
-                      Established in 1970, we are one of India's leading fireworks manufacturers based in Sivakasi, Tamil Nadu. 
+                      Established in 2010, we are one of India's leading fireworks manufacturers based in Sivakasi, Tamil Nadu. 
                       Trusted by thousands of customers for over five decades.
                     </p>
                     <div className="space-y-2">

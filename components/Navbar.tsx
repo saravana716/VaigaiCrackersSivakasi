@@ -361,7 +361,7 @@ export function Navbar({ onNavigate, currentPage = 'home' }: NavbarProps) {
                 
               >
                 <Sparkles className="h-4 w-4 mr-2" />
-                Browsing
+                Get Prochure
               </Button>
              </a>
             </div>
