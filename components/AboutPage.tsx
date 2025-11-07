@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import {
-  Rocket,
   Award,
   Users,
   Factory,
@@ -10,7 +9,6 @@ import {
   CheckCircle,
   Target,
   Eye,
-  Trophy,
   Shield,
   ArrowRight,
   Flame,
