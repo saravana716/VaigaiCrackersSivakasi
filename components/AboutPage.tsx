@@ -99,56 +99,56 @@ export function AboutPage() {
     setParticles(newParticles);
   }, []);
 
-  const timelineData = [
-    {
-      // year: "1970",
-      title: "Commitment to Sustainable Progress",
-      description:
-        "In our industry, we believe that true progress transcends mere growth and innovation; it lies in our stewardship of nature. Our commitment to sustainability drives us to embrace a long-term green initiative that enriches both the environment and our business operations.",
-      icon: Factory,
-      color: "from-red-500 to-orange-500",
-    },
-    {
-      // year: "1985",
-      title: "First Major Expansion",
-      description:
-        "Each year, we dedicate resources to planting a significant number of saplings within and around our premises. These trees, nurtured with care, enhance air quality, promote biodiversity, and enrich the soil. Over time, this initiative has transformed our industrial landscape into a vibrant, thriving ecosystem, striking a harmonious balance between development and ecological responsibility.",
-      icon: Rocket,
-      color: "from-blue-500 to-purple-500",
-    },
-    // {
-    //   // year: "1995",
-    //   title: "Nurturing Nature Through Green Initiatives",
-    //   description:
-    //     "Achieved ISO 9001 certification for quality management systems, setting industry standards.",
-    //   icon: Award,
-    //   color: "from-green-500 to-teal-500",
-    // },
-    {
-      // year: "2005",
-      title: "A Vision for a Greener Future",
-      description:
-        "By integrating sustainable practices into our growth strategy, we aim to reduce our carbon footprint and demonstrate environmental stewardship. Our vision is to cultivate a green corridor where industry and nature coexist in harmony, ensuring that future generations inherit a healthier and greener world.",
-      icon: Trophy,
-      color: "from-yellow-500 to-orange-500",
-    },
-    // {
-    //   year: "2015",
-    //   title: "Digital Innovation",
-    //   description:
-    //     "Embraced digital technologies and modern manufacturing processes for enhanced efficiency.",
-    //   icon: Zap,
-    //   color: "from-indigo-500 to-blue-500",
-    // },
-    // {
-    //   year: "2024",
-    //   title: "50+ Years Legacy",
-    //   description:
-    //     "Celebrating over 5 decades of bringing joy and sparkle to celebrations across India.",
-    //   icon: Star,
-    //   color: "from-pink-500 to-red-500",
-    // },
-  ];
+  // const timelineData = [
+  //   {
+  //     // year: "1970",
+  //     title: "Commitment to Sustainable Progress",
+  //     description:
+  //       "In our industry, we believe that true progress transcends mere growth and innovation; it lies in our stewardship of nature. Our commitment to sustainability drives us to embrace a long-term green initiative that enriches both the environment and our business operations.",
+  //     icon: Factory,
+  //     color: "from-red-500 to-orange-500",
+  //   },
+  //   {
+  //     // year: "1985",
+  //     title: "First Major Expansion",
+  //     description:
+  //       "Each year, we dedicate resources to planting a significant number of saplings within and around our premises. These trees, nurtured with care, enhance air quality, promote biodiversity, and enrich the soil. Over time, this initiative has transformed our industrial landscape into a vibrant, thriving ecosystem, striking a harmonious balance between development and ecological responsibility.",
+  //     icon: Rocket,
+  //     color: "from-blue-500 to-purple-500",
+  //   },
+  //   // {
+  //   //   // year: "1995",
+  //   //   title: "Nurturing Nature Through Green Initiatives",
+  //   //   description:
+  //   //     "Achieved ISO 9001 certification for quality management systems, setting industry standards.",
+  //   //   icon: Award,
+  //   //   color: "from-green-500 to-teal-500",
+  //   // },
+  //   {
+  //     // year: "2005",
+  //     title: "A Vision for a Greener Future",
+  //     description:
+  //       "By integrating sustainable practices into our growth strategy, we aim to reduce our carbon footprint and demonstrate environmental stewardship. Our vision is to cultivate a green corridor where industry and nature coexist in harmony, ensuring that future generations inherit a healthier and greener world.",
+  //     icon: Trophy,
+  //     color: "from-yellow-500 to-orange-500",
+  //   },
+  //   // {
+  //   //   year: "2015",
+  //   //   title: "Digital Innovation",
+  //   //   description:
+  //   //     "Embraced digital technologies and modern manufacturing processes for enhanced efficiency.",
+  //   //   icon: Zap,
+  //   //   color: "from-indigo-500 to-blue-500",
+  //   // },
+  //   // {
+  //   //   year: "2024",
+  //   //   title: "50+ Years Legacy",
+  //   //   description:
+  //   //     "Celebrating over 5 decades of bringing joy and sparkle to celebrations across India.",
+  //   //   icon: Star,
+  //   //   color: "from-pink-500 to-red-500",
+  //   // },
+  // ];
  const [currentImageIndex, setCurrentImageIndex] = useState(0);
   
   const images = [
