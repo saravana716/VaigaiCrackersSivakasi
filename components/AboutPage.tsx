@@ -20,6 +20,9 @@ import { Button } from "./ui/button";
 
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import vaigai from "../assets/1000035181.png";
+import vaigai1 from "../assets/Screenshot_20250929_131556_YouTube[1].jpg";
+import vaigai2 from "../assets/Screenshot_20250929_131727_YouTube[1].jpg";
+import vaigai3 from "../assets/Screenshot_20250929_131801_YouTube[1].jpg";
 // import TitleCard from './TitleCard';
 import { VaigaiLogoAnimation } from "./VaigaiLogoAnimations";
 import { Footer } from "./Footer";
@@ -146,7 +149,19 @@ export function AboutPage() {
     //   color: "from-pink-500 to-red-500",
     // },
   ];
+ const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  
+  const images = [
+    vaigai1, vaigai2, vaigai3
+    ];
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prev) => (prev + 1) % images.length);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, []);
   const achievements = [
     {
       label: "Years of Experience",
@@ -590,9 +605,125 @@ export function AboutPage() {
             </div>
           </div>
         </section>
+<div className="container mx-auto px-4 py-20 relative z-20">
+          <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[80vh]">
+            {/* Content */}
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              className="text-blue-950"
+            >
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="flex items-center space-x-2 mb-6"
+              >
+                {/* <Sparkles className="h-8 w-8 text-blue-950" /> */}
+                <span className="text-blue-950 text-lg font-medium">
+               Sustainable Growth Through Green Initiatives
 
+                </span>
+              </motion.div>
+
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                className="text-5xl lg:text-7xl font-bold mb-8 bg-gradient-to-r from-red-600 to-orange-600 bg-clip-text text-transparent"
+              >
+                Our Growth and Innovation
+                <br />
+                <span className="relative">
+                  <motion.div
+                    className="absolute -top-2 -right-8"
+                    animate={{ rotate: [0, 15, -15, 0] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                  >
+                    {/* <Zap className="h-12 w-12 text-blue-950" /> */}
+                  </motion.div>
+                </span>
+              </motion.h1>
+
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.6 }}
+                className="text-xl mb-8 mt-0 max-w-2xl leading-relaxed text-blue-950"
+              >
+           
+In our industry, we believe that true progress transcends mere growth and innovation; it lies in our stewardship of nature. Our commitment to sustainability drives us to embrace a long-term green initiative that enriches both the environment and our business operations.
+
+
+              </motion.p>
+
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.8 }}
+                className="text-xl mb-8 max-w-2xl leading-relaxed text-blue-950"
+              >
+      Each year, we dedicate resources to planting a significant number of saplings within and around our premises. These trees, nurtured with care, enhance air quality, promote biodiversity, and enrich the soil. Over time, this initiative has transformed our industrial landscape into a vibrant, thriving ecosystem, striking a harmonious balance between development and ecological responsibility.
+
+              </motion.p>
+              
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.8 }}
+                className="text-xl mb-8 max-w-2xl leading-relaxed text-blue-950"
+              >
+   By integrating sustainable practices into our growth strategy, we aim to reduce our carbon footprint and demonstrate environmental stewardship. Our vision is to cultivate a green corridor where industry and nature coexist in harmony, ensuring that future generations inherit a healthier and greener world.
+              </motion.p>
+            </motion.div>
+
+            {/* Hero Image */}
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="relative"
+            >
+               <div className="relative">
+              <ImageWithFallback
+                 src={images[currentImageIndex]}
+                alt="Lush green trees representing our sustainability initiative"
+                className="rounded-2xl shadow-2xl w-full h-[600px] object-cover border border-white bg-white"
+              />
+              {/* Glow effect */}
+              <div className="absolute inset-0 bg-gradient-to-t from-green-500/20 to-emerald-500/10 rounded-2xl"></div>
+            </div>
+
+              {/* Floating elements */}
+              {/* <motion.div
+              className="absolute -top-4 -right-4 bg-gradient-to-r from-blue-500 to-purple-500 text-white p-3 rounded-full shadow-lg"
+              animate={{ y: [-10, 10, -10] }}
+              transition={{ duration: 3, repeat: Infinity }}
+            >
+              <Sparkles className="h-6 w-6" />
+            </motion.div> */}
+              {/* 
+            <motion.div
+              className="absolute -bottom-4 -left-4 bg-gradient-to-r from-red-500 to-orange-500 text-white p-3 rounded-full shadow-lg"
+              animate={{ y: [10, -10, 10] }}
+              transition={{ duration: 3, repeat: Infinity, delay: 1 }}
+            >
+              <Zap className="h-6 w-6" />
+            </motion.div> */}
+
+              {/* <motion.div
+              className="absolute top-1/2 -left-8 bg-yellow-400 text-slate-900 p-2 rounded-full shadow-lg"
+              animate={{ x: [-5, 5, -5] }}
+              transition={{ duration: 4, repeat: Infinity, delay: 0.5 }}
+            >
+              <Star className="h-4 w-4" />
+            </motion.div> */}
+            </motion.div>
+          </div>
+        </div>
         {/* Interactive Timeline */}
-        <section className="py-20 bg-gradient-to-br from-slate-100 to-blue-100">
+        {/* <section className="py-20 bg-gradient-to-br from-slate-100 to-blue-100">
           <div className="container mx-auto px-4">
             <motion.div
               initial={{ opacity: 0, y: 50 }}
@@ -609,7 +740,6 @@ export function AboutPage() {
             </motion.div>
 
             <div className="relative">
-              {/* Timeline Line */}
               <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-red-500 to-blue-500 opacity-30" />
 
               {timelineData.map((item, index) => {
@@ -637,24 +767,24 @@ export function AboutPage() {
                           <Icon className="h-8 w-8 mr-4" />
                           <span className="text-2xl font-bold">
                             {/* {item.year} */}
-                          </span>
+                          {/* </span>
                         </div>
                         <h3 className="text-xl font-bold mb-3">{item.title}</h3>
                         <p className="text-white/90">{item.description}</p>
                       </motion.div>
                     </div>
 
-                    {/* Timeline Dot */}
-                    <div
-                      className="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-white border-4 border-current rounded-full z-10"
+                   
+                    <div */}
+                      {/* className="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-white border-4 border-current rounded-full z-10"
                       style={{ color: `hsl(${index * 60}, 70%, 50%)` }}
                     />
-                  </motion.div>
-                );
+                  </motion.div> */}
+                {/* );
               })}
             </div>
-          </div>
-        </section>
+          </div> */}
+        {/* </section> */} 
 
         {/* Manufacturing Process */}
         <section className="py-20 bg-white">
