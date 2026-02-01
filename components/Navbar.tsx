@@ -9,7 +9,6 @@ import {
   MapPin,
   Star,
   Sparkles,
-  Zap,
   Home,
   Info,
   MessageCircle,
@@ -22,6 +21,7 @@ import { Input } from './ui/input';
 import { Badge } from './ui/badge';
 import { Separator } from './ui/separator';
 import logo from "../assets/q__1_-removebg-preview.png"
+import logoTE from "../assets/1000035181.png"
 interface NavbarProps {
   onNavigate?: (page: string) => void;
   currentPage?: string;
@@ -174,26 +174,34 @@ export function Navbar({ onNavigate, currentPage = 'home' }: NavbarProps) {
       >
         <div className="container h-30 w-full mx-auto px-4 flex items-center justify-between">
           <div className="flex items-center justify-between h-full w-full">
-            {/* Logo Section */}
+            {/* Desktop Logo (Vaigai) */}
             <motion.div 
-              className="flex items-center space-x-3 cursor-pointer group"
+              className="hidden lg:flex items-center space-x-3 cursor-pointer group"
               onClick={() => handleNavClick('home', '#home')}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              
               <div className="flex flex-col">
-                {/* <span className={`text-xl font-bold bg-gradient-to-r from-red-600 to-orange-500 bg-clip-text text-transparent`}>
-                  Vaigai Sparklers
-                </span> */}
                 <img src={logo} alt="" className='logo w-2xl'  />
                 <span className={`text-xs transition-colors ${
                   isScrolled 
                     ? 'text-gray-600 group-hover:text-orange-500' 
                     : 'text-gray-300 group-hover:text-orange-400'
                 }`}>
-                  Premium Fireworks Since 2013
+                  Premium Sparklers Since 2010
                 </span>
+              </div>
+            </motion.div>
+
+            {/* Mobile Logo (Vaigai - Reverted) */}
+            <motion.div 
+              className="flex lg:hidden items-center space-x-3 cursor-pointer group"
+              onClick={() => handleNavClick('home', '#home')}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <div className="flex items-center space-x-2">
+                <img src={logo} alt="Vaigai's Sparklers" className="h-40 w-40 object-contain" />
               </div>
             </motion.div>
 
@@ -361,7 +369,7 @@ export function Navbar({ onNavigate, currentPage = 'home' }: NavbarProps) {
                 
               >
                 <Sparkles className="h-4 w-4 mr-2" />
-                Get Prochure
+                Get Brochure
               </Button>
              </a>
             </div>
@@ -418,7 +426,7 @@ export function Navbar({ onNavigate, currentPage = 'home' }: NavbarProps) {
             />
             
             <motion.div
-              className="fixed top-0 right-0 h-full w-80 bg-slate-800 border-l border-red-600/30 z-50 lg:hidden overflow-y-auto"
+              className="fixed top-0 right-0 h-full w-80 bg-slate-800 z-50 lg:hidden overflow-y-auto"
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
@@ -429,15 +437,11 @@ export function Navbar({ onNavigate, currentPage = 'home' }: NavbarProps) {
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-3">
                     <div className="relative">
-                      <div className="bg-gradient-to-r from-red-600 to-orange-500 p-2 rounded-lg">
-                        <div className="h-8 w-8 bg-white rounded flex items-center justify-center">
-                          <span className="text-red-600 font-bold">TE</span>
-                        </div>
-                      </div>
+                      <img src={logoTE} alt="Twin Elephant Brand" className="w-12 h-12 object-contain rounded-full" />
                     </div>
                     <div>
-                      <h3 className="text-lg font-bold text-white">Twin Elephant</h3>
-                      <p className="text-xs text-gray-300">Premium Fireworks</p>
+                      <h3 className="text-lg font-bold text-white">Vaigai's Sparklers</h3>
+                      <p className="text-xs text-gray-300">Premium Sparklers</p>
                     </div>
                   </div>
                   <button
@@ -457,7 +461,7 @@ export function Navbar({ onNavigate, currentPage = 'home' }: NavbarProps) {
                     placeholder="Search products..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="bg-gray-700 border-red-600/30 text-white placeholder:text-gray-300 pr-10"
+                    className="bg-gray-700 text-white placeholder:text-gray-300 pr-10"
                   />
                   <Button
                     type="submit"
@@ -517,7 +521,7 @@ export function Navbar({ onNavigate, currentPage = 'home' }: NavbarProps) {
                     onClick={() => handleNavClick('contact', '#contact')}
                   >
                     <Sparkles className="h-4 w-4 mr-2" />
-                    Get Quote Now
+                    Get Brochure
                   </Button>
                   
                   {/* <div className="grid grid-cols-2 gap-3">
@@ -604,7 +608,7 @@ export function Navbar({ onNavigate, currentPage = 'home' }: NavbarProps) {
               }}
               transition={{ duration: 2, repeat: Infinity }}
             >
-              <Zap className="h-6 w-6" />
+              <MessageCircle className="h-6 w-6" />
             </motion.button>
           </motion.div>
         )}

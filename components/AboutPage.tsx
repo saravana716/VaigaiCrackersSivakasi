@@ -18,9 +18,11 @@ import { Button } from "./ui/button";
 
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import vaigai from "../assets/1000035181.png";
-import vaigai1 from "../assets/Screenshot_20250929_131556_YouTube[1].jpg";
-import vaigai2 from "../assets/Screenshot_20250929_131727_YouTube[1].jpg";
-import vaigai3 from "../assets/Screenshot_20250929_131801_YouTube[1].jpg";
+import a1 from "../assets/a1.jpeg";
+import a2 from "../assets/a2.jpeg";
+import a3 from "../assets/a3.jpeg";
+import a4 from "../assets/a4.jpeg";
+import a5 from "../assets/a5.jpeg";
 // import TitleCard from './TitleCard';
 import { VaigaiLogoAnimation } from "./VaigaiLogoAnimations";
 import { Footer } from "./Footer";
@@ -146,11 +148,11 @@ export function AboutPage() {
   //   //   icon: Star,
   //   //   color: "from-pink-500 to-red-500",
   //   // },
-  // ];
+  //   // ];
  const [currentImageIndex, setCurrentImageIndex] = useState(0);
   
   const images = [
-    vaigai1, vaigai2, vaigai3
+    a1, a2, a3, a4, a5
     ];
 
   useEffect(() => {
@@ -343,7 +345,7 @@ export function AboutPage() {
               </span> */}
                 <br />
                 <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-                  Vaigai Story
+                  Vaigai's Story
                 </span>
               </motion.h1>
 
@@ -354,7 +356,7 @@ export function AboutPage() {
                 transition={{ delay: 0.8, duration: 0.6 }}
                 className="text-xl lg:text-2xl text-gray-300 max-w-4xl mx-auto mb-8"
               >
-                Igniting Joy, Sparkling Dreams - For Over 12 Years
+                Igniting Joy, Sparkling Dreams - For Over 15 Years
               </motion.p>
 
               {/* Animated Stats */}
@@ -631,7 +633,7 @@ export function AboutPage() {
                 transition={{ duration: 0.8, delay: 0.4 }}
                 className="text-5xl lg:text-7xl font-bold mb-8 bg-gradient-to-r from-red-600 to-orange-600 bg-clip-text text-transparent"
               >
-                Our Growth and Innovation
+                Our Sustainability Growth and Innovation
                 <br />
                 <span className="relative">
                   <motion.div

@@ -163,7 +163,7 @@ const [isDesktop, setIsDesktop] = useState(false);
   }, []);
 
   return (
-    <section id="home" className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-black flex items-center justify-center relative overflow-hidden pt-16">
+    <section id="home" className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-black flex items-start justify-center relative pt-48 pb-24">
 
 
       {/* Radial gradient background */}
@@ -186,18 +186,10 @@ const [isDesktop, setIsDesktop] = useState(false);
             ease: "easeOut"
           }}
         >
-          <motion.img
+          <img
             src={elephantImage}
             alt="Left Elephant"
             className="w-300 h-100 md:w-32 lg:w-100 drop-shadow-2xl transform scale-x-[-1]"
-            animate={{
-              y: [0, -8, 0]
-            }}
-            transition={{
-              duration: 4,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
           />
         </motion.div>)}
 
@@ -215,19 +207,10 @@ const [isDesktop, setIsDesktop] = useState(false);
             ease: "easeOut"
           }}
         >
-          <motion.img
+          <img
             src={elephantImage}
             alt="Right Elephant"
             className="w-300 h-100 md:w-32 lg:w-100 drop-shadow-2xl"
-            animate={{
-              y: [0, -8, 0]
-            }}
-            transition={{
-              duration: 4,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 1
-            }}
           />
         </motion.div>
 )}
@@ -256,8 +239,8 @@ const [isDesktop, setIsDesktop] = useState(false);
               }
             }}
           >
-            {/* White background circle for logo */}
-            <motion.div
+            {/* White background circle for logo - REMOVED */}
+            {/* <motion.div
               className="absolute bg-white rounded-full shadow-2xl"
               style={{
                 width: '270px',
@@ -270,10 +253,10 @@ const [isDesktop, setIsDesktop] = useState(false);
                 delay: 0.8,
                 ease: "easeOut"
               }}
-            />
+            /> */}
             
-            {/* White border ring around logo */}
-            <motion.div
+            {/* White border ring around logo - REMOVED */}
+            {/* <motion.div
               className="absolute rounded-full border-4 border-white shadow-lg"
               style={{
                 width: '290px',
@@ -289,7 +272,7 @@ const [isDesktop, setIsDesktop] = useState(false);
                 delay: 1,
                 ease: "easeOut"
               }}
-            />
+            /> */}
             
            {!isDesktop && (
              <motion.img
@@ -339,7 +322,6 @@ const [isDesktop, setIsDesktop] = useState(false);
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 1, delay: 1.5 }}
               >
-                <span className="text-blue-400">🎆</span>
                 <motion.p 
                   className="text-gray-300 text-sm md:text-base"
                   animate={{
@@ -350,9 +332,8 @@ const [isDesktop, setIsDesktop] = useState(false);
                     repeat: Infinity
                   }}
                 >
-                  Lighting celebrations since 2013
+                  Lighting celebrations since 2010
                 </motion.p>
-                <span className="text-blue-400">🎆</span>
               </motion.div>
 
               {/* Scroll down indicator */}

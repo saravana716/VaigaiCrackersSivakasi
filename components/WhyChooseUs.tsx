@@ -103,8 +103,8 @@ export function WhyChooseUs() {
             Why Choose Vaigai?
           </h2>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            With over 12 years of experience, we're your trusted partner for all
-            fireworks needs
+            With over 15 years of experience, we're your trusted partner for all
+            Sparklers needs
           </p>
         </motion.div>
 
@@ -219,7 +219,7 @@ export function WhyChooseUs() {
                 {yearsCount}+
               </motion.span>
             </motion.div>
-            <div className="text-gray-400 text-lg">Years in Fireworks</div>
+            <div className="text-gray-400 text-lg">Years in Sparklers</div>
           </div>
 
           <div className="text-center">

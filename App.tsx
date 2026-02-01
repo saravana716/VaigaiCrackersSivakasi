@@ -14,6 +14,7 @@ import { CategoryPage } from "./components/CategoryPage";
 import { GalleryPage } from "./components/GalleryPage";
 import "./index.css";
 import { VaigaiCertificationDisplay } from "./components/VaigaiCertificationDisplay";
+import { WhatsAppButton } from "./components/WhatsAppButton";
 export default function App() {
   const [currentPage, setCurrentPage] = useState("home");
   const [selectedCategory, setSelectedCategory] = useState<string>("");
@@ -101,6 +102,7 @@ console.log(product);
         )}
       </main>
       {(currentPage === "home" || currentPage === "contact") && <Footer />}
+      <WhatsAppButton />
     </div>
   );
 }

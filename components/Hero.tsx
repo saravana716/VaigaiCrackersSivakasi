@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Sparkles, Zap} from "lucide-react";
+import { Sparkles } from "lucide-react";
 import { Button } from "./ui/button";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import vaigai from "../assets/1000035181.png";
@@ -132,13 +132,13 @@ console.log(sparkles);
               <br />
               <span className="relative">
                 Celebration
-                <motion.div
+                {/* <motion.div
                   className="absolute -top-2 -right-8"
                   animate={{ rotate: [0, 15, -15, 0] }}
                   transition={{ duration: 2, repeat: Infinity }}
                 >
                   <Zap className="h-12 w-12 text-logo-blue" />
-                </motion.div>
+                </motion.div> */}
               </span>
             </motion.h1>
 
@@ -148,12 +148,12 @@ console.log(sparkles);
               transition={{ duration: 0.8, delay: 0.6 }}
               className="text-xl text-logo-light-gray mb-8 max-w-2xl leading-relaxed"
             >
-              Founded in the heart of Sivakasi, Tamil Nadu – the fireworks
+              Founded in the heart of Sivakasi, Tamil Nadu – the Sparklers
               capital of India – Vaigai Sparklers is a proud manufacturer of
               high-quality sparklers that light up celebrations across India.
-              Since our humble Beginnings in 2013, we have grown into a trusted
-              name in the fireworks industry, proudly serving over 10000+
-              customers in the past 12 years. With a legacy rooted in tradition
+              Since our humble Beginnings in 2010, we have grown into a trusted
+              name in the Sparklers industry, proudly serving over 10000+
+              customers in the past 15 years. With a legacy rooted in tradition
               and a vision focused on safety and innovation, we bring joy,
               brightness, and brilliance to every festival, function, and moment
               worth celebrating.
@@ -250,7 +250,7 @@ console.log(sparkles);
                 >
                   {yearCount}+
                 </motion.div>
-                <div className="text-logo-light-gray">Years in Fireworks</div>
+                <div className="text-logo-light-gray">Years in Sparklers</div>
               </motion.div>
                 <motion.div
                 className="text-center w-full"

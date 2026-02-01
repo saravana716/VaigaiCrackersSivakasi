@@ -79,23 +79,8 @@ export function Footer({ onCategoryClick }: ProductCategoriesProps) {
       {/* Custom CSS for hiding scrollbar */}
       
       
-      <footer className="relative bg-gradient-to-b from-slate-900 via-slate-800 to-black text-white border-t-2 border-blue-500/30 overflow-hidden">
-        {/* Animated top border */}
-        <motion.div 
-          className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-cyan-500 via-blue-500 to-indigo-500"
-          animate={{
-            backgroundPosition: ['0% 50%', '100% 50%', '0% 50%']
-          }}
-          transition={{
-            duration: 3,
-            repeat: Infinity,
-            ease: "linear"
-          }}
-          style={{
-            backgroundSize: '200% 200%'
-          }}
-        />
-
+      <footer className="relative bg-gradient-to-b from-slate-900 via-slate-800 to-black text-white overflow-hidden">
+        
         <div className="relative container mx-auto px-4 py-16">
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {/* Company Info with enhanced styling */}
@@ -118,17 +103,17 @@ export function Footer({ onCategoryClick }: ProductCategoriesProps) {
                 >
                   <img src={logo} alt="Vaigai Sparklers Logo" style={{borderRadius:"100%"}}/>
                 </motion.div> */}
-                <div>
-                  <img src={logo1} alt="" style={{width:"190px", borderRadius:"100%"}} />
+                <div className="p-3 rounded-xl inline-block">
+                  <img src={logo1} alt="" className="w-[180px] object-contain" />
                 </div>
               </div>
               
               <motion.p 
-                className="hidden md:block text-gray-300 leading-relaxed text-sm"
+                className="text-gray-300 leading-relaxed text-sm"
                 whileHover={{ color: '#e5e7eb' }}
                 transition={{ duration: 0.3 }}
               >
-                Founded in the heart of Sivakasi, Tamil Nadu – the fireworks capital of India – Vaigai Sparklers is a proud manufacturer of high-quality sparklers that light up celebrations across India. Since our humble Beginnings in 2013, we have grown into a trusted name in the fireworks industry, proudly serving over 10000+ customers in the past 12 years. With a legacy rooted in tradition and a vision focused on safety and innovation, we bring joy, brightness, and brilliance to every festival, function, and moment worth celebrating.
+                Founded in the heart of Sivakasi, Tamil Nadu – the Sparklers capital of India – Vaigai Sparklers is a proud manufacturer of high-quality sparklers that light up celebrations across India. Since our humble Beginnings in 2010, we have grown into a trusted name in the Sparklers industry, proudly serving over 10000+ customers in the past 15 years. With a legacy rooted in tradition and a vision focused on safety and innovation, we bring joy, brightness, and brilliance to every festival, function, and moment worth celebrating.
               </motion.p>
                <a href="https://firebasestorage.googleapis.com/v0/b/project1-71847.appspot.com/o/vaigai%202025%20price%20list.cdr.pdf?alt=media&token=9c8bcd2b-e769-4f2a-a731-3b5f26e9c576" target='_blank' rel="noreferrer">
                <Button 
@@ -138,7 +123,7 @@ export function Footer({ onCategoryClick }: ProductCategoriesProps) {
                 
               >
                 <Sparkles className="h-4 w-4 mr-2" />
-                Get Quote
+                Get Brochure
               </Button>
              </a>
               <div className="flex space-x-4">
