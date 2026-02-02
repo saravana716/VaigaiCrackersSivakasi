@@ -709,8 +709,8 @@ export function ContactPage() {
                           <h3 className="text-xl font-bold mb-1">
                             WhatsApp Support
                           </h3>
-                          <a href="https://wa.me/918270177750" target="_blank" rel="noopener noreferrer" className="text-white hover:text-green-200 block font-medium text-lg decoration-none">
-                            💬 +91-8270177750
+                          <a href="https://wa.me/919442167677" target="_blank" rel="noopener noreferrer" className="text-white hover:text-green-200 block font-medium text-lg decoration-none">
+                            💬 +91-9442167677
                           </a>
                           <p className="text-red-100 text-sm">
                             Chat with us for instant queries & support

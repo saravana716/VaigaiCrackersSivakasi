@@ -49,7 +49,7 @@ export function Navbar({ onNavigate, currentPage = 'home' }: NavbarProps) {
       label: 'Home', 
       icon: Home,
       href: '#home',
-      description: 'Welcome to Twin Elephant'
+      description: 'Welcome to our company'
     },
     // { 
     //   id: 'products', 
@@ -436,11 +436,11 @@ export function Navbar({ onNavigate, currentPage = 'home' }: NavbarProps) {
               <div className="p-6 border-b border-red-600/20">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-3">
-                    <div className="relative">
+                    <div className="relative" style={{backgroundColor:"white",borderRadius:"100%"}}>
                       <img src={logoTE} alt="Twin Elephant Brand" className="w-12 h-12 object-contain rounded-full" />
                     </div>
                     <div>
-                      <h3 className="text-lg font-bold text-white">Vaigai's Sparklers</h3>
+                      <h3 className="text-lg font-bold text-white">Vaigai Sparklers</h3>
                       <p className="text-xs text-gray-300">Premium Sparklers</p>
                     </div>
                   </div>
@@ -505,7 +505,7 @@ export function Navbar({ onNavigate, currentPage = 'home' }: NavbarProps) {
                             <div className="font-medium">{item.label}</div>
                             <div className="text-xs opacity-75">{item.description}</div>
                           </div>
-                          {isActive && <Star className="h-4 w-4" />}
+                          {/* {isActive && <Star className="h-4 w-4" />} */}
                         </a>
                       </motion.div>
                     );
@@ -520,7 +520,7 @@ export function Navbar({ onNavigate, currentPage = 'home' }: NavbarProps) {
                     className="w-full bg-gradient-to-r from-red-600 to-orange-500 hover:opacity-90 text-white"
                     onClick={() => handleNavClick('contact', '#contact')}
                   >
-                    <Sparkles className="h-4 w-4 mr-2" />
+                    {/* <Sparkles className="h-4 w-4 mr-2" /> */}
                     Get Brochure
                   </Button>
                   
@@ -552,11 +552,12 @@ export function Navbar({ onNavigate, currentPage = 'home' }: NavbarProps) {
                   <div className="space-y-3">
                     <div className="flex items-center space-x-3 text-sm">
                       <Phone className="h-4 w-4 text-blue-400" />
-                      <span className="text-gray-300">+91-9876543210</span>
+                      <span className="text-gray-300">+91-9442167677
+</span>
                     </div>
                     <div className="flex items-center space-x-3 text-sm">
                       <Mail className="h-4 w-4 text-orange-400" />
-                      <span className="text-gray-300">info@twinelephant.com</span>
+                      <span className="text-gray-300">Vaigaisparklersfactory@gmail.com</span>
                     </div>
                     <div className="flex items-center space-x-3 text-sm">
                       <Clock className="h-4 w-4 text-red-400" />
@@ -574,7 +575,7 @@ export function Navbar({ onNavigate, currentPage = 'home' }: NavbarProps) {
                     </Badge>
                     <Badge className="bg-orange-600/20 text-orange-400 border-orange-600/30 justify-center py-2">
                       <Award className="h-3 w-3 mr-1" />
-                      50+ Years
+                      12+ Years
                     </Badge>
                   </div>
                 </div>
