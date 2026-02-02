@@ -7,7 +7,6 @@ import {
   Phone, 
   Mail,
   MapPin,
-  Star,
   Sparkles,
   Home,
   Info,
