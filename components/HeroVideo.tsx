@@ -4,7 +4,7 @@ import heroVideo from "../assets/vi.mp4";
 export function HeroVideo() {
   return (
     <section className="relative w-full overflow-hidden bg-logo-dark">
-      <div className="relative h-[550px] md:h-[700px] lg:h-[850px] w-full">
+      <div className="relative h-[250px] md:h-[500px] lg:h-[750px] w-full">
         {/* Video Background */}
         <video
           autoPlay
