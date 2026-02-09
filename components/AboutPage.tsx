@@ -220,7 +220,7 @@ export function AboutPage() {
       step: "01",
       title: "Raw Material Selection",
       description:
-        "Carefully sourced premium materials for optimal performance",
+        "Carefully sourced premium materials for optimal performances",
       icon: CheckCircle,
       color: "from-red-500 to-orange-500",
     },
