@@ -485,10 +485,10 @@ export function Navbar({ onNavigate, currentPage = 'home' }: NavbarProps) {
                       >
                         <a
                           href={item.href}
-                          className={`flex items-center space-x-3 p-4 rounded-xl transition-all duration-300 ${
+                          className={`flex items-center space-x-3 p-4 rounded-xl transition-all duration-300 border-2 ${
                             isActive 
-                              ? 'bg-gradient-to-r from-red-600 to-orange-500 text-white shadow-lg shadow-orange-500/20' 
-                              : 'bg-slate-800/40 border-2 border-blue-500/30 backdrop-blur-sm text-gray-300 hover:bg-slate-800/60 hover:border-blue-400 hover:shadow-[0_0_20px_rgba(59,130,246,0.3)]'
+                              ? 'bg-blue-600/20 border-blue-400 text-white shadow-[0_0_20px_rgba(59,130,246,0.4)]' 
+                              : 'bg-slate-800/40 border-blue-500/30 backdrop-blur-sm text-gray-300 hover:bg-slate-800/60 hover:border-blue-400 hover:shadow-[0_0_20px_rgba(59,130,246,0.3)]'
                           }`}
                           onClick={(e) => {
                             e.preventDefault();
