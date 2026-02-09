@@ -278,7 +278,7 @@ const [isDesktop, setIsDesktop] = useState(false);
              <motion.img
               src={vaigaiLogo}
               alt="Vaigai Sparklers Logo"
-              className="relative z-10 w-90 md:w-90 lg:w-90 h-90"
+              className="relative z-10 w-48 h-48 md:w-64 h-64 lg:w-80 h-80 object-contain"
               style={{
                 filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.2))'
               }}
@@ -289,7 +289,7 @@ const [isDesktop, setIsDesktop] = useState(false);
                   <motion.img
               src={vaigaiLogo}
               alt="Vaigai Sparklers Logo"
-              className="relative z-10 w-50 md:w-44 lg:w-90 h-90"
+              className="relative z-10 w-48 h-48 md:w-64 h-64 lg:w-80 h-80 object-contain"
               style={{
                 filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.2))'
               }}

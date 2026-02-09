@@ -110,7 +110,7 @@ export function Navbar({ onNavigate, currentPage = 'home' }: NavbarProps) {
     <>
       {/* Top Info Bar */}
       <motion.div 
-        className="bg-slate-800 border-b border-red-600/20 py-2 hidden md:block"
+        className="bg-slate-800 border-b border-blue-600/30 py-2 hidden md:block"
         initial={{ y: -50 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.5 }}
@@ -164,8 +164,8 @@ export function Navbar({ onNavigate, currentPage = 'home' }: NavbarProps) {
       <motion.nav
         className={`sticky top-0 z-50 transition-all duration-300 ${
           isScrolled 
-            ? 'bg-white/95 backdrop-blur-md shadow-lg shadow-red-600/10 border-b border-red-600/30' 
-            : 'bg-slate-800 border-b border-red-600/20'
+            ? 'bg-white/95 backdrop-blur-md shadow-lg shadow-blue-600/10 border-b border-blue-600/30' 
+            : 'bg-slate-800 border-b border-blue-600/30'
         }`}
         initial={{ y: -100 }}
         animate={{ y: 0 }}
@@ -220,17 +220,14 @@ export function Navbar({ onNavigate, currentPage = 'home' }: NavbarProps) {
                   >
                     <motion.a
                       href={item.href}
-                      className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-all duration-300 group ${
+                      className={`flex items-center space-x-2 px-6 py-2.5 rounded-xl transition-all duration-300 group ${
                         isActive 
-                          ? (isScrolled 
-                              ? 'text-orange-600 bg-orange-100' 
-                              : 'text-orange-400 bg-orange-400/10'
-                            )
+                          ? 'bg-gradient-to-r from-red-600 to-orange-500 text-white shadow-lg shadow-orange-500/30' 
                           : (isScrolled 
-                              ? 'text-black hover:text-orange-600 hover:bg-red-50' 
-                              : 'text-white hover:text-orange-400 hover:bg-red-600/10'
+                              ? 'bg-gray-100/90 text-gray-800 border-2 border-blue-500/40 backdrop-blur-sm' 
+                              : 'bg-slate-800/50 text-gray-300 border-2 border-blue-400/50 shadow-[0_0_15px_rgba(59,130,246,0.2)] backdrop-blur-sm'
                             )
-                      }`}
+                      } ${!isActive && 'hover:border-blue-300 hover:bg-slate-800/70 hover:shadow-[0_0_25px_rgba(59,130,246,0.4)]'}`}
                       onClick={(e) => {
                         e.preventDefault();
                         handleNavClick(item.id, item.href);
@@ -435,7 +432,7 @@ export function Navbar({ onNavigate, currentPage = 'home' }: NavbarProps) {
               <div className="p-6 border-b border-red-600/20">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-3">
-                    <div className="relative" style={{backgroundColor:"white",borderRadius:"100%"}}>
+                  <div className="relative">
                       <img src={logoTE} alt="Twin Elephant Brand" className="w-12 h-12 object-contain rounded-full" />
                     </div>
                     <div>
@@ -491,8 +488,8 @@ export function Navbar({ onNavigate, currentPage = 'home' }: NavbarProps) {
                           href={item.href}
                           className={`flex items-center space-x-3 p-4 rounded-xl transition-all duration-300 ${
                             isActive 
-                              ? 'bg-gradient-to-r from-red-600 to-orange-500 text-white shadow-lg' 
-                              : 'text-gray-300 hover:text-white hover:bg-red-600/10'
+                              ? 'bg-gradient-to-r from-red-600 to-orange-500 text-white shadow-lg shadow-orange-500/20' 
+                              : 'bg-slate-800/40 border-2 border-blue-500/30 backdrop-blur-sm text-gray-300 hover:bg-slate-800/60 hover:border-blue-400 hover:shadow-[0_0_20px_rgba(59,130,246,0.3)]'
                           }`}
                           onClick={(e) => {
                             e.preventDefault();
