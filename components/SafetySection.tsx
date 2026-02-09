@@ -57,7 +57,7 @@ export function SafetySection() {
             </h2>
           </div>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            Your safety is our top priority. Follow these essential guidelines for a safe and spectacular fireworks experience.
+            Your safety is our top priority. Follow these essential guidelines for a safe and spectacular Sparklers experience.
           </p>
         </motion.div>
 

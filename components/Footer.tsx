@@ -91,7 +91,8 @@ export function Footer({ onCategoryClick }: ProductCategoriesProps) {
               viewport={{ once: true }}
               className="space-y-6"
             >
-              <div className="flex items-center space-x-3">
+              <div className="flex flex-col items-start justify-center space-y-3">
+
                 {/* <motion.div 
                   className="w-20 h-20 rounded-full shadow-lg border-2 border-white bg-white flex items-center justify-center"
                   whileHover={{ 
@@ -103,17 +104,21 @@ export function Footer({ onCategoryClick }: ProductCategoriesProps) {
                 >
                   <img src={logo} alt="Vaigai Sparklers Logo" style={{borderRadius:"100%"}}/>
                 </motion.div> */}
-                <div className="p-3 rounded-xl inline-block">
+                <div className="p-0 rounded-xl inline-block">
                   <img src={logo1} alt="" className="w-[180px] object-contain" />
                 </div>
+                  <span className={`text-xs transition-colors`}>
+                  Premium Sparklers Since 2010
+                </span>
               </div>
+              
               
               <motion.p 
                 className="text-gray-300 leading-relaxed text-sm"
                 whileHover={{ color: '#e5e7eb' }}
                 transition={{ duration: 0.3 }}
               >
-                Founded in the heart of Sivakasi, Tamil Nadu – the Sparklers capital of India – Vaigai Sparklers is a proud manufacturer of high-quality sparklers that light up celebrations across India. Since our humble Beginnings in 2010, we have grown into a trusted name in the Sparklers industry, proudly serving over 10000+ customers in the past 15 years. With a legacy rooted in tradition and a vision focused on safety and innovation, we bring joy, brightness, and brilliance to every festival, function, and moment worth celebrating.
+                Founded in the heart of Sivakasi, Tamil Nadu – the Fireworks capital of India – Vaigai Sparklers is a proud manufacturer of high-quality sparklers that light up celebrations across India. Since our humble Beginnings in 2010, we have grown into a trusted name in the Sparklers industry, proudly serving over 10000+ customers in the past 15 years. With a legacy rooted in tradition and a vision focused on safety and innovation, we bring joy, brightness, and brilliance to every festival, function, and moment worth celebrating.
               </motion.p>
                <a href="https://firebasestorage.googleapis.com/v0/b/project1-71847.appspot.com/o/vaigai%202025%20price%20list.cdr.pdf?alt=media&token=9c8bcd2b-e769-4f2a-a731-3b5f26e9c576" target='_blank' rel="noreferrer">
                <Button 

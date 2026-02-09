@@ -149,7 +149,7 @@ export function Navbar({ onNavigate, currentPage = 'home' }: NavbarProps) {
             <div className="flex items-center space-x-4">
               <Badge className="bg-gradient-to-r from-red-600 to-orange-500 text-white px-3 py-1">
                 <Award className="h-3 w-3 mr-1" />
-                12+ Years Excellence
+                15+ Years Excellence
               </Badge>
               <Badge className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-3 py-1">
                 <Shield className="h-3 w-3 mr-1" />
@@ -574,7 +574,7 @@ export function Navbar({ onNavigate, currentPage = 'home' }: NavbarProps) {
                     </Badge>
                     <Badge className="bg-orange-600/20 text-orange-400 border-orange-600/30 justify-center py-2">
                       <Award className="h-3 w-3 mr-1" />
-                      12+ Years
+                      15+ Years
                     </Badge>
                   </div>
                 </div>

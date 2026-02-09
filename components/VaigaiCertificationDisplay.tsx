@@ -418,7 +418,7 @@ export const VaigaiCertificationDisplay: React.FC = () => {
             whileTap={{ scale: 0.95 }}
           >
             <Button className="bg-gradient-to-r from-orange-500 via-yellow-500 to-red-500 text-white font-bold px-12 py-4 rounded-full hover:shadow-2xl hover:shadow-orange-500/40 transition-all duration-300 text-lg">
-              🎆 Shop Our Collection 🎆
+            Shop Our Collection 
             </Button>
           </motion.div>
         </motion.div>

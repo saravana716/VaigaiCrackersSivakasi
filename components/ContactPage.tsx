@@ -223,7 +223,7 @@ export function ContactPage() {
   ];
 
   const companyStats = [
-    { icon: Calendar, value: "12+", label: "Years Experience", color: "text-orange-400" },
+    { icon: Calendar, value: "15+", label: "Years Experience", color: "text-orange-400" },
     { icon: Users, value: "10K", label: "Happy Customers", color: "text-blue-400" },
     { icon: Star, value: "4.9", label: "Customer Rating", color: "text-yellow-400" },
     { icon: Globe, value: "15+", label: "States Served", color: "text-green-400" }
@@ -268,11 +268,11 @@ export function ContactPage() {
               /> */}
                <motion.div 
                              className="w-60 h-60 rounded-full flex items-center justify-center"
-                             whileHover={{ 
-                               scale: 1.1,
-                               rotate: [0, -5, 5, 0],
-                             }}
-                             transition={{ duration: 0.3 }}
+                            //  whileHover={{ 
+                            //    scale: 1.1,
+                            //    rotate: [0, -5, 5, 0],
+                            //  }}
+                            //  transition={{ duration: 0.3 }}
                            >
                              {/* <span className="text-white font-bold text-lg">V</span> */}
                              <img src={logo} alt="Vaigai Sparklers Logo" style={{borderRadius:"100%"}}/>
@@ -291,7 +291,7 @@ export function ContactPage() {
               Let's Create Magic Together
             </h1>
             <p className="text-xl lg:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-              Connect with Vaigai's Sparklers and let us help you light up your celebrations with premium fireworks
+              Connect with Vaigai Sparklers and let us help you light up your celebrations with premium Sparklers
             </p>
           </motion.div>
 
@@ -671,7 +671,7 @@ export function ContactPage() {
                               </p>
                               <div className="space-y-1">
                                 {info.details.map((detail, i) => (
-                                  <p key={i} className="text-gray-300 font-medium">
+                                  <p key={i} className="text-gray-500 font-medium">
                                     {detail}
                                   </p>
                                 ))}
@@ -706,7 +706,7 @@ export function ContactPage() {
                           </svg>
                         </motion.div>
                         <div>
-                          <h3 className="text-xl font-bold mb-1">
+                          <h3 className="text-xl font-bold mb-1 text-white">
                             WhatsApp Support
                           </h3>
                           <a href="https://wa.me/919442167677" target="_blank" rel="noopener noreferrer" className="text-white hover:text-green-200 block font-medium text-lg decoration-none">
@@ -729,13 +729,13 @@ export function ContactPage() {
               >
                 <Card className="bg-gradient-to-br from-blue-600 to-purple-600 text-white shadow-2xl border-none overflow-hidden">
                   <CardContent className="p-6">
-                    <h3 className="text-xl font-bold mb-3 flex items-center">
+                    <h3 className="text-xl font-bold mb-3 flex items-center text-white">
                       <Star className="h-6 w-6 mr-2 text-yellow-400" />
                       Vaigai's Sparklers
                     </h3>
                     <p className="text-blue-100 mb-3 leading-relaxed">
-                      Established in 2010, we are one of India's leading fireworks manufacturers based in Sivakasi, Tamil Nadu. 
-                      Trusted by thousands of customers for over five decades.
+                      Established in 2010, we are one of India's leading Sparklers manufacturers based in Sivakasi, Tamil Nadu. 
+                      Trusted by thousands of customers since 2010.
                     </p>
                     <div className="space-y-2">
                       <p className="text-blue-100 flex items-center">

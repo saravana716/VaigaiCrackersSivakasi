@@ -74,7 +74,7 @@ export function ProductCategories({ onCategoryClick }: ProductCategoriesProps) {
             Our Categories
           </h2>
           <p className="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto">
-            Discover our extensive range of premium fireworks, carefully selected to create unforgettable moments
+            Discover our extensive range of premium Sparklers, carefully selected to create unforgettable moments
           </p>
         </motion.div>
 

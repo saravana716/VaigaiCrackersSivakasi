@@ -107,7 +107,7 @@ export function ProductSwiper({
             Trending Products
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Discover our most popular fireworks that light up celebrations
+            Discover our most popular Sparklers that light up celebrations
             across the nation
           </p>
         </div>

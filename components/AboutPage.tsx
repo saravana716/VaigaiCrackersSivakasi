@@ -17,10 +17,10 @@ import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { Button } from "./ui/button";
 
 import { ImageWithFallback } from "./figma/ImageWithFallback";
-import vaigai from "../assets/1000035181.png";
+import vaigai from "../assets/a3.jpeg";
 import a1 from "../assets/a1.jpeg";
-import a2 from "../assets/a2.jpeg";
-import a3 from "../assets/a3.jpeg";
+// import a2 from "../assets/a2.jpeg";
+// import a3 from "../assets/a3.jpeg";
 import a4 from "../assets/a4.jpeg";
 import a5 from "../assets/a5.jpeg";
 // import TitleCard from './TitleCard';
@@ -85,7 +85,7 @@ export function AboutPage() {
   // Animated counters with staggered delays for hero stats
   const sparklerCount = useAnimatedCounter(50, 2000, 1000); // 50+ sparklers
   const customerCount = useAnimatedCounter(10, 2000, 1200); // 10k+ customers
-  const yearCount = useAnimatedCounter(12, 2000, 1400); // 12+ years
+  const yearCount = useAnimatedCounter(15, 2000, 1400); // 12+ years
   const safetyCount = useAnimatedCounter(100, 2000, 1600); // 25+ safety awards
 
   useEffect(() => {
@@ -152,7 +152,7 @@ export function AboutPage() {
  const [currentImageIndex, setCurrentImageIndex] = useState(0);
   
   const images = [
-    a1, a2, a3, a4, a5
+    a1, a4, a5
     ];
 
   useEffect(() => {
@@ -633,7 +633,7 @@ export function AboutPage() {
                 transition={{ duration: 0.8, delay: 0.4 }}
                 className="text-5xl lg:text-7xl font-bold mb-8 bg-gradient-to-r from-red-600 to-orange-600 bg-clip-text text-transparent"
               >
-                Our Sustainability Growth and Innovation
+                Our Sustainability Growth
                 <br />
                 <span className="relative">
                   <motion.div
@@ -692,7 +692,6 @@ In our industry, we believe that true progress transcends mere growth and innova
                 className="rounded-2xl shadow-2xl w-full h-[600px] object-cover border border-white bg-white"
               />
               {/* Glow effect */}
-              <div className="absolute inset-0 bg-gradient-to-t from-green-500/20 to-emerald-500/10 rounded-2xl"></div>
             </div>
 
               {/* Floating elements */}

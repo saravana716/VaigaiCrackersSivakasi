@@ -58,7 +58,7 @@ console.log(sparkles);
   // Animated counters with staggered delays
   const sparklerCount = useAnimatedCounter(50, 2000, 1000); // 50+ sparklers
   const customerCount = useAnimatedCounter(10, 2000, 1200); // 10k+ customers
-  const yearCount = useAnimatedCounter(12, 2000, 1400); // 12+ years
+  const yearCount = useAnimatedCounter(15, 2000, 1400); // 12+ years
   const employeeCount = useAnimatedCounter(100, 2000, 1400); // 12+ years
 
   useEffect(() => {
@@ -148,7 +148,7 @@ console.log(sparkles);
               transition={{ duration: 0.8, delay: 0.6 }}
               className="text-xl text-logo-light-gray mb-8 max-w-2xl leading-relaxed"
             >
-              Founded in the heart of Sivakasi, Tamil Nadu – the Sparklers
+              Founded in the heart of Sivakasi, Tamil Nadu – the Fireworks
               capital of India – Vaigai Sparklers is a proud manufacturer of
               high-quality sparklers that light up celebrations across India.
               Since our humble Beginnings in 2010, we have grown into a trusted
@@ -245,7 +245,7 @@ console.log(sparkles);
                   }}
                   transition={{
                     duration: 0.3,
-                    delay: yearCount === 12 ? 0 : 0,
+                    delay: yearCount === 15 ? 0 : 0,
                   }}
                 >
                   {yearCount}+

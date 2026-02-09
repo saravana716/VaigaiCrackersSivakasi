@@ -86,7 +86,7 @@ export function WhyChooseUs() {
 
   const customersCount = useAnimatedCounter(statsInView ? 10000 : 0, 2500, 0);
   const varietiesCount = useAnimatedCounter(statsInView ? 50 : 0, 2000, 200);
-  const yearsCount = useAnimatedCounter(statsInView ? 12 : 0, 1500, 400);
+  const yearsCount = useAnimatedCounter(statsInView ? 15 : 0, 1500, 400);
   const awardsCount = useAnimatedCounter(statsInView ? 25 : 0, 2000, 600);
 
   return (
@@ -213,7 +213,7 @@ export function WhyChooseUs() {
                 }}
                 transition={{
                   duration: 0.3,
-                  delay: yearsCount === 12 ? 0.2 : 0,
+                  delay: yearsCount === 15 ? 0.2 : 0,
                 }}
               >
                 {yearsCount}+
