@@ -181,7 +181,7 @@ export function Navbar({ onNavigate, currentPage = 'home' }: NavbarProps) {
               whileTap={{ scale: 0.95 }}
             >
               <div className="flex flex-col">
-                <img src={logo} alt="" className='logo w-2xl'  />
+                <img src={logo} alt="Vaigai Sparklers" className="h-14 md:h-20 w-auto object-contain" />
                 <span className={`text-xs transition-colors ${
                   isScrolled 
                     ? 'text-gray-600 group-hover:text-orange-500' 
@@ -200,7 +200,7 @@ export function Navbar({ onNavigate, currentPage = 'home' }: NavbarProps) {
               whileTap={{ scale: 0.95 }}
             >
               <div className="flex items-center space-x-2">
-                <img src={logo} alt="Vaigai's Sparklers" className="h-40 w-40 object-contain" />
+                <img src={logo} alt="Vaigai Sparklers" className="h-14 w-auto object-contain" />
               </div>
             </motion.div>
 

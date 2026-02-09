@@ -107,7 +107,7 @@ const AnimatedText = ({ text, delay = 0 }: { text: string; delay?: number }) => 
     className="text-center"
   >
     <motion.h1 
-      className="text-2xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-600 bg-clip-text text-transparent mb-4"
+      className="text-2xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-600 bg-clip-text text-transparent mb-4 py-2"
       animate={{
         backgroundPosition: ['0% 50%', '100% 50%', '0% 50%']
       }}
