@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Navbar } from "./components/Navbar";
 import { Hero } from "./components/Hero";
-import { OffersBanner } from "./components/OffersBanner";
+import { HeroVideo } from "./components/HeroVideo";
 import { ProductCategories } from "./components/ProductCategories";
 import { ProductSwiper } from "./components/ProductSwiper";
 import { WhyChooseUs } from "./components/WhyChooseUs";
@@ -15,6 +15,7 @@ import { GalleryPage } from "./components/GalleryPage";
 import "./index.css";
 import { VaigaiCertificationDisplay } from "./components/VaigaiCertificationDisplay";
 import { WhatsAppButton } from "./components/WhatsAppButton";
+
 export default function App() {
   const [currentPage, setCurrentPage] = useState("home");
   const [selectedCategory, setSelectedCategory] = useState<string>("");
@@ -89,7 +90,7 @@ console.log(product);
           <AboutPage />
         ) : (
           <>
-            <OffersBanner />
+            <HeroVideo />
 
             <Hero />
             <ProductCategories onCategoryClick={handleCategoryClick} />
