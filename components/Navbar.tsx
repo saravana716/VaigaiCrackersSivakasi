@@ -367,7 +367,7 @@ export function Navbar({ onNavigate, currentPage = 'home' }: NavbarProps) {
                 // onClick={() => handleNavClick('contact', '#contact')}
                 
               >
-                <Sparkles className="h-4 w-4 mr-2" />
+                {/* <Sparkles className="h-4 w-4 mr-2" /> */}
                 Get Brochure
               </Button>
              </a>

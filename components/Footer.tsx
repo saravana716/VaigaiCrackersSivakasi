@@ -122,7 +122,7 @@ export function Footer({ onCategoryClick }: ProductCategoriesProps) {
                 // onClick={() => handleNavClick('contact', '#contact')}
                 
               >
-                <Sparkles className="h-4 w-4 mr-2" />
+                {/* <Sparkles className="h-4 w-4 mr-2" /> */}
                 Get Brochure
               </Button>
              </a>
