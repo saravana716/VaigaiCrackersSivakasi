@@ -116,7 +116,7 @@ console.log(sparkles);
               transition={{ duration: 0.8, delay: 0.2 }}
               className="flex items-center space-x-2 mb-6"
             >
-              <Sparkles className="h-8 w-8 text-logo-blue" />
+              {/* <Sparkles className="h-8 w-8 text-logo-blue" /> */}
               <span className="text-logo-blue text-lg font-medium">
                 Welcome to Vaigai Sparklers – Where Every Spark Tells a Story.
               </span>
@@ -171,7 +171,7 @@ console.log(sparkles);
                 onClick={() => (window.location.hash = "about")}
               >
                 Explore Products
-                <Sparkles className="ml-2 h-5 w-5" />
+                {/* <Sparkles className="ml-2 h-5 w-5" /> */}
               </Button>
               {/* <Button
                 variant="outline"
