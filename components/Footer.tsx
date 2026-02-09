@@ -5,7 +5,6 @@ import { Separator } from './ui/separator';
 import { collection, getDocs, Timestamp } from "firebase/firestore";
 import { useCallback } from 'react';
 import { Button } from './ui/button';
-import { Sparkles } from 'lucide-react';
 import logo1 from "../assets/q__1_-removebg-preview.png"
 import { db } from "../firebase";
 
