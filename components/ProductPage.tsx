@@ -12,9 +12,9 @@ import {
 import { Button } from "./ui/button";
 import { Badge } from "./ui/badge";
 import { Card, CardContent } from "./ui/card";
+import { supabase } from "../supabase";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
-import { db } from "../firebase"; // make sure firebase.ts is configured
-import { doc, getDoc } from "firebase/firestore";
+
 
 // ---- Helpers ----
 const COLOR_CLASSES = [
@@ -86,7 +86,7 @@ export function ProductPage({ onBack }: { onBack: () => void }) {
     }
   }, []);
 
-  // Fetch product from Firestore
+  // Fetch product from Supabase
   useEffect(() => {
     const fetchProduct = async () => {
       if (!productId) {
@@ -95,10 +95,14 @@ export function ProductPage({ onBack }: { onBack: () => void }) {
         return;
       }
       try {
-        const docRef = doc(db, "products", productId);
-        const docSnap = await getDoc(docRef);
-        if (docSnap.exists()) {
-          setProduct({ id: docSnap.id, ...docSnap.data() });
+        const { data, error } = await supabase
+          .from("products")
+          .select("*")
+          .eq("id", productId)
+          .maybeSingle();
+        if (error) throw error;
+        if (data) {
+          setProduct(data);
         } else {
           console.error("Product not found!");
         }

@@ -1,11 +1,10 @@
 "use client"; // 👈 Add this at the very top
 
 import { motion } from "framer-motion";
-import { Card, CardContent } from "./ui/card";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
-import { db } from "../firebase";
-import { collection, getDocs, Timestamp } from "firebase/firestore";
+import { supabase } from "../supabase";
 import * as React from "react";
+import { Card, CardContent } from "./ui/card";
 
 // Import Swiper
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -34,20 +33,19 @@ export function ProductCategories({ onCategoryClick }: ProductCategoriesProps) {
   const fetchCategories = React.useCallback(async () => {
     setIsLoading(true);
     try {
-      const querySnapshot = await getDocs(collection(db, "categories"));
-      const categoriesData = querySnapshot.docs.map((doc) => {
-        const data = doc.data();
-        return {
-          id: doc.id,
-          ...data,
-          createdAt: (data.createdAt as Timestamp)?.toDate?.() ?? new Date(),
-        } as Category;
-      });
-      setCategories(
-        categoriesData.sort(
-          (a, b) => (b.createdAt as Date).getTime() - (a.createdAt as Date).getTime()
-        )
-      );
+      const { data, error } = await supabase
+        .from("categories")
+        .select("*")
+        .order("createdAt", { ascending: false });
+
+      if (error) throw error;
+
+      const categoriesData = (data || []).map((item) => ({
+        ...item,
+        createdAt: new Date(item.createdAt),
+      })) as Category[];
+
+      setCategories(categoriesData);
     } catch (error) {
       console.error("Error fetching categories:", error);
     } finally {

@@ -2,11 +2,10 @@
 import { motion } from 'framer-motion';
 import { Phone, Mail, MapPin, Facebook, Twitter, Instagram, Youtube } from 'lucide-react';
 import { Separator } from './ui/separator';
-import { collection, getDocs, Timestamp } from "firebase/firestore";
+import { supabase } from "../supabase";
 import { useCallback } from 'react';
 import { Button } from './ui/button';
 import logo1 from "../assets/q__1_-removebg-preview.png"
-import { db } from "../firebase";
 
 import { useEffect, useState } from 'react';
 
@@ -49,23 +48,21 @@ export function Footer({ onCategoryClick }: ProductCategoriesProps) {
 
   const fetchCategories = useCallback(async () => {
     try {
-      const querySnapshot = await getDocs(collection(db, "categories"));
-      const categoriesData = querySnapshot.docs.map((doc) => {
-        const data = doc.data();
-        return {
-          id: doc.id,
-          ...data,
-          createdAt: (data.createdAt as Timestamp)?.toDate?.() ?? new Date(),
-        } as Category;
-      });
-      setCategories(
-        categoriesData.sort(
-          (a, b) => (b.createdAt as Date).getTime() - (a.createdAt as Date).getTime()
-        )
-      );
+      const { data, error } = await supabase
+        .from("categories")
+        .select("*")
+        .order("createdAt", { ascending: false });
+
+      if (error) throw error;
+
+      const categoriesData = (data || []).map((item) => ({
+        ...item,
+        createdAt: new Date(item.createdAt),
+      })) as Category[];
+
+      setCategories(categoriesData);
     } catch (error) {
       console.error("Error fetching categories:", error);
-    } finally {
     }
   }, []);
 
@@ -119,7 +116,7 @@ export function Footer({ onCategoryClick }: ProductCategoriesProps) {
               >
                 Founded in the heart of Sivakasi, Tamil Nadu – the Fireworks capital of India – Vaigai Sparklers is a proud manufacturer of high-quality sparklers that light up celebrations across India. Since our humble Beginnings in 2010, we have grown into a trusted name in the Sparklers industry, proudly serving over 10000+ customers in the past 15 years. With a legacy rooted in tradition and a vision focused on safety and innovation, we bring joy, brightness, and brilliance to every festival, function, and moment worth celebrating.
               </motion.p>
-               <a href="https://firebasestorage.googleapis.com/v0/b/project1-71847.appspot.com/o/vaigai%202025%20price%20list.cdr.pdf?alt=media&token=9c8bcd2b-e769-4f2a-a731-3b5f26e9c576" target='_blank' rel="noreferrer">
+               <a href="https://qtskyuunvtliqahyhlrl.supabase.co/storage/v1/object/public/vaigai/vaigai-2025-price-list.pdf" target='_blank' rel="noreferrer">
                <Button 
                 size="sm"
                 className=" mb-5 bg-gradient-to-r from-red-600 to-orange-500 hover:opacity-90 text-white shadow-lg transition-all duration-300"

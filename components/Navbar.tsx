@@ -356,7 +356,7 @@ export function Navbar({ onNavigate, currentPage = 'home' }: NavbarProps) {
                 View Gallery
               </Button>
                */}
-             <a href="https://firebasestorage.googleapis.com/v0/b/project1-71847.appspot.com/o/vaigai%202025%20price%20list.cdr.pdf?alt=media&token=9c8bcd2b-e769-4f2a-a731-3b5f26e9c576" target='_blank' rel="noreferrer">
+             <a href="https://qtskyuunvtliqahyhlrl.supabase.co/storage/v1/object/public/vaigai/vaigai-2025-price-list.pdf" target='_blank' rel="noreferrer">
                <Button 
                 size="sm"
                 className="bg-gradient-to-r from-red-600 to-orange-500 hover:opacity-90 text-white shadow-lg transition-all duration-300"

@@ -1,7 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { ChevronLeft, ChevronRight, Eye } from "lucide-react";
-import { db } from "../firebase"; // Ensure firebase.ts is configured
-import { collection, getDocs } from "firebase/firestore";
+import { supabase } from "../supabase";
 
 interface Product {
   id: string;
@@ -28,16 +27,15 @@ export function ProductSwiper({
   const [isMobile, setIsMobile] = useState(false);
   const swiperRef = useRef<HTMLDivElement>(null);
 
-  // ✅ Fetch all products from Firestore
+  // ✅ Fetch all products from Supabase
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const querySnapshot = await getDocs(collection(db, "products"));
-        const fetched: Product[] = querySnapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        })) as Product[];
-        setProducts(fetched);
+        const { data, error } = await supabase
+          .from("products")
+          .select("*");
+        if (error) throw error;
+        setProducts(data as Product[]);
       } catch (error) {
         console.error("Error fetching products:", error);
       } finally {

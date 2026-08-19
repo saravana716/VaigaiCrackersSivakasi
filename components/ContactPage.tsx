@@ -28,8 +28,8 @@ import { Textarea } from './ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
 import { Badge } from './ui/badge';
 import logo from '../assets/1000035181.png';
-import { db } from "../firebase"; // Import Firebase db
-import { collection, addDoc } from "firebase/firestore"; // Import Firestore functions
+import { supabase } from "../supabase";
+
 
 interface FormData {
   name: string;
@@ -152,10 +152,14 @@ export function ContactPage() {
     setSubmitError(null); // Clear previous errors
 
     try {
-      await addDoc(collection(db, "contactFormSubmissions"), {
-        ...formData,
-        timestamp: new Date(), // Add a timestamp
-      });
+      const { error } = await supabase
+        .from("contactFormSubmissions")
+        .insert({
+          ...formData,
+        });
+      
+      if (error) throw error;
+      
       setIsSubmitted(true);
       setFormData({
         name: '',
@@ -173,9 +177,6 @@ export function ContactPage() {
     } finally {
       setIsSubmitting(false);
     }
-
-    // Simulate form submission
-    // await new Promise(resolve => setTimeout(resolve, 2000));
 
     // setIsSubmitting(false);
     // setIsSubmitted(true);

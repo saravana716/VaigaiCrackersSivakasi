@@ -16,15 +16,7 @@ import { Input } from "./ui/input";
 import { Card, CardContent } from "./ui/card";
 import { Badge } from "./ui/badge";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
-import {
-  getDoc,
-  doc,
-  collection,
-  getDocs,
-  query,
-  where,
-} from "firebase/firestore";
-import { db } from "../firebase";
+import { supabase } from "../supabase";
 
 interface Product {
   id: string;
@@ -79,43 +71,48 @@ export function CategoryPage({
       setErr(null);
       try {
         // Load category by ID
-        let catSnap = await getDoc(doc(db, "categories", category));
-        if (!catSnap.exists()) {
+        const { data: catSnap, error: catError } = await supabase
+          .from("categories")
+          .select("*")
+          .eq("id", category)
+          .maybeSingle();
+
+        if (catError) throw catError;
+        if (!catSnap) {
           throw new Error("Category not found");
         }
 
-        const raw = catSnap.data() as any;
         const catData: CategoryData = {
           id: catSnap.id,
-          name: raw?.name ?? "",
-          slug: raw?.slug,
-          description: raw?.description ?? "",
-          icon: (raw?.icon ?? "sparkles").toLowerCase(),
-          color: raw?.color ?? "from-blue-400 to-blue-600",
-          image: raw?.image ?? "",
-          order: raw?.order ?? 0,
+          name: catSnap.name ?? "",
+          slug: catSnap.slug,
+          description: catSnap.description ?? "",
+          icon: (catSnap.icon ?? "sparkles").toLowerCase(),
+          color: catSnap.color ?? "from-blue-400 to-blue-600",
+          image: catSnap.imageUrl ?? catSnap.image ?? "",
+          order: catSnap.order ?? 0,
         };
 
         if (cancelled) return;
         setData(catData);
 
         // ✅ Simple product query (no orderBy, no index needed)
-        const prodQuery = query(
-          collection(db, "products"),
-          where("category", "==", catData.name)
-        );
-        const prodSnaps = await getDocs(prodQuery);
+        const { data: prodSnaps, error: prodError } = await supabase
+          .from("products")
+          .select("*")
+          .eq("category", catData.name);
 
-        const loadedProducts: Product[] = prodSnaps.docs.map((p) => {
-          const pd = p.data() as any;
+        if (prodError) throw prodError;
+
+        const loadedProducts: Product[] = (prodSnaps || []).map((pd) => {
           return {
-            id: p.id,
-            name: pd?.name ?? "",
-            price: pd?.price ?? "",
-            rating: typeof pd?.rating === "number" ? pd.rating : 0,
-            image: Array.isArray(pd?.images) ? pd.images[0] : "",
-            popular: !!pd?.popular,
-            order: pd?.order ?? 0,
+            id: pd.id,
+            name: pd.name ?? "",
+            price: pd.price ?? "",
+            rating: typeof pd.rating === "number" ? pd.rating : 0,
+            image: Array.isArray(pd.images) ? pd.images[0] : "",
+            popular: !!pd.popular,
+            order: pd.order ?? 0,
           };
         });
 
